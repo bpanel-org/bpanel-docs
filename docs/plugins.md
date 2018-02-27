@@ -50,13 +50,144 @@ The available decorators are:
 - decoratePlugin (advanced)
 
 #### decoratePanel
-This is probably one of the most important decorators as it allows you to create entire routes for your plugin (i.e. a full page view that you can navigate to by a URL path or the page navigation).
+This is probably one of the most important decorators as it allows you to create entire routes for your plugin (i.e. a full page view that you can navigate to by a URL path or the page navigation). Because you are creating a new route, the `customChildren` prop you pass to the returned component is a little different from the others as well: The Panel component in the app is basically an array of routes, and you will be concatenating this array with an object that has your view's name and the component.
+
+```
+import MyPanel from './components/MyPanel';
+
+export const decoratePanel = (Panel, { React, PropTypes }) => {
+  return class extends React.Component {
+    static displayName() {
+      return 'my panel';
+    }
+
+    static get propTypes() {
+      return {
+        customChildren: PropTypes.array
+      };
+    }
+
+    render() {
+      const { customChildren = [] } = this.props;
+      const routeData = {
+        name: 'my plugin',
+        Component: MyPanel
+      };
+      return (
+        <Panel
+          {...this.props}
+          customChildren={customChildren.concat(routeData)}
+        />
+      );
+    }
+  };
+};
+```
+
+You can create a custom navigation for your view via [`decorateSidebar`](#decorateSidebar) or use the built in system via your plugin's metadata:
+
+```
+export const metadata = {
+  name: 'my-plugin',
+  author: 'bcoin-org',
+  sidebar: true, // set to true to show nav item in sidebar
+  icon: 'home', // the name of the font awesome icon you would like to use
+  order: 0, // what order to include it in the sidebar, uses alphabetical as a fallback in case of collisions)
+  parent: '' // if is meant to be a sub-view, indicate name of parent
+};
+```
 
 #### decorateHeader
+For `decorateHeader`, your returned component should have a `customChildren` prop that is a React component. It will also receive a `customChildren` prop though and it is important to pass that through in your component (unless you want to overwrite the decoration of any other plugins that have already decorated the header).
+
+```
+export const decorateHeader = (Header, { React, PropTypes }) => {
+  return class extends React.PureComponent {
+    static displayName() {
+      return 'my header';
+    }
+
+    static get propTypes() {
+      return {
+        customChildren: PropTypes.node,
+      };
+    }
+
+    render() {
+      const { customChildren: existingCustomChildren } = this.props;
+
+      const customChildren = (
+        <div className="container">
+          {existingCustomChildren}
+          My custom header content
+        </div>
+      );
+
+      return <Header {...this.props} customChildren={customChildren} />;
+    }
+  };
+};
+```
+
 #### decorateFooter
+See [`decorateHeader`](#decorateHeader)
+
 #### decorateSidebar
+`decorateSidebar` exposes several hooks via `props` that you can use to extend the sidebar of your app:
+
+- `beforeNav`
+- `afterNav`
+- `sidebarNavItems`
+- `customSidebarHeader`
+- `customSidebarFooter`
+
+Most of these are pretty self-explanatory and work the same as `customChildren` in `decorateHeader` and `decorateFooter`. The only one that is a little tricky is `sidebarNavItems`. This is basically the list of navigation links in the sidebar. Hooking into this gives you a lot more control over the appearance of your navigation. In order to use this though, Sidebar also receives the `location` prop necessary for React Router routing.
+
+We have also provided a common UI component called `SidebarNavItem` via `bpanel-ui` that you can use and extend to make sure your navigation stays visually consistent with the rest of the app (it will inherit theming properties).
+
+```
+import { SidebarNavItem } from 'bpanel-ui';
+
+export const decorateSidebar = (Sidebar, { React, PropTypes }) => {
+  return class extends React.PureComponent {
+    static displayName() {
+      return 'my nav';
+    }
+
+    static get propTypes() {
+      return {
+        sidebarNavItems: PropTypes.array,
+        location: PropTypes.shape({
+          pathname: PropTypes.string
+        })
+      };
+    }
+
+    render() {
+      const {
+        sidebarNavItems: existingNavItems,
+        location: { pathname = '' }
+      } = this.props;
+
+      const newNavItem = React.createElement(SidebarNavItem, {
+        name: metadata.name.toUpperCase(),
+        icon: 'cubes', // this is if you want to use the font awesome icon library
+        pathname
+      });
+
+      const _sidebarNavItems = existingNavItems.concat(newNavItem);
+
+      return <Sidebar {...this.props} sidebarNavItems={_sidebarNavItems} />;
+    }
+  };
+};
+```
+
 #### deocratePlugin
-As this requires a plugin that supports decoration by other plugins, this is a more advanced feature. See below for how to enable this in your own plugin: [Decorating Plugins](#decorating-plugins).
+Since this requires a plugin that supports decoration by other plugins, this is a more advanced feature. See below for how to enable this in your own plugin: [Decorating Plugins](#decorating-plugins).
+```
+// insert example here
+```
 
 ### getProps
 ### Reducers
