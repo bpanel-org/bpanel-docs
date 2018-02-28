@@ -1,10 +1,23 @@
 {
   "docs": {
-    "Plugin Development": ["plugin-development"],
+    "Plugin Development": ["plugin-intro", "plugin-started"],
+    "API": [
+      "api-decorate",
+      "api-map-state-dispatch",
+      "api-getprops",
+      "api-reducers",
+      "api-middleware",
+      "api-constants",
+      "api-sockets",
+      "api-decorate-plugins",
+      "api-bundling-plugins",
+      "bpanel-utils"
+    ],
+    "Guides": [ "guide-new-view" ],
     "Plugin Showcase": ["plugin-showcase"],
     "Theming": ["theming"]
   },
-  "docs-other": {
+  "docs-stuff": {
     "Quick Start": ["quick-start"]
   }
 }
