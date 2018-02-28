@@ -1,0 +1,10 @@
+{
+  "docs": {
+    "Plugin Development": ["plugin-development"],
+    "Plugin Showcase": ["plugin-showcase"],
+    "Theming": ["theming"]
+  },
+  "docs-other": {
+    "Quick Start": ["quick-start"]
+  }
+}

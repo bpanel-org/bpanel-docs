@@ -1,3 +1,9 @@
+---
+id: plugin-showcase
+title: Plugin Showcase
+sidebar_label: Plugin Showcase
+---
+
 # Plugins Showcase
 Here are some featured bPanel plugins to help you get started.
 

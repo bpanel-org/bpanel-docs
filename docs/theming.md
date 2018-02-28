@@ -1,3 +1,8 @@
+---
+id: theming
+title: Theming
+sidebar_label: Theming
+---
 # Theming :art:
 
 Welcome :tada: This README will guide you through the steps to create your own bPanel theme.
