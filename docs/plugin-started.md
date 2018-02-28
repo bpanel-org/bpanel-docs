@@ -32,20 +32,20 @@ Once the script is complete you should have a plugin project directory ready to 
 You will need to hook into the extension API in order to make sure your functionality is added to bPanel. Read about the API to learn more about the available extensions and how to use them. All you have to do is make sure that at least one of these are exported from the entry point of your module (e.g. index.js when using `bpanel-cli`).
 
 The API can roughly be broken down as follows (click the links to learn more about implementation):
-- [Decorate](/docs/api-decorate.html)
-- [Get Props](/docs/api-getprops.html)
-- [Reducers](/docs/api-reducers.html)
-- [Middleware](/docs/api-middleware.html)
-- [Constants](/docs/api-constants.html)
-- [Sockets](/docs/api-sockets.html)
+- [Decorate](/bpanel-docs/docs/api-decorate.html)
+- [Get Props](/bpanel-docs/docs/api-getprops.html)
+- [Reducers](/bpanel-docs/docs/api-reducers.html)
+- [Middleware](/bpanel-docs/docs/api-middleware.html)
+- [Constants](/bpanel-docs/docs/api-constants.html)
+- [Sockets](/bpanel-docs/docs/api-sockets.html)
   - Connect
   - Listen and Emit
   - Broadcast
   - Dispatch
   - Subscribe
-- [Decorate Plugins](/docs/api-decorate-plugins.html)
-- [Bundling Plugins](/docs/api-bundling-plugins.html)
-- [bPanel Utils](/docs/bpanel-utils.html)
+- [Decorate Plugins](/bpanel-docs/docs/api-decorate-plugins.html)
+- [Bundling Plugins](/bpanel-docs/docs/api-bundling-plugins.html)
+- [bPanel Utils](/bpanel-docs/docs/bpanel-utils.html)
   - API
     - get
     - post
