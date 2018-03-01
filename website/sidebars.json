@@ -1,6 +1,7 @@
 {
   "docs": {
     "Plugin Development": ["plugin-intro", "plugin-started"],
+    "Guides": [ "guide-new-view" ],
     "API": [
       "api-decorate",
       "api-map-state-dispatch",
@@ -13,7 +14,6 @@
       "api-bundling-plugins",
       "bpanel-utils"
     ],
-    "Guides": [ "guide-new-view" ],
     "Plugin Showcase": ["plugin-showcase"],
     "Theming": ["theming"]
   },
