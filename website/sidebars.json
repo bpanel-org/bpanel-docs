@@ -1,7 +1,7 @@
 {
   "docs": {
     "Plugin Development": ["plugin-intro", "plugin-started"],
-    "Guides": [ "guide-new-view" ],
+    "Guides": [ "guide-node-info" ],
     "API": [
       "api-decorate",
       "api-map-state-dispatch",
