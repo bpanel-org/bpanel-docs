@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 
 ## Introduction
-Our goal with bPanel was to build a completely new kind of blockchain interface on top of one of the most advanced blockchain implementations. Rather than try and create something that solves all use cases, or focus on one or two of the most common problems, we believe that the best way to create new, effective, and secure user experiences is to enable a diverse ecosystem of developers to come up with novel approaches no one team could imagine on their own.
+Our goal with bPanel was to build a completely new kind of blockchain interface on top of one of the most advanced blockchain implementations. Rather than try and create something that solves all use cases, or focus on one or two of the most common problems, we believe that the best way to create new, effective, and secure user experiences is to enable a diverse ecosystem of developers to come up with novel approaches that no one team could imagine on their own.
 
 In the world of CMS's, projects like WordPress and Drupal started as ways to let people without much specific platform expertise to easily organize simple content, primarily blog posts. This ended up creating a whole industry of developers building diverse categories of websites on these platforms. As of April, 2016, over 26% of all websites run on WordPress, from large newspapers to photography portfolios and ecommerce platforms, far beyond the originally envisioned blogs.
 
