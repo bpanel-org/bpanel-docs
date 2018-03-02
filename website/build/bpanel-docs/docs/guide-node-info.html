@@ -1,17 +1,18 @@
-<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Create a Plugin: Node Info View · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Create a Plugin: Node Info View · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bcoin.io/bpanel-docs/index.html"/><meta property="og:description" content="**Description**: This guide will walk you through the steps to creating a simple plugin for a new view (i.e. a Route) that displays some information about your node, updating live via web sockets when a new block is mined on the chain."/><link rel="shortcut icon" href="/bpanel-docs/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/bpanel-docs/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/bpanel-docs/"><img class="logo" src="/bpanel-docs/img/bcoin-logo-slate-12.png"/><h2 class="headerTitle">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/bpanel-docs/docs/quick-start.html" target="_self">Quick Start</a></li><li><a href="/bpanel-docs/docs/plugin-intro.html" target="_self">Docs</a></li><li><a href="/bpanel-docs/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guides</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Plugin Development</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/plugin-intro.html">Overview</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/plugin-started.html">Getting Started</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guides</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/bpanel-docs/docs/guide-node-info.html">Node Info View</a></li></ul></div><div class="navGroup navGroupActive"><h3>API</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-decorate.html">Decorate</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-map-state-dispatch.html">Map State &amp; Dispatch</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-getprops.html">Get Props</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-reducers.html">Reducers</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-middleware.html">Middleware</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-constants.html">Constants</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-sockets.html">Sockets</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-decorate-plugins.html">Decorate Plugins</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-bundling-plugins.html">Bundling Plugins</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/bpanel-utils.html">bPanel Utils</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugin Showcase</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/plugin-showcase.html">Plugin Showcase</a></li></ul></div><div class="navGroup navGroupActive"><h3>Theming</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/theming.html">Theming</a></li></ul></div></div></section></div><script>
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Create a Plugin: Node Info View · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Create a Plugin: Node Info View · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bcoin.io/bpanel-docs/index.html"/><meta property="og:description" content="**Description**: This guide will walk you through the steps to create a simple plugin for a new view (i.e. a Route) that displays some information about your node, updating in real time via web sockets when a new block is mined on the chain."/><link rel="shortcut icon" href="/bpanel-docs/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/bpanel-docs/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/bpanel-docs/"><img class="logo" src="/bpanel-docs/img/bcoin-logo-slate-12.png"/><h2 class="headerTitle">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/bpanel-docs/docs/quick-start.html" target="_self">Quick Start</a></li><li><a href="/bpanel-docs/docs/plugin-intro.html" target="_self">Docs</a></li><li><a href="/bpanel-docs/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guides</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>bPanel</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/quick-start.html">Quick Start</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/bpanel-overview.html">Overview</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/install-plugins.html">Install Plugins</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugin Development</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/plugin-intro.html">Plugin Overview</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/plugin-started.html">Getting Started</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guides</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/bpanel-docs/docs/guide-node-info.html">Node Info View</a></li></ul></div><div class="navGroup navGroupActive"><h3>API</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-decorate.html">decorate</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-map-state-dispatch.html">mapComponentState/Dispatch</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-getprops.html">getProps</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-reducers.html">reducers</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-middleware.html">middleware</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-constants.html">Constants</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-sockets.html">Sockets</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-decorate-plugins.html">Decorate Plugins</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/api-bundling-plugins.html">Bundling Plugins</a></li><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/bpanel-utils.html">bPanel Utils</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plugin Showcase</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/plugin-showcase.html">Plugin Showcase</a></li></ul></div><div class="navGroup navGroupActive"><h3>Theming</h3><ul><li class="navListItem"><a class="navItem" href="/bpanel-docs/docs/theming.html">Theming</a></li></ul></div></div></section></div><script>
           var toggler = document.getElementById('navToggler');
           var nav = document.getElementById('docsNav');
           toggler.onclick = function() {
             nav.classList.toggle('docsSliderActive');
           };
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Create a Plugin: Node Info View</h1></header><article><div><span><p><strong>Description</strong>: This guide will walk you through the steps to creating a simple plugin for a new view (i.e. a Route) that displays some information about your node, updating live via web sockets when a new block is mined on the chain.</p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Create a Plugin: Node Info View</h1></header><article><div><span><p><strong>Description</strong>: This guide will walk you through the steps to create a simple plugin for a new view (i.e. a Route) that displays some information about your node, updating in real time via web sockets when a new block is mined on the chain.</p>
 <h2><a class="anchor" aria-hidden="true" name="goals"></a><a href="#goals" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Goals:</h2>
 <ul>
 <li>We want to create a new view using <code>decoratePanel</code> that displays our information</li>
 <li>We want to get information about the node from the state using <code>mapComponentState</code> and pass it down to our view with <code>getRouteProps</code></li>
 <li>We want to listen for changes to the chain tip by subscribing to the <code>block connect</code> web socket event on the bcoin node</li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" name="steps"></a><a href="#steps" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Steps:</h2>
+<h2><a class="anchor" aria-hidden="true" name="building-your-plugin"></a><a href="#building-your-plugin" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building your plugin</h2>
+<h3><a class="anchor" aria-hidden="true" name="steps"></a><a href="#steps" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Steps:</h3>
 <ul>
 <li><strong><a href="#1-plugin-setup-using-bpanel-cli">Plugin Setup</a></strong></li>
 <li><strong><a href="#2-add-the-plugin-to-your-local-bpanel">Add Plugin to bPanel</a></strong></li>
@@ -21,7 +22,6 @@
 <li><strong><a href="#6-connect-to-sockets">Connect to Sockets</a></strong></li>
 <li><strong><a href="#7-publish-to-npm">Publish to NPM</a></strong></li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" name="building-your-plugin"></a><a href="#building-your-plugin" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building your plugin</h2>
 <p>This guide will assume you're starting with a completely blank bPanel setup with no other plugins installed or enabled in <code>appConfig.js</code>. So, if you navigate to your bPanel in your browser, it will look something like this:</p>
 <p><img src="/bpanel-docs/img/1-blank-bpanel.png" alt="default app" title="blank bpanel"><em>Fresh bPanel install</em></p>
 <p>We are also going to build this plugin assuming you want to publish it to npm when it's ready. This isn't strictly necessary of course, but you're going to be putting so much work into creating a beautiful plugin, why not share it with the world!</p>
@@ -40,39 +40,22 @@
 ? Name of your plugin:  node-view
 ? Version (0.0.1):  0.0.1
 ? Author:  plugin-dev
-? Description:  A simple bPanel plugin \<span class="hljs-keyword">for</span> view
-ing basic information about your bcoin node
-? Keywords (separated by comma):  node, blockch
-ain, plugins
+? Description:  A simple bPanel plugin to view basic information about your bcoin node
+? Keywords (separated by comma):  node, blockchain, plugins
 ? License:  MIT
-? Will your plugin depend on any other publishe
-d bpanel plugins? No
+? Will your plugin depend on any other published bpanel plugins? No
 ? Will you be making a theme? No
-? Would you like to add any additional module t
-emplates (e.g. mapComponentState, decoratePanel
-, reduceNode, etc.)? Yes
-? Select additional modules (choose none to bui
-ld yourself) decoratePanel, getRouteProps, mapC
-omponentState, socketListeners
+? Would you like to add any additional module templates (e.g. mapComponentState, decoratePanel, reduceNode, etc.)?Yes
+? Select additional modules (choose none to build yourself)decoratePanel, getRouteProps, mapComponentState, socketListeners
 ? Pick target component \<span class="hljs-keyword">for</span> decoration: Panel
-? Pick a target destination \<span class="hljs-keyword">for</span> your plugin dir
-ectory /Users/me/projects
+? Pick a target destination \<span class="hljs-keyword">for</span> your plugin directory /Users/me/projects
 Creating plugin directory...
-Done.
-Setting up plugin entry point (index.js)...
-Done.
-Setting up node_modules...
-Creating plugin directory...
-Done.
-Setting up plugin entry point (index.js)...
-Done.
-Setting up node_modules...
 </code></pre>
 <p>A couple things to note:</p>
 <ul>
 <li><code>bcoin</code> and <code>bpanel</code> will automatically be added as keywords by the script</li>
 <li>We picked from the available module templates to spec out our plugins' exports: <code>decoratePanel</code>, <code>getRouteProps</code>, <code>mapComponentState</code>, and <code>socketListeners</code>. You are not committed to these though and can always remove them and/or add more in your plugin's index.js (we add <code>middleware</code> later in this demo to demonstrate).</li>
-<li>The destination defaults to current directory so we are good to go there.</li>
+<li>The destination defaults to our current directory so we are good to go there.</li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" name="2-add-the-plugin-to-your-local-bpanel"></a><a href="#2-add-the-plugin-to-your-local-bpanel" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2) Add the plugin to your local bPanel</h2>
 <p>First navigate to the plugin in your terminal</p>
@@ -94,7 +77,7 @@ npm link node-view
   ...
 }
 </code></pre>
-<p>You'll want to make sure you're running <code>npm run watch:dev</code> for the build in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with <code>npm run babel</code>, bpanel will pick up the change.</p>
+<p>You'll want to make sure you're running <code>npm run watch:dev</code>in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with <code>npm run babel</code>, webpack will pick up the change.</p>
 <h2><a class="anchor" aria-hidden="true" name="3-add-navigation"></a><a href="#3-add-navigation" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3) Add navigation</h2>
 <p>Right now if you go to bPanel in your browser you still won't see anything. But that's because we haven't built out any view components or navigation.</p>
 <p>Let's start by adding a link to our new view to the sidebar.</p>
@@ -172,12 +155,12 @@ export const decoratePanel = (<span class="hljs-type">Panel</span>, { <span clas
 <pre><code class="hljs css javascript">state: {
   <span class="hljs-attr">node</span>: {
     <span class="hljs-attr">node</span>: {
-      ...
-      network:
+      ...,
+      <span class="hljs-attr">network</span>: ...
     }
   },
-  ...
-  chain: {
+  ...,
+  <span class="hljs-attr">chain</span>: {
     <span class="hljs-attr">height</span>: ...,
     <span class="hljs-attr">progress</span>: ...,
     ...
@@ -232,10 +215,10 @@ const NodeInfo = (</span><span class="hljs-template-variable">{ network, height,
 <ul>
 <li>When the socket client first connects, we want to tell our server to watch the chain</li>
 <li>Next, we need to tell our server to <a href="/bpanel-docs/docs/sockets.html#subscribe"><code>subscribe</code></a> to the <code>block connect</code> event from bcoin and respond with a <code>new block</code> event to the client</li>
-<li>Then our client has listen for the <code>new block</code> event and dispatch a new action to our redux store when the event is received</li>
+<li>Then our client has to listen for the <code>new block</code> event and dispatch a new action to our redux store when the event is received</li>
 <li>Finally, we need to update the chain height in the store when that action is received</li>
 </ul>
-<p>(NOTE: There is already a plugin for bPanel that does most of this for you called <code>chainSockets</code>. To enable it, all you have to do is make sure it's installed in your version of bpanel and added to the plugins list in appConfig. If your plugin requires it, you can add it as a <a href="/docs/bpanel-docs/api-bundling-plugins.html">plugin dependency</a>)</p>
+<p>(NOTE: There is already a plugin for bPanel that does most of this for you called <code>chainSockets</code>. To enable it, all you have to do is make sure it's installed in your version of bpanel and added to the plugins list in appConfig. If your plugin requires it, you can add it as a <a href="/bpanel-docs/docs/api-bundling-plugins.html">plugin dependency</a>)</p>
 <p>To achieve the first couple steps, we're going to need some <a href="/bpanel-docs/docs/sockets.html#emit-socket"><code>EMIT_SOCKET</code></a> actions. Let's add these in another file to keep our index cleaner. Create a file lib/actions.js and add the following code to it:</p>
 <pre><code class="hljs css javascript"><span class="hljs-comment">// lib/actions.js</span>
 
@@ -260,13 +243,13 @@ const NodeInfo = (</span><span class="hljs-template-variable">{ network, height,
   };
 }
 </code></pre>
-<p>Now we need to import these into our plugin entry point and dispatch them when our sockets connect using a <a href="/bpanel-docs/docs/middleware.html">middleware</a> export.</p>
+<p>Now we need to import these into our plugin entry point and dispatch them when our sockets connect using a <a href="/bpanel-docs/docs/api-middleware.html">middleware</a> export.</p>
 <pre><code class="hljs css javascript"><span class="hljs-comment">// index.js</span>
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">'lib/actions'</span>;
 ...
 export <span class="hljs-keyword">const</span> middleware = <span class="hljs-function">(<span class="hljs-params">{ dispatch }</span>) =&gt;</span> next =&gt; <span class="hljs-keyword">async</span> action =&gt; {
   <span class="hljs-keyword">const</span> { type, payload } = action;
-  <span class="hljs-keyword">if</span> (type === SOCKET_CONNECTED) {
+  <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'SOCKET_CONNECTED'</span>) {
     dispatch(actions.watchChain());
     dispatch(actions.subscribeBlockConnect());
   }
@@ -316,7 +299,7 @@ export <span class="hljs-keyword">const</span> middleware = <span class="hljs-fu
   <span class="hljs-keyword">const</span> chainState = getState().chain;
   <span class="hljs-keyword">const</span> blocks = chainState.getIn([<span class="hljs-string">'recentBlocks'</span>])
                   ? chainState.getIn([<span class="hljs-string">'recentBlocks'</span>])
-                  : [];
+                  : []; <span class="hljs-comment">// `getIn` is a seamless-immutable method</span>
   <span class="hljs-keyword">const</span> newBlocks = [...blocks]; <span class="hljs-comment">// get mutable version of blocks</span>
   newBlocks.push(hash)
   <span class="hljs-keyword">const</span> updatedChain = {
@@ -333,15 +316,15 @@ export <span class="hljs-keyword">const</span> middleware = <span class="hljs-fu
 </code></pre>
 <p>Let's extend our view to also include the recent blocks array. There are only three things we need to do to make that work:</p>
 <p><em>Get the recent blocks from the state</em></p>
-<pre><code class="hljs">// index.js
+<pre><code class="hljs css javascript"><span class="hljs-comment">// index.js</span>
 ...
-export const mapComponentState = {
-  Panel: (<span class="hljs-keyword">state</span>, map) =&gt;
-    Object.assign(map, {
-      network: <span class="hljs-keyword">state</span>.node.node.network,
-      height: <span class="hljs-keyword">state</span>.chain.height,
-      progress: <span class="hljs-keyword">state</span>.chain.progress,
-      recentBlocks: <span class="hljs-keyword">state</span>.chain.recentBlocks
+export <span class="hljs-keyword">const</span> mapComponentState = {
+  <span class="hljs-attr">Panel</span>: <span class="hljs-function">(<span class="hljs-params">state, map</span>) =&gt;</span>
+    <span class="hljs-built_in">Object</span>.assign(map, {
+      <span class="hljs-attr">network</span>: state.node.node.network,
+      <span class="hljs-attr">height</span>: state.chain.height,
+      <span class="hljs-attr">progress</span>: state.chain.progress,
+      <span class="hljs-attr">recentBlocks</span>: state.chain.recentBlocks <span class="hljs-comment">// add this</span>
     })
 };
 ...
@@ -355,20 +338,20 @@ export <span class="hljs-keyword">const</span> getRouteProps = {
       <span class="hljs-attr">network</span>: parentProps.network,
       <span class="hljs-attr">height</span>: parentProps.height,
       <span class="hljs-attr">progress</span>: parentProps.progress,
-      <span class="hljs-attr">recentBlocks</span>: parentProps.recentBlocks
+      <span class="hljs-attr">recentBlocks</span>: parentProps.recentBlocks <span class="hljs-comment">// add this</span>
     })
 };
 ...
 </code></pre>
 <p><em>Display the blocks in the component</em></p>
 <pre><code class="hljs"><span class="hljs-comment">// index.js</span>
-
 <span class="hljs-keyword">const</span> NodeInfo = <span class="hljs-function">(<span class="hljs-params">{ network, height, progress, recentBlocks = [] }</span>) =&gt;</span> (
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"h2"</span>&gt;</span>Node Info<span class="hljs-tag">&lt;/<span class="hljs-name">Header</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Network: {network}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Height: {height}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Progress: {progress}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- add this --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Recent Blocks:<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
     {
@@ -379,10 +362,10 @@ export <span class="hljs-keyword">const</span> getRouteProps = {
 );
 </code></pre>
 <p>The easiest way to test this is if you're running a regtest environment locally. If you're running this against a live network though, you'll have to wait for new blocks to be mined.</p>
-<p>On regtest with <a href="https://www.npmjs.com/package/bclient">bclient</a> mine a few blocks:</p>
+<p>Mine a few blocks on regtest with <a href="https://www.npmjs.com/package/bclient">bclient</a>:</p>
 <pre><code class="hljs">bcoin-cli --network=regtest rpc <span class="hljs-keyword">generate</span> <span class="hljs-number">4</span>
 </code></pre>
-<p>Now check bpanel in your browser and you should notice that without even refreshing the height has increased by 4 and recent blocks now shows a list of 4 hashes.</p>
+<p>Now check bpanel in your browser and you should notice that, without even refreshing, the height has increased by 4 and recent blocks now shows a list of 4 hashes.</p>
 <p><img src="/bpanel-docs/img/5-sockets.png" alt="live sockets" title="bpanel with sockets"><em>Plugin showing live updates from your socket connection</em></p>
 <h2><a class="anchor" aria-hidden="true" name="7-publish-to-npm"></a><a href="#7-publish-to-npm" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7) Publish to NPM</h2>
 <p>The last step is to add your plugin to npm so that other bPanel users can install and use your plugin with their node!</p>
@@ -395,7 +378,7 @@ export <span class="hljs-keyword">const</span> getRouteProps = {
 <p>This plugin is pretty naive, and in fact actually reimplements some functionality that is already available with default bPanel plugins (e.g. chainSockets). Hopefully though this gives you an idea of how powerful plugins can be and the types of functionality they allow for extending bPanel.</p>
 <p>Some ideas on how you can extend this naive node info view:</p>
 <ul>
-<li>Add more information about your such as the genesis block</li>
+<li>Add more information about your node such as the genesis block</li>
 <li>Update the progress using sockets to show the progress of a syncing node</li>
 <li>Add more styles to the view</li>
 <li>Display more block information</li>

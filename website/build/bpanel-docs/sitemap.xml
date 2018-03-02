@@ -17,8 +17,10 @@
 <url> <loc>https://bcoin.io/docs/api-middleware.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-middleware.html" /> </url>
 <url> <loc>https://bcoin.io/docs/api-reducers.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-reducers.html" /> </url>
 <url> <loc>https://bcoin.io/docs/api-sockets.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-sockets.html" /> </url>
+<url> <loc>https://bcoin.io/docs/bpanel-overview.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/bpanel-overview.html" /> </url>
 <url> <loc>https://bcoin.io/docs/bpanel-utils.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/bpanel-utils.html" /> </url>
 <url> <loc>https://bcoin.io/docs/guide-node-info.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/guide-node-info.html" /> </url>
+<url> <loc>https://bcoin.io/docs/install-plugins.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/install-plugins.html" /> </url>
 <url> <loc>https://bcoin.io/docs/plugin-intro.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/plugin-intro.html" /> </url>
 <url> <loc>https://bcoin.io/docs/plugin-showcase.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/plugin-showcase.html" /> </url>
 <url> <loc>https://bcoin.io/docs/plugin-started.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/plugin-started.html" /> </url>
