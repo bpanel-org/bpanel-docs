@@ -1,7 +1,7 @@
 ---
 id: api-decorate
 title: Decorate
-sidebar_label: Decorate
+sidebar_label: decorate
 ---
 
 ### Introduction

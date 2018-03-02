@@ -1,7 +1,7 @@
 ---
 id: api-map-state-dispatch
 title: Map State & Dispatch
-sidebar_label: Map State & Dispatch
+sidebar_label: mapComponentState/Dispatch
 ---
 
 Plugins can share state between each other thanks to redux's state being a single source of truth. Anything in the application state can be accessed by other plugins via [`mapComponentState`](#mapcomponentstate) and the state can be updated with reducers via [`mapComponentDispatch`](#mapcomponentdispatch).

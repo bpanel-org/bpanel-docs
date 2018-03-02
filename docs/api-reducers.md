@@ -1,7 +1,7 @@
 ---
 id: api-reducers
 title: Reducers
-sidebar_label: Reducers
+sidebar_label: reducers
 ---
 
 The plugin API also exposes certain parts of the store's reducer. You can target these reducers by exporting one of the decorating functions described on this page (more may be added in the future).

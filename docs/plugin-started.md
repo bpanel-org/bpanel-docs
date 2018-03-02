@@ -23,10 +23,38 @@ bpanel-cli create
 Once the script is complete you should have a plugin project directory ready to work on (and even `npm publish` if you wanted to).
 
 ## Developing your Plugin
+If you're using the default plugin structure, index.js in the top level of your plugin directory is the entry point to your plugin. Your plugin extensions should be exposed in this file (see the API docs for more on the available extensions). All other files should be in the `lib` directory.
 
-## Using your Plugin
+When you make changes, build the plugin by running
+
+```bash
+npm run babel
+```
+
+To be able to use the plugin you're developing in your local bPanel project, in your terminal first run from your plugin project directory:
+
+```bash
+npm link
+```
+
+then change to your bPanel directory
+
+```bash
+cd path/to/bpanel
+```
+
+and link to your plugin
+
+```bash
+npm link [PLUGIN_NAME]
+```
+
+Then add your plugin to your appConfing.js (see [Install Plugins](/bpanel-docs/docs/install-plugins.html) for more).
 
 ## Publishing your Plugin
+If you're using `bpanel-cli` to spec your plugin files, then this is as easy as `npm publish`. Just make sure you've got your npm registry credentials setup on your local machine (more [at npm](https://docs.npmjs.com/cli/publish)). Once published, other bPanel developers can install and import your plugin into their own app!
+
+`bpanel-cli create` will automatically add `bpanel` and `bcoin` keywords to your package.json. This makes it easy for other users to find your plugin with a simple `npm search bpanel`
 
 ## The Plugin API
 You will need to hook into the extension API in order to make sure your functionality is added to bPanel. Read about the API to learn more about the available extensions and how to use them. All you have to do is make sure that at least one of these are exported from the entry point of your module (e.g. index.js when using `bpanel-cli`).

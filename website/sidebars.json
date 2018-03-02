@@ -1,5 +1,6 @@
 {
   "docs": {
+    "bPanel": ["quick-start", "bpanel-overview", "install-plugins"],
     "Plugin Development": ["plugin-intro", "plugin-started"],
     "Guides": [ "guide-node-info" ],
     "API": [
@@ -16,8 +17,5 @@
     ],
     "Plugin Showcase": ["plugin-showcase"],
     "Theming": ["theming"]
-  },
-  "docs-stuff": {
-    "Quick Start": ["quick-start"]
   }
 }

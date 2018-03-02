@@ -1,7 +1,7 @@
 ---
 id: api-getprops
 title: Get Props
-sidebar_label: Get Props
+sidebar_label: getProps
 ---
 
 For situations where you have a parent component that is connected to the Redux state (e.g. Panel, Header, or Footer) and have a child component you are decorating that needs access to specific props from the component (e.g. `Route`s, which are children of Panel), you need some mechanism to tell the parent what props it needs to pass down to the child.

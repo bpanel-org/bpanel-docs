@@ -4,14 +4,15 @@ title: Create a Plugin: Node Info View
 sidebar_label: Node Info View
 ---
 
-**Description**: This guide will walk you through the steps to creating a simple plugin for a new view (i.e. a Route) that displays some information about your node, updating live via web sockets when a new block is mined on the chain.
+**Description**: This guide will walk you through the steps to create a simple plugin for a new view (i.e. a Route) that displays some information about your node, updating in real time via web sockets when a new block is mined on the chain.
 
 ## Goals:
 - We want to create a new view using `decoratePanel` that displays our information
 - We want to get information about the node from the state using `mapComponentState` and pass it down to our view with `getRouteProps`
 - We want to listen for changes to the chain tip by subscribing to the `block connect` web socket event on the bcoin node
 
-## Steps:
+## Building your plugin
+### Steps:
 - **[Plugin Setup](#1-plugin-setup-using-bpanel-cli)**
 - **[Add Plugin to bPanel](#2-add-the-plugin-to-your-local-bpanel)**
 - **[Add Navigation](#3-add-navigation)**
@@ -20,7 +21,6 @@ sidebar_label: Node Info View
 - **[Connect to Sockets](#6-connect-to-sockets)**
 - **[Publish to NPM](#7-publish-to-npm)**
 
-## Building your plugin
 This guide will assume you're starting with a completely blank bPanel setup with no other plugins installed or enabled in `appConfig.js`. So, if you navigate to your bPanel in your browser, it will look something like this:
 
 ![default app](/bpanel-docs/img/1-blank-bpanel.png "blank bpanel")*Fresh bPanel install*
@@ -50,39 +50,22 @@ $ bpanel-cli create
 ? Name of your plugin:  node-view
 ? Version (0.0.1):  0.0.1
 ? Author:  plugin-dev
-? Description:  A simple bPanel plugin \for view
-ing basic information about your bcoin node
-? Keywords (separated by comma):  node, blockch
-ain, plugins
+? Description:  A simple bPanel plugin to view basic information about your bcoin node
+? Keywords (separated by comma):  node, blockchain, plugins
 ? License:  MIT
-? Will your plugin depend on any other publishe
-d bpanel plugins? No
+? Will your plugin depend on any other published bpanel plugins? No
 ? Will you be making a theme? No
-? Would you like to add any additional module t
-emplates (e.g. mapComponentState, decoratePanel
-, reduceNode, etc.)? Yes
-? Select additional modules (choose none to bui
-ld yourself) decoratePanel, getRouteProps, mapC
-omponentState, socketListeners
+? Would you like to add any additional module templates (e.g. mapComponentState, decoratePanel, reduceNode, etc.)?Yes
+? Select additional modules (choose none to build yourself)decoratePanel, getRouteProps, mapComponentState, socketListeners
 ? Pick target component \for decoration: Panel
-? Pick a target destination \for your plugin dir
-ectory /Users/me/projects
+? Pick a target destination \for your plugin directory /Users/me/projects
 Creating plugin directory...
-Done.
-Setting up plugin entry point (index.js)...
-Done.
-Setting up node_modules...
-Creating plugin directory...
-Done.
-Setting up plugin entry point (index.js)...
-Done.
-Setting up node_modules...
 ```
 
 A couple things to note:
 - `bcoin` and `bpanel` will automatically be added as keywords by the script
 - We picked from the available module templates to spec out our plugins' exports: `decoratePanel`, `getRouteProps`, `mapComponentState`, and `socketListeners`. You are not committed to these though and can always remove them and/or add more in your plugin's index.js (we add `middleware` later in this demo to demonstrate).
--  The destination defaults to current directory so we are good to go there.
+-  The destination defaults to our current directory so we are good to go there.
 
 ## 2) Add the plugin to your local bPanel
 First navigate to the plugin in your terminal
@@ -113,7 +96,7 @@ export default {
 }
 ```
 
-You'll want to make sure you're running `npm run watch:dev` for the build in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with `npm run babel`, bpanel will pick up the change.
+You'll want to make sure you're running `npm run watch:dev`in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with `npm run babel`, webpack will pick up the change.
 
 ## 3) Add navigation
 Right now if you go to bPanel in your browser you still won't see anything. But that's because we haven't built out any view components or navigation.
@@ -218,11 +201,11 @@ Using redux developer tools in our browser console, we know the information we w
 state: {
   node: {
     node: {
-      ...
-      network:
+      ...,
+      network: ...
     }
   },
-  ...
+  ...,
   chain: {
     height: ...,
     progress: ...,
@@ -290,10 +273,10 @@ The last step we want to do is add the ability for our Node Info view to update 
 There are going to be a few steps required to setting this up:
 - When the socket client first connects, we want to tell our server to watch the chain
 - Next, we need to tell our server to [`subscribe`](/bpanel-docs/docs/sockets.html#subscribe) to the `block connect` event from bcoin and respond with a `new block` event to the client
-- Then our client has listen for the `new block` event and dispatch a new action to our redux store when the event is received
+- Then our client has to listen for the `new block` event and dispatch a new action to our redux store when the event is received
 - Finally, we need to update the chain height in the store when that action is received
 
-(NOTE: There is already a plugin for bPanel that does most of this for you called `chainSockets`. To enable it, all you have to do is make sure it's installed in your version of bpanel and added to the plugins list in appConfig. If your plugin requires it, you can add it as a [plugin dependency](/docs/bpanel-docs/api-bundling-plugins.html))
+(NOTE: There is already a plugin for bPanel that does most of this for you called `chainSockets`. To enable it, all you have to do is make sure it's installed in your version of bpanel and added to the plugins list in appConfig. If your plugin requires it, you can add it as a [plugin dependency](/bpanel-docs/docs/api-bundling-plugins.html))
 
 To achieve the first couple steps, we're going to need some [`EMIT_SOCKET`](/bpanel-docs/docs/sockets.html#emit-socket) actions. Let's add these in another file to keep our index cleaner. Create a file lib/actions.js and add the following code to it:
 
@@ -322,7 +305,7 @@ export function subscribeBlockConnect() {
 }
 ```
 
-Now we need to import these into our plugin entry point and dispatch them when our sockets connect using a [middleware](/bpanel-docs/docs/middleware.html) export.
+Now we need to import these into our plugin entry point and dispatch them when our sockets connect using a [middleware](/bpanel-docs/docs/api-middleware.html) export.
 
 ```javascript
 // index.js
@@ -330,7 +313,7 @@ import * as actions from 'lib/actions';
 ...
 export const middleware = ({ dispatch }) => next => async action => {
   const { type, payload } = action;
-  if (type === SOCKET_CONNECTED) {
+  if (type === 'SOCKET_CONNECTED') {
     dispatch(actions.watchChain());
     dispatch(actions.subscribeBlockConnect());
   }
@@ -393,7 +376,7 @@ export const updateChain = (entry) => (dispatch, getState) => {
   const chainState = getState().chain;
   const blocks = chainState.getIn(['recentBlocks'])
                   ? chainState.getIn(['recentBlocks'])
-                  : [];
+                  : []; // `getIn` is a seamless-immutable method
   const newBlocks = [...blocks]; // get mutable version of blocks
   newBlocks.push(hash)
   const updatedChain = {
@@ -412,7 +395,7 @@ export const updateChain = (entry) => (dispatch, getState) => {
 Let's extend our view to also include the recent blocks array. There are only three things we need to do to make that work:
 
 _Get the recent blocks from the state_
-```
+```javascript
 // index.js
 ...
 export const mapComponentState = {
@@ -421,7 +404,7 @@ export const mapComponentState = {
       network: state.node.node.network,
       height: state.chain.height,
       progress: state.chain.progress,
-      recentBlocks: state.chain.recentBlocks
+      recentBlocks: state.chain.recentBlocks // add this
     })
 };
 ...
@@ -437,7 +420,7 @@ export const getRouteProps = {
       network: parentProps.network,
       height: parentProps.height,
       progress: parentProps.progress,
-      recentBlocks: parentProps.recentBlocks
+      recentBlocks: parentProps.recentBlocks // add this
     })
 };
 ...
@@ -446,13 +429,13 @@ export const getRouteProps = {
 _Display the blocks in the component_
 ```
 // index.js
-
 const NodeInfo = ({ network, height, progress, recentBlocks = [] }) => (
   <div>
     <Header type="h2">Node Info</Header>
     <Text type="p">Network: {network}</Text>
     <Text type="p">Height: {height}</Text>
     <Text type="p">Progress: {progress}</Text>
+    <!-- add this -->
     <Text type="p">Recent Blocks:</Text>
     <ul>
     {
@@ -465,13 +448,13 @@ const NodeInfo = ({ network, height, progress, recentBlocks = [] }) => (
 
 The easiest way to test this is if you're running a regtest environment locally. If you're running this against a live network though, you'll have to wait for new blocks to be mined.
 
-On regtest with [bclient](https://www.npmjs.com/package/bclient) mine a few blocks:
+Mine a few blocks on regtest with [bclient](https://www.npmjs.com/package/bclient):
 
 ```
 bcoin-cli --network=regtest rpc generate 4
 ```
 
-Now check bpanel in your browser and you should notice that without even refreshing the height has increased by 4 and recent blocks now shows a list of 4 hashes.
+Now check bpanel in your browser and you should notice that, without even refreshing, the height has increased by 4 and recent blocks now shows a list of 4 hashes.
 
 ![live sockets](/bpanel-docs/img/5-sockets.png "bpanel with sockets")*Plugin showing live updates from your socket connection*
 
@@ -491,7 +474,7 @@ npm install --save node-view
 This plugin is pretty naive, and in fact actually reimplements some functionality that is already available with default bPanel plugins (e.g. chainSockets). Hopefully though this gives you an idea of how powerful plugins can be and the types of functionality they allow for extending bPanel.
 
 Some ideas on how you can extend this naive node info view:
-- Add more information about your such as the genesis block
+- Add more information about your node such as the genesis block
 - Update the progress using sockets to show the progress of a syncing node
 - Add more styles to the view
 - Display more block information

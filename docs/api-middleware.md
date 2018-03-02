@@ -1,7 +1,7 @@
 ---
 id: api-middleware
 title: Middleware
-sidebar_label: Middleware
+sidebar_label: middleware
 ---
 
 Middleware is an important and powerful feature of redux that allows you to intercept actions dispatched by the store. One of the most common use cases for this is in debugger tools or async action libraries. bPanel has a few middleware modules installed by default: `redux-thunk`, `bsock-middleware`, `redux-devtools-extension`, and `effects-middleware`.
