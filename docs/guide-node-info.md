@@ -30,13 +30,13 @@ We are also going to build this plugin assuming you want to publish it to npm wh
 ## 1) Plugin setup using bpanel-cli
 First, make sure you've got bpanel-cli installed. In your terminal, run the following command:
 
-```
+```bash
 npm install -g bpanel-cli
 ```
 
 Next, navigate to the directory where you want to build your plugin. We are going to use `npm link` to make it available in our project, so this can be anywhere on your system. You could do it in bPanel as a localPlugin, but since we want to publish it later, it's best not to to keep the environment closer to production conditions.
 
-```
+```bash
 cd ~/projects
 ```
 
