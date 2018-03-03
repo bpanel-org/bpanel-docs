@@ -11,6 +11,8 @@ sidebar_label: Node Info View
 - We want to get information about the node from the state using `mapComponentState` and pass it down to our view with `getRouteProps`
 - We want to listen for changes to the chain tip by subscribing to the `block connect` web socket event on the bcoin node
 
+Note that even though we're building this for a blank bPanel install, none of the steps would change if you had other plugins available. It just makes it easier to document and show the evolution of your plugin as you build it.
+
 ## Building your plugin
 ### Steps:
 - **[Plugin Setup](#1-plugin-setup-using-bpanel-cli)**
@@ -34,7 +36,7 @@ First, make sure you've got bpanel-cli installed. In your terminal, run the foll
 npm install -g bpanel-cli
 ```
 
-Next, navigate to the directory where you want to build your plugin. We are going to use `npm link` to make it available in our project, so this can be anywhere on your system. You could do it in bPanel as a localPlugin, but since we want to publish it later, it's best not to to keep the environment closer to production conditions.
+Next, navigate to the directory where you want to build your plugin. We are going to use `npm link` to make it available in our project, so this can be anywhere on your system. You could do it in bPanel as a localPlugin, but since we want to publish it later, it's best to keep the environment closer to production conditions.
 
 ```bash
 cd ~/projects
@@ -71,7 +73,7 @@ A couple things to note:
 First navigate to the plugin in your terminal
 
 ```bash
-cd ~/projects/node-view/
+cd ~/path/to/node-view/
 ```
 
 Next we want to link our plugin to our local bPanel install by running `npm link` in the plugin directory and then navigating to bPanel and linking our plugin.
@@ -87,16 +89,15 @@ Next, in the bPanel project folder we're going to want to import `node-view` in 
 ```
 // webapp/config/appConfig.js
 import * as nodeView from 'node-view';
-
 // any other imports you have
-
+...
 export default {
   plugins: [nodeView]
   ...
 }
 ```
 
-You'll want to make sure you're running `npm run watch:dev`in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with `npm run babel`, webpack will pick up the change.
+You'll want to make sure you're running `npm run watch:dev` in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with `npm run babel`, webpack will pick up the change.
 
 ## 3) Add navigation
 Right now if you go to bPanel in your browser you still won't see anything. But that's because we haven't built out any view components or navigation.

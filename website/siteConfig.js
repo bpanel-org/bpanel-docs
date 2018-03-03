@@ -25,6 +25,7 @@ const siteConfig = {
     {doc: 'quick-start', label: 'Quick Start'},
     {doc: 'plugin-intro', label: 'Docs'},
     {doc: 'plugin-showcase', label: 'Showcase'},
+    // {search: true}
     // {page: 'help', label: 'Help'},
     // {blog: true, label: 'Blog'},
   ],
@@ -38,6 +39,10 @@ const siteConfig = {
     primaryColor: '#2E8555',
     secondaryColor: '#205C3B',
   },
+  // algolia: {
+  //   apiKey: '285a9f7546cd8630a1a84619eaa92bba',
+  //   indexName: 'bpanel-docs'
+  // },
   /* custom fonts for website */
   /*fonts: {
     myFont: [
