@@ -72,6 +72,8 @@ If you'd rather not use docker to run your environment, you need to add a `confi
 
 Then, run `npm run start` to start the server.
 
+You can read more about bcoin configuration [here](https://github.com/bcoin-org/bcoin/blob/master/docs/Configuration.md).
+
 ## License
 
 - Copyright (c) 2018, The Bcoin Devs (MIT License).

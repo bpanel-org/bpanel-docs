@@ -11,6 +11,7 @@
 <li>We want to get information about the node from the state using <code>mapComponentState</code> and pass it down to our view with <code>getRouteProps</code></li>
 <li>We want to listen for changes to the chain tip by subscribing to the <code>block connect</code> web socket event on the bcoin node</li>
 </ul>
+<p>Note that even though we're building this for a blank bPanel install, none of the steps would change if you had other plugins available. It just makes it easier to document and show the evolution of your plugin as you build it.</p>
 <h2><a class="anchor" aria-hidden="true" name="building-your-plugin"></a><a href="#building-your-plugin" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building your plugin</h2>
 <h3><a class="anchor" aria-hidden="true" name="steps"></a><a href="#steps" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Steps:</h3>
 <ul>
@@ -29,7 +30,7 @@
 <p>First, make sure you've got bpanel-cli installed. In your terminal, run the following command:</p>
 <pre><code class="hljs css bash">npm install -g bpanel-cli
 </code></pre>
-<p>Next, navigate to the directory where you want to build your plugin. We are going to use <code>npm link</code> to make it available in our project, so this can be anywhere on your system. You could do it in bPanel as a localPlugin, but since we want to publish it later, it's best not to to keep the environment closer to production conditions.</p>
+<p>Next, navigate to the directory where you want to build your plugin. We are going to use <code>npm link</code> to make it available in our project, so this can be anywhere on your system. You could do it in bPanel as a localPlugin, but since we want to publish it later, it's best to keep the environment closer to production conditions.</p>
 <pre><code class="hljs css bash"><span class="hljs-built_in">cd</span> ~/projects
 </code></pre>
 <p>Next we're going to run through the bpanel-cli script. It's going to ask you a series of questions it needs to answer in order to build the plugin. If you decide you want to change any of these later though, you shouldn't have a problem editing your project files afterwards.</p>
@@ -59,7 +60,7 @@ Creating plugin directory...
 </ul>
 <h2><a class="anchor" aria-hidden="true" name="2-add-the-plugin-to-your-local-bpanel"></a><a href="#2-add-the-plugin-to-your-local-bpanel" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2) Add the plugin to your local bPanel</h2>
 <p>First navigate to the plugin in your terminal</p>
-<pre><code class="hljs css bash"><span class="hljs-built_in">cd</span> ~/projects/node-view/
+<pre><code class="hljs css bash"><span class="hljs-built_in">cd</span> ~/path/to/node-view/
 </code></pre>
 <p>Next we want to link our plugin to our local bPanel install by running <code>npm link</code> in the plugin directory and then navigating to bPanel and linking our plugin.</p>
 <pre><code class="hljs css bash">npm link
@@ -69,15 +70,14 @@ npm link node-view
 <p>Next, in the bPanel project folder we're going to want to import <code>node-view</code> in our configuration file (webapp/config/appConfig.js) and then add it to our list of plugins:</p>
 <pre><code class="hljs"><span class="hljs-comment">// webapp/config/appConfig.js</span>
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> nodeView <span class="hljs-keyword">from</span> <span class="hljs-string">'node-view'</span>;
-
 <span class="hljs-comment">// any other imports you have</span>
-
+...
 <span class="hljs-keyword">export</span> default {
   plugins: [nodeView]
   ...
 }
 </code></pre>
-<p>You'll want to make sure you're running <code>npm run watch:dev</code>in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with <code>npm run babel</code>, webpack will pick up the change.</p>
+<p>You'll want to make sure you're running <code>npm run watch:dev</code> in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with <code>npm run babel</code>, webpack will pick up the change.</p>
 <h2><a class="anchor" aria-hidden="true" name="3-add-navigation"></a><a href="#3-add-navigation" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3) Add navigation</h2>
 <p>Right now if you go to bPanel in your browser you still won't see anything. But that's because we haven't built out any view components or navigation.</p>
 <p>Let's start by adding a link to our new view to the sidebar.</p>
