@@ -7,6 +7,8 @@ sidebar_label: Sockets
 ## Overview
 In bPanel, sockets are almost entirely managed via a [redux middleware](/bpanel-docs/docs/api-middleware.html) called [`bsock-middleware`](https://www.npmjs.com/package/bsock-middleware) which implements the Socket.io-compatible [bsock library](https://github.com/bcoin-org/bsock). This helps to simplify and standardize web socket interaction with your node (and avoids having a situation where an instance of bPanel has many plugins all with their own socket connection to the server). As long as you dispatch actions that are properly formatted with a `bsock` property, the middleware will catch it.
 
+(For an example of how to implement this in a working plugin, see [this guide](/bpanel-docs/docs/guide-node-info.html#6-connect-to-sockets)).
+
 ### Emit and Listen
 These are the two main actions you are typically concerned with when dealing with sockets: either listening for events from the server or emitting your own (sometimes [expecting an acknowledgement](#dispatch)).
 

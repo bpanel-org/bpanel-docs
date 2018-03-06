@@ -1,9 +1,8 @@
 ---
 id: quick-start
-title: Quick Start
+title: Welcome to bPanel!
 sidebar_label: Quick Start
 ---
-## Welcome to bPanel!
 
 This is the official documentation for the bPanel project, a full featured, fully extensible enterprise level GUI for your bcoin Bitcoin node.
 
@@ -26,7 +25,7 @@ Luckily almost all configuration can be done through a single docker-compose.yml
   <a class="button" href="https://www.docker.com/get-docker">Get Docker</a>
 </p>
 
-To spin up your app server, a bcoin node on regtest, and mine 101 blocks (and generate lots of fake Satoshi for you to play with), navigate to your repo and run:
+To spin up your app server, a bcoin node on regtest, and mine 101 blocks (and generate lots of fake Satoshis for you to play with), navigate to your repo and run:
 
 ### Start bPanel
 1. `npm i`

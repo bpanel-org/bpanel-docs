@@ -35,6 +35,8 @@ This allows for a lot of flexibility. You could host your app server remotely, a
 ## Tech Stack
 The App Server is built entirely with NodeJS and Express. WebSocket management uses bcoin's native WebSocket implementation, bsock (compatible with the Socket.io API). Currently there is no persistent storage support outside of bcoin's own chain and wallet databases and local storage (though it is planned for future releases).
 
-The front-end and plugin system are built with React and Redux. The Bootstrap grid system (v4) is used to support responsive layouts and a custom [theming system](/bpanel-docs/docs/theming.html) using [aphrodite](https://www.npmjs.com/package/aphrodite-simple) for advanced inline style support are used for styling and CSS.
+The front-end and plugin system are built with React and Redux. Redux is also used to [manage the socket client](/bpanel-docs/docs/api-sockets.html) through a middleware called [bsock-middleware](https://www.npmjs.com/package/bsock-middleware).
+
+The Bootstrap grid system (v4) is used to support responsive layouts and a custom [theming system](/bpanel-docs/docs/theming.html) using [aphrodite](https://www.npmjs.com/package/aphrodite-simple) for advanced inline style support are used for styling and CSS.
 
 You can read more about how the plugin system is designed and how to develop your own plugins [here](/bpanel-docs/docs/plugin-intro).

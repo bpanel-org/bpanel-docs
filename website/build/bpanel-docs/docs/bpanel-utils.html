@@ -5,29 +5,41 @@
             nav.classList.toggle('docsSliderActive');
           };
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>bPanel Utils</h1></header><article><div><span><p>bpanel-utils is a separate npm module that plugin developers can use to solve commonly encountered errors. This allows for some standardization around certain operations. Developers that feel they have a utility that can help other plugin devs should also be encouraged to extend this utility library.</p>
-<p>Install locally to your plugin with</p>
+<p>Install locally to your plugin with:</p>
 <pre><code class="hljs css bash">npm install --save-dev <span class="hljs-string">'bpanel-utils'</span>
 </code></pre>
 <p>and then import into your project files as needed.</p>
 <ul>
-<li><a href="#api"><code>api</code></a></li>
+<li><a href="#clients"><code>clients</code></a></li>
 <li><a href="#chain"><code>chain</code></a></li>
 <li><a href="#helpers"><code>helpers</code></a></li>
 </ul>
-<h3><a class="anchor" aria-hidden="true" name="api"></a><a href="#api" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>api</code></h3>
-<p>The API methods will return the string that maps to the path you need for specific requests. The idea is to have a way to help plugin developers ensure that their API stays consistent with the app server if there are any future changes. The primary function now is to prepend the <code>node</code> and <code>wallet</code> prefixes on the path so the app server knows to route requests to bcoin.</p>
-<h4><a class="anchor" aria-hidden="true" name="get"></a><a href="#get" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get</code></h4>
-<ul>
-<li><code>block</code>: Params (heightOrHash)</li>
-<li><code>info</code>: Params ()</li>
-<li><code>wallet</code>: Params (walletId)</li>
-<li><code>accounts</code>: Params (walletId)</li>
-<li><code>account</code>: Params (walletId, accountId)</li>
-</ul>
-<h4><a class="anchor" aria-hidden="true" name="post"></a><a href="#post" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>post</code></h4>
-<ul>
-<li><code>tx</code>: Params (walletId)</li>
-</ul>
+<h3><a class="anchor" aria-hidden="true" name="clients"></a><a href="#clients" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>clients</code></h3>
+<p><code>bpanelClient</code> and <code>bwalletClient</code> are simple wrappers around the <a href="https://www.npmjs.com/package/bclient">bclient</a> module for network communications with the bcoin api. They simply route requests meant for your bcoin node through the appropriate router on your app server by prefixing with the expected route.</p>
+<p>You can read more about the bcoin API and available methods <a href="http://bcoin.io/api-docs/index.html#introduction">here</a>.</p>
+<h4><a class="anchor" aria-hidden="true" name="bpanelclient"></a><a href="#bpanelclient" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>bpanelClient</code></h4>
+<pre><code class="hljs css javascript">
+<span class="hljs-keyword">import</span> { bpanelClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'bpanel-utils'</span>;
+<span class="hljs-keyword">const</span> client = bpanelClient();
+
+(<span class="hljs-keyword">async</span>() {
+  <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> client.getInfo();
+  <span class="hljs-built_in">console</span>.log(info);
+})()
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" name="bwalletclient"></a><a href="#bwalletclient" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>bwalletClient</code></h4>
+<pre><code class="hljs css javascript">
+<span class="hljs-keyword">import</span> { bwalletClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'bpanel-utils'</span>;
+<span class="hljs-keyword">const</span> client = bwalletClient();
+
+(<span class="hljs-keyword">async</span>() {
+  <span class="hljs-keyword">const</span> id = <span class="hljs-string">'primary'</span>
+  <span class="hljs-keyword">const</span> accounts = <span class="hljs-keyword">await</span> client.getAccounts(id);
+  <span class="hljs-built_in">console</span>.log(accounts);
+})()
+
+</code></pre>
 <h3><a class="anchor" aria-hidden="true" name="chain"></a><a href="#chain" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>chain</code></h3>
 <p>Helper functions for working with the blockchain.</p>
 <h4><a class="anchor" aria-hidden="true" name="getblock"></a><a href="#getblock" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getBlock</code></h4>
