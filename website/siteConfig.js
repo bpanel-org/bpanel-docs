@@ -37,7 +37,7 @@ const siteConfig = {
   /* colors for website */
   colors: {
     primaryColor: '#004d97',
-    secondaryColor: '#00ff00',
+    secondaryColor: '#004d97',
   },
   // algolia: {
   //   apiKey: '285a9f7546cd8630a1a84619eaa92bba',
