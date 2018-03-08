@@ -41,7 +41,25 @@ class Button extends React.Component {
 Button.defaultProps = {
   target: '_self',
 };
+/*gonna try to add a CTA button component
+replicating the button above and naming it different
+also calling a different button class that has new styles*/
+class ButtonCTA extends React.Component {
+  render() {
+    return (
+      <div className="pluginWrapper buttonWrapper">
+        <a className="buttonCTA" href={this.props.href} target={this.props.target}>
+          {this.props.children}
+        </a>
+      </div>
+    );
+  }
+}
 
+ButtonCTA.defaultProps = {
+  target: '_self',
+};
+/*end of my attempt to add another component*/
 const SplashContainer = props => (
   <div className="homeContainer">
     <div className="homeSplashFade">
@@ -76,13 +94,13 @@ class HomeSplash extends React.Component {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('docusaurus.svg')} />
+        <Logo img_src={imgUrl('bcoin-logo-slate-12.png')} />
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+            <ButtonCTA href="#try">Call to Action</ButtonCTA>
+            <Button href={docUrl('quick-start.html', language)}>Quick Start</Button>
+            <Button href={docUrl('quick-start.html', language)}>GitHub</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -100,23 +118,48 @@ const Block = props => (
 );
 
 const Features = props => (
-  <Block layout="fourColumn">
-    {[
-      {
-        content: 'This is the content of my feature',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'top',
-        title: 'Feature One',
-      },
-      {
-        content: 'The content of my second feature',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'top',
-        title: 'Feature Two',
-      },
-    ]}
-  </Block>
+  <div>
+    <Block layout="threeColumn">
+      {[
+        {
+          content: 'This is the content of my feature.',
+          image: imgUrl('bcoin-logo-slate-12.png'),
+          imageAlign: 'top',
+          title: 'Theming',
+        },
+        {
+          content: 'The content of my second feature',
+          image: imgUrl('bcoin-logo-slate-12.png'),
+          imageAlign: 'top',
+          title: 'Built on React/Redux',
+        },
+        {
+          content: 'The content of my second feature',
+          image: imgUrl('bcoin-logo-slate-12.png'),
+          imageAlign: 'top',
+          title: 'Plugin Based',
+        },
+      ]}
+    </Block>
+    <Block layout="twoColumn">
+      {[
+        {
+          content: 'This is the content of my feature.',
+          image: imgUrl('bcoin-logo-slate-12.png'),
+          imageAlign: 'top',
+          title: 'Theming',
+        },
+        {
+          content: 'The content of my second feature',
+          image: imgUrl('bcoin-logo-slate-12.png'),
+          imageAlign: 'top',
+          title: 'Built on React/Redux',
+        },
+      ]}
+    </Block>
+  </div>
 );
+
 
 const FeatureCallout = props => (
   <div
@@ -126,6 +169,21 @@ const FeatureCallout = props => (
     <MarkdownBlock>These are features of this project</MarkdownBlock>
   </div>
 );
+
+const ThemeShowcase = props => {
+  <div>
+    <Block background="dark">
+      {[
+        {
+          content: 'This is where we showcase other themes',
+          image: imgUrl('themeshowcase-bDefault.png'),
+          imageAlign: 'right',
+          title: 'Theme Customization',
+        },
+      ]}
+    </Block>
+  </div>
+};
 
 const LearnHow = props => (
   <Block background="light">
@@ -158,7 +216,7 @@ const Description = props => (
     {[
       {
         content: 'This is another description of how this project is useful',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('themeshowcase-bDefault.png'),
         imageAlign: 'right',
         title: 'Description',
       },
@@ -205,10 +263,11 @@ class Index extends React.Component {
         <HomeSplash language={language} />
         <div className="mainContainer">
           <Features />
-          <FeatureCallout />
-          <LearnHow />
-          <TryOut />
-          <Description />
+          {/* <FeatureCallout /> */}
+          {/* <ThemeShowcase /> */}
+          {/* <LearnHow /> */}
+          {/* <TryOut /> */}
+          {/* <Description /> */}
           <Showcase language={language} />
         </div>
       </div>

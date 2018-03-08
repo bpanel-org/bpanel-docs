@@ -9,7 +9,7 @@
 const users = [
   // {
   //   caption: 'User1',
-  //   image: '/img/bcoin-logo-slate-12.png',
+  //   image: '/img/bcoin-logo-white.png',
   //   infoLink: 'https://bcoin.io',
   //   pinned: true,
   // },
@@ -31,13 +31,13 @@ const siteConfig = {
   ],
   users,
   /* path to images for header/footer */
-  headerIcon: 'img/bcoin-logo-slate-12.png',
-  footerIcon: 'img/bcoin-logo-slate-12.png',
+  headerIcon: 'img/bcoin-logo-white.png',
+  footerIcon: 'img/bcoin-logo-white.png',
   favicon: 'img/favicon.png',
   /* colors for website */
   colors: {
-    primaryColor: '#2E8555',
-    secondaryColor: '#205C3B',
+    primaryColor: '#004d97',
+    secondaryColor: '#004d97',
   },
   // algolia: {
   //   apiKey: '285a9f7546cd8630a1a84619eaa92bba',
