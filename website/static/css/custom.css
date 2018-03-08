@@ -14,3 +14,29 @@
 
 @media only screen and (min-width: 1500px) {
 }
+
+.fixedHeaderContainer {
+    background: #004d97;
+    color: #fff;
+}
+
+.buttonCTA {
+    margin: 4px;
+    border: 1px solid #FFF;
+    border-radius: 3px;
+    color: #FFF;
+    background-color: $primaryColor;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2em;
+    padding: 10px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition: background 0.3s, color 0.3s;
+  }
+  .buttonCTA:hover {
+    background-color: #FFF; /* we need another color for mouseover - see bcoin palette */
+    border: 1px solid $primaryColor;
+    color: $primaryColor;
+  }
