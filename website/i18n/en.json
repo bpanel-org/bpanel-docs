@@ -38,14 +38,16 @@
     "Getting Started": "Getting Started",
     "quick-start": "Welcome to bPanel!",
     "Quick Start": "Quick Start",
-    "theming": "Theming",
-    "Theming": "Theming",
+    "theming-started": "Getting Started",
+    "theming-variables": "Theming Variables",
+    "Theming Variables": "Theming Variables",
     "Docs": "Docs",
     "Showcase": "Showcase",
     "bPanel": "bPanel",
     "Plugin Development": "Plugin Development",
     "Guides": "Guides",
-    "API": "API"
+    "API": "API",
+    "Theming": "Theming"
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",
