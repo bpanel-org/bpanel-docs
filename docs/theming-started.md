@@ -16,11 +16,11 @@ Welcome to theming! This guide is meant to ease you into the bPanel theming proc
   - [Theme Config](#theme-config)
 
 ## Set up your theme
-To start, create a new folder in your `plugins` directory, and name it with the name of your theme. Inside, you'll create the files `index.js` and `themeVariables.js`. There is also an optional file you can create called `themeConfig.js` which allows you to extend the key/value pairs of the existing default theme. For initializing our theme, we'll start out with just the `index.js` and `themeVariables.js` files.
+To start, create a new folder in your `plugins/local` directory, and name it with the name of your theme. Inside, you'll create the files `index.js` and `themeVariables.js`. There is also an optional file you can create called `themeConfig.js` which allows you to extend the key/value pairs of the existing default theme. For initializing our theme, we'll start out with just the `index.js` and `themeVariables.js` files.
 
 Every theme will have a few lines of code to initialize it. Assuming we create a theme folder named `myTheme`, that code will look like this:
 
-### bpanel/webapp/plugins/myTheme/index.js
+### bpanel/webapp/plugins/local/myTheme/index.js
 ```javascript
 import themeVariables from './themeVariables';
 
@@ -35,7 +35,7 @@ export const decorateTheme = themeCreator => () =>
 
 ```
 
-### bpanel/webapp/plugins/myTheme/themeVariables.js
+### bpanel/webapp/plugins/local/myTheme/themeVariables.js
 ```javascript
 const themeVariables = {};
 
@@ -43,27 +43,22 @@ export default themeVariables;
 
 ```
 
-### bpanel/webapp/config/appConfig.js
-Add your theme to the `localPlugins` array in `appConfig.js`
+### bpanel/webapp/config/pluginsConfig.js
+Add your theme to the `configs/pluginsConfig.js`.
 ```javascript
-import theme from './themeConfig/index.js';
+export const localPlugins = [
+  'chainSockets',
+  'dashboard',
+  'mempool',
+  'bui',
+  'bpanel-theme',
+  'bMoonTheme',
+  'myTheme'
+];
 
-const { themeVariables, themeCreator } = theme;
+export const plugins = [];
 
-export default {
-  // localPlugins are for either development of a plugin or
-  // for default/built-in plugins
-  localPlugins: [
-    'myTheme'
-  ],
-  // This will be the list of plugins to install from npm
-  // This system still needs to be built
-  plugins: [],
-  theme: {
-    themeVariables,
-    themeCreator
-  }
-};
+export default { localPlugins, plugins };
 
 ```
 
