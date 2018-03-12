@@ -76,9 +76,7 @@ The API can roughly be broken down as follows (click the links to learn more abo
 - [Decorate Plugins](/bpanel-docs/docs/api-decorate-plugins.html)
 - [Bundling Plugins](/bpanel-docs/docs/api-bundling-plugins.html)
 - [bPanel Utils](/bpanel-docs/docs/bpanel-utils.html)
-  - API
-    - get
-    - post
+  - clients
   - Chain
   - Helpers
     - now()
