@@ -33,7 +33,7 @@ We are also going to build this plugin assuming you want to publish it to npm wh
 First, make sure you've got bpanel-cli installed. In your terminal, run the following command:
 
 ```bash
-npm install -g bpanel-cli
+npm install -g @bpanel/bpanel-cli
 ```
 
 Next, navigate to the directory where you want to build your plugin. We are going to use `npm link` to make it available in our project, so this can be anywhere on your system. You could do it in bPanel as a localPlugin, but since we want to publish it later, it's best to keep the environment closer to production conditions.
@@ -84,20 +84,33 @@ cd path/to/bpanel
 npm link node-view
 ```
 
-Next, in the bPanel project folder we're going to want to import `node-view` in our configuration file (webapp/config/appConfig.js) and then add it to our list of plugins:
+Next, in the bPanel project folder we're going to want to add `node-view` to our list of plugins in the configuration file (webapp/config/pluginsConfig.js):
 
-```
-// webapp/config/appConfig.js
-import * as nodeView from 'node-view';
-// any other imports you have
-...
-export default {
-  plugins: [nodeView]
+```javascript
+// webapp/config/pluginsConfig.js
+export const localPlugins = [
+  // any local plugins you have
   ...
-}
+];
+
+// other plugins can be added to this list
+export const plugins = ['node-view'];
+
+export default { localPlugins, plugins };
 ```
 
-You'll want to make sure you're running `npm run watch:dev` in bPanel to make sure it watches for changes. Each time you make a change to your plugin and build with `npm run babel`, webpack will pick up the change.
+If you're already running webpack with the `watch` flag (e.g. with `npm run watch:dev`), you'll want to stop that process and restart it. A script will run to prepare and build all your plugins so that they will be accessible to bPanel. You can also run `make watch` in your plugin directory to watch for changes there.
+
+```bash
+cd path/to/node-view
+make watch
+```
+
+And in another terminal session...
+```bash
+cd path/to/bpanel
+npm run watch:dev # make sure to run after you've added the plugin name to the config
+```
 
 ## 3) Add navigation
 Right now if you go to bPanel in your browser you still won't see anything. But that's because we haven't built out any view components or navigation.
@@ -107,7 +120,7 @@ Let's start by adding a link to our new view to the sidebar.
 Back in our node-view directory, we want to open up index.js. This is where all of our editing will be. Let's first look at `metadata` which should look something like this:
 
 ```
-// index.js
+// lib/index.js
 export const metadata = {
   name: 'node-view',
   author: 'plugin-dev',
@@ -120,7 +133,7 @@ Add two properties to this object: `sidebar` and `icon`.
 
 
 ```
-// index.js
+// lib/index.js
 export const metadata = {
   ...
   sidebar: true,
@@ -137,7 +150,7 @@ To leverage the theming built into bPanel, let's use the bpanel-ui React compone
 
 First run
 ```
-npm install --save-dev bpanel-ui react
+npm install --save-dev @bpanel/bpanel-ui react
 ```
 
 (Note: you may also want to add react and bpanel-ui to your `peerDependencies` in your package.json to indicate that your plugin requires those when being used)
@@ -145,9 +158,9 @@ npm install --save-dev bpanel-ui react
 Now, at the top of our index.js let's import some components we'll be using and `React` so babel knows how to build the components, and further down (or in a separate file if you want) we can build our component.
 
 ```
-// index.js
+// lib/index.js
 import React from 'react';
-import { Header, Text } from 'bpanel-ui';
+import { Header, Text } from '@bpanel/bpanel-ui';
 
 const NodeInfo = () => (
   <div>
@@ -163,7 +176,7 @@ const NodeInfo = () => (
 Next, add the component to decoratePanel. Note that we are uncommenting the routeData declaration and adding our new component, and also replacing the customChildren prop with our own that adds our routeData to the other views.
 
 ```
-// index.js
+// lib/index.js
 ...
 export const decoratePanel = (Panel, { React, PropTypes }) => {
   return class extends React.Component {
@@ -218,7 +231,7 @@ state: {
 So, let's update the `mapComponentState` export in index.js to look something like this:
 
 ```javascript
-// index.js
+// lib/index.js
 ...
 export const mapComponentState = {
   Panel: (state, map) =>
@@ -233,7 +246,7 @@ export const mapComponentState = {
 
 Then, let's make getRouteProps pass those props down to our route:
 ```javascript
-// index.js
+// lib/index.js
 ...
 export const getRouteProps = {
   [metadata.name]: (parentProps, props) =>
@@ -249,7 +262,7 @@ export const getRouteProps = {
 The last step is to display this information in your component.
 
 ```
-// index.js
+// lib/index.js
 ...
 const NodeInfo = ({ network, height, progress }) => (
   <div>
@@ -309,7 +322,7 @@ export function subscribeBlockConnect() {
 Now we need to import these into our plugin entry point and dispatch them when our sockets connect using a [middleware](/bpanel-docs/docs/api-middleware.html) export.
 
 ```javascript
-// index.js
+// lib/index.js
 import * as actions from 'lib/actions';
 ...
 export const middleware = ({ dispatch }) => next => async action => {
@@ -325,7 +338,7 @@ export const middleware = ({ dispatch }) => next => async action => {
 Then, let's add a listener for the `new block` event that we gave as a `responseEvent` in `subscribeBlockConnect`.
 
 ```javascript
-// index.js
+// lib/index.js
 ...
 export const addSocketConstants = (sockets = { listeners: [] }) => {
   sockets.listeners.push({
@@ -350,7 +363,7 @@ npm install --save-dev bcoin
 Next, let's catch the `ADD_NEW_BLOCK` action type in our middleware and dispatch an action with a payload that our reducers will recognize.
 
 ```javascript
-// index.js
+// lib/index.js
 import * as actions from 'lib/actions';
 ...
 export const middleware = ({ dispatch }) => next => async action => {
@@ -397,7 +410,7 @@ Let's extend our view to also include the recent blocks array. There are only th
 
 _Get the recent blocks from the state_
 ```javascript
-// index.js
+// lib/index.js
 ...
 export const mapComponentState = {
   Panel: (state, map) =>
@@ -413,7 +426,7 @@ export const mapComponentState = {
 
 _Pass the recent blocks to the route_
 ```javascript
-// index.js
+// lib/index.js
 ...
 export const getRouteProps = {
   [metadata.name]: (parentProps, props) =>
@@ -429,7 +442,7 @@ export const getRouteProps = {
 
 _Display the blocks in the component_
 ```
-// index.js
+// lib/index.js
 const NodeInfo = ({ network, height, progress, recentBlocks = [] }) => (
   <div>
     <Header type="h2">Node Info</Header>

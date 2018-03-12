@@ -9,9 +9,9 @@ Before getting started, you may want to install the [Redux DevTools extension](h
 ### bPanel CLI
 We've built a CLI tool to help spec out the initial skeleton of your plugin and let you hit the ground running in your development. This will setup a project directory for you that is ready to be published onto NPM. For local development you can add this to your bPanel repo, or just npm link it (see the npm [docs](https://docs.npmjs.com/cli/link) for more).
 
-The CLI tool is available via npm: [bpanel-cli](https://www.npmjs.com/package/bpanel-cli).
+The CLI tool is available via npm: [bpanel-cli](https://www.npmjs.com/package/@bpanel/bpanel-cli).
 ```shell
-npm install -g bpanel-cli
+npm install -g @bpanel/bpanel-cli
 ```
 
 Once installed, run the command below to create your plugin boilerplate. This will walk you through the steps necessary to setup your development environment. If you've ever run `npm init`, many of the initial steps will feel familiar to you (and in fact, this will fill out a lot of the same information in your plugin's package.json). The later steps however are more advanced, specific to your plugin and the bPanel API, so feel free to skip these if you're not exactly sure what you want to build or how to built it.
@@ -25,11 +25,13 @@ Once the script is complete you should have a plugin project directory ready to 
 ## Developing your Plugin
 If you're using the default plugin structure, index.js in the top level of your plugin directory is the entry point to your plugin. Your plugin extensions should be exposed in this file (see the API docs for more on the available extensions). All other files should be in the `lib` directory.
 
-When you make changes, build the plugin by running
+To build your plugin anytime you make changes simply change to your plugin's directory and run the watch command (you can also manually run `make babel` after each change)
 
 ```bash
-npm run babel
+cd /path/to/your-plugin
+make watch
 ```
+
 
 To be able to use the plugin you're developing in your local bPanel project, in your terminal first run from your plugin project directory:
 
@@ -80,3 +82,4 @@ The API can roughly be broken down as follows (click the links to learn more abo
   - Chain
   - Helpers
     - now()
+- [decorateTheme](/bpanel-docs/docs/theming-started.html#bpanel-webapp-plugins-local-mytheme-indexjs)
