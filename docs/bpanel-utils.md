@@ -9,7 +9,7 @@ bpanel-utils is a separate npm module that plugin developers can use to solve co
 Install locally to your plugin with:
 
 ```bash
-npm install --save-dev 'bpanel-utils'
+npm install --save-dev '@bpanel/bpanel-utils'
 ```
 
 and then import into your project files as needed.
@@ -24,7 +24,7 @@ You can read more about the bcoin API and available methods [here](http://bcoin.
 #### `bpanelClient`
 ```javascript
 
-import { bpanelClient } from 'bpanel-utils';
+import { bpanelClient } from '@bpanel/bpanel-utils';
 const client = bpanelClient();
 
 (async() {
@@ -38,7 +38,7 @@ const client = bpanelClient();
 
 ```javascript
 
-import { bwalletClient } from 'bpanel-utils';
+import { bwalletClient } from '@bpanel/bpanel-utils';
 const client = bwalletClient();
 
 (async() {

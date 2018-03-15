@@ -252,9 +252,9 @@ const Customizable = props => (
 const Future = props => (
   <Container background="" padding="top">
 
-  
-    <MarkdownBlock>## Future Applications</MarkdownBlock>
-    <MarkdownBlock>By leveraging the power of [bcoin](http://bcoin.io), anyone with front-end or React experience 
+
+    <MarkdownBlock>## Endless Possibilities</MarkdownBlock>
+    <MarkdownBlock>By leveraging the power of [bcoin](http://bcoin.io), anyone with front-end or React experience
       can dive in and begin building sophisticated applications on top of Bitcoin's blockchain.
       Here are some exciting ideas for things you can build. Look for these coming to a hackathon
       near you!</MarkdownBlock>
