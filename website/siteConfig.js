@@ -18,13 +18,13 @@ const users = [
 const siteConfig = {
   title: 'bPanel' /* title for your website */,
   tagline: 'A Blockchain Management System',
+  subtext: 'powered by bcoin',
   url: 'https://bcoin.io' /* your website url */,
   baseUrl: '/bpanel-docs/' /* base url for your project */,
   projectName: 'bpanel-docs',
   headerLinks: [
     {doc: 'quick-start', label: 'Quick Start'},
     {doc: 'plugin-intro', label: 'Docs'},
-    {doc: 'plugin-showcase', label: 'Showcase'},
     // {search: true}
     // {page: 'help', label: 'Help'},
     // {blog: true, label: 'Blog'},

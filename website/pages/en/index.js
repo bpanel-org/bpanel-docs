@@ -41,9 +41,7 @@ class Button extends React.Component {
 Button.defaultProps = {
   target: '_self',
 };
-/*gonna try to add a CTA button component
-replicating the button above and naming it different
-also calling a different button class that has new styles*/
+
 class ButtonCTA extends React.Component {
   render() {
     return (
@@ -59,7 +57,7 @@ class ButtonCTA extends React.Component {
 ButtonCTA.defaultProps = {
   target: '_self',
 };
-/*end of my attempt to add another component*/
+
 const SplashContainer = props => (
   <div className="homeContainer">
     <div className="homeSplashFade">
@@ -77,7 +75,8 @@ const Logo = props => (
 const ProjectTitle = props => (
   <h2 className="projectTitle">
     {siteConfig.title}
-    <small>{siteConfig.tagline}</small>
+    <small className="pm-bot-0">{siteConfig.tagline}</small>
+    <smaller>{siteConfig.subtext}</smaller>
   </h2>
 );
 
@@ -94,12 +93,13 @@ class HomeSplash extends React.Component {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('bcoin-logo-slate-12.png')} />
+        <Logo img_src={imgUrl('bcoin-logo-gradient.png')} />
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <ButtonCTA href="#try">Call to Action</ButtonCTA>
-            <Button href={docUrl('quick-start.html', language)}>Quick Start</Button>
+            {/* <ButtonCTA href="#try">Call to Action</ButtonCTA> Use #[name] and setup anchor for scroll */}
+            <ButtonCTA href={docUrl('quick-start.html', language)}>Quick Start</ButtonCTA>
+            <Button href={docUrl('bpanel-overview.html', language)}>Overview</Button>
             <Button href={docUrl('quick-start.html', language)}>GitHub</Button>
           </PromoSection>
         </div>
@@ -117,49 +117,174 @@ const Block = props => (
   </Container>
 );
 
+const LeftBlock = props => (
+  <Container
+    padding={['bottom', 'top']}
+    id={props.id}
+    background={props.background}>
+    <GridBlock align="left" contents={props.children} layout={props.layout} />
+  </Container>
+);
+
+const Description = props => (
+  <LeftBlock background="">
+    {[
+      {
+        content: 'In the world of CMS\'s, projects like WordPress and Drupal started as ways to let people '+
+        'without platform expertise to easily organize content, primarily blog posts.\n'+
+        '\n'+
+        'A Blockchain Management System, or BMS, like bPanel aims to achieve in the world of '+
+        'blockchain interfaces, while backed by the enterprise-level security and robustness of bcoin.',
+        image: imgUrl('theme-bDark-dark.png'),
+        imageAlign: 'right',
+        title: 'What is a BMS (Blockchain Management System)?',
+      },
+    ]}
+  </LeftBlock>
+);
+
+
 const Features = props => (
-  <div>
+  <Container background="light">
     <Block layout="threeColumn">
       {[
         {
-          content: 'This is the content of my feature.',
-          image: imgUrl('bcoin-logo-slate-12.png'),
+          content: 'Changing a few theme variables can have a big overall visual change to your bPanel. Compelling themes can come from just a few lines of code.',
+          image: imgUrl('/icons/paint-brush.png'),
           imageAlign: 'top',
-          title: 'Theming',
+          title: 'Powerful Theming',
         },
         {
-          content: 'The content of my second feature',
-          image: imgUrl('bcoin-logo-slate-12.png'),
+          content: 'Painlessly to create interactive UIs and manage state. Design simple views for each state and React will efficiently update and render just the right components.',
+          image: imgUrl('/icons/react.png'),
           imageAlign: 'top',
           title: 'Built on React/Redux',
         },
         {
-          content: 'The content of my second feature',
-          image: imgUrl('bcoin-logo-slate-12.png'),
+          content: 'Built entirely around plugins. All visual elements can be extended via the plugin system by leveraging the composable nature of React and Redux.',
+          image: imgUrl('/icons/socket.png'),
           imageAlign: 'top',
           title: 'Plugin Based',
         },
       ]}
     </Block>
-    <Block layout="twoColumn">
+    <Block layout="threeColumn">
       {[
         {
-          content: 'This is the content of my feature.',
-          image: imgUrl('bcoin-logo-slate-12.png'),
+          content: 'bPanel uses bcoin\'s native WebSocket implementation, bsock which is compatible with the Socket.io API.',
+          image: imgUrl('/icons/cable.png'),
           imageAlign: 'top',
-          title: 'Theming',
+          title: 'Web Socket Management',
         },
         {
-          content: 'The content of my second feature',
-          image: imgUrl('bcoin-logo-slate-12.png'),
+          content: 'With bPanel, enjoy full access to everything the bcoin API has to offer. Manage HD wallets, send & receive, query block and tx information, organize UTXOs.',
+          image: imgUrl('/icons/bcoin-node.png'),
           imageAlign: 'top',
-          title: 'Built on React/Redux',
+          title: 'Enterprise Blockchain',
+        },
+        {
+          content: 'Both bcoin and bPanel are Open Source. Fork, clone, copy and rebuild anything you like. Help us build, help yourself build, just build!',
+          image: imgUrl('/icons/worldwide.png'),
+          imageAlign: 'top',
+          title: 'Open Source',
         },
       ]}
     </Block>
+  </Container>
+);
+
+const Technology = props => (
+  <LeftBlock background="">
+    {[
+      {
+        content: 'bPanel is built from the ground up using modern web development technologies NodeJS and ES6 JavaScript. \n'+
+        '\n'+
+        'With a standalone app server that acts '+
+        'as a proxy to your bcoin node using http requests and web sockets, you can configure your '+
+        'bpanel to point to anywhere you want. \n' +
+        '#### Built with Bcoin \n' +
+        'Bcoin is the trusted fullnode implementation built specifically for production systems at scale.\n'+
+        '- Segwit, Ledger & Multisig Capable \n' +
+        '- HD Wallets \n' +
+        // '- Ledger support \n' +
+        // '- Multisig capabilities \n' +
+        '- Advanced scripting \n' +
+        '- BIP 157/158 (Neutrino Light Client) support \n' +
+        '- Full Node and SPV Node capable \n' +
+        '\n' +
+        '#### [For more info visit ' +
+        'bcoin.io](http://bcoin.io)',
+        image: imgUrl('tech-diagram.png'),
+        imageAlign: 'left',
+        title: 'Technology / Architecture',
+      },
+    ]}
+  </LeftBlock>
+);
+
+
+const Customizable = props => (
+  <div>
+  <LeftBlock background="light">
+    {[
+      {
+        content: 'With bPanel, changing a few theme variables can have a big overall visual change to your bPanel, ' +
+        'meaning that compelling themes can come from just a few lines of code. \n' +
+        '- Build new themes with ease \n' +
+        '- Install new themes effortlessly \n' +
+        '- Theme-only plugins \n' +
+        '- Built with React \n' +
+        '\n' +
+        '#### [To view additional plugins/themes visit ' +
+        'the Plugin Showcase](bpanel-docs/docs/plugin-showcase.html)',
+
+        title: 'Completely Customizable',
+      },
+      {
+        image: imgUrl('theme-customization.png'),
+        imageAlign: 'right',
+      },
+    ]}
+  </LeftBlock>
   </div>
 );
 
+const Future = props => (
+  <Container background="" padding="top">
+
+  
+    <MarkdownBlock>## Future Applications</MarkdownBlock>
+    <MarkdownBlock>By leveraging the power of [bcoin](http://bcoin.io), anyone with front-end or React experience 
+      can dive in and begin building sophisticated applications on top of Bitcoin's blockchain.
+      Here are some exciting ideas for things you can build. Look for these coming to a hackathon
+      near you!</MarkdownBlock>
+
+    <Block layout="fourColumn">
+    {[
+          {
+            image: imgUrl('/icons/safebox.png'),
+            imageAlign: 'top',
+            title: 'Wallet Recovery Interface',
+          },
+          {
+            image: imgUrl('/icons/transaction.png'),
+            imageAlign: 'top',
+            title: 'Merchant Services',
+          },
+          {
+            image: imgUrl('/icons/switch.png'),
+            imageAlign: 'top',
+            title: 'Dead Man\'s Switch',
+          },
+          {
+            image: imgUrl('/icons/blocks.png'),
+            imageAlign: 'top',
+            title: 'Block Explorer',
+          },
+      ]}
+    </Block>
+  </Container>
+);
 
 const FeatureCallout = props => (
   <div
@@ -168,60 +293,6 @@ const FeatureCallout = props => (
     <h2>Feature Callout</h2>
     <MarkdownBlock>These are features of this project</MarkdownBlock>
   </div>
-);
-
-const ThemeShowcase = props => {
-  <div>
-    <Block background="dark">
-      {[
-        {
-          content: 'This is where we showcase other themes',
-          image: imgUrl('themeshowcase-bDefault.png'),
-          imageAlign: 'right',
-          title: 'Theme Customization',
-        },
-      ]}
-    </Block>
-  </div>
-};
-
-const LearnHow = props => (
-  <Block background="light">
-    {[
-      {
-        content: 'Talk about learning how to use this',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'right',
-        title: 'Learn How',
-      },
-    ]}
-  </Block>
-);
-
-const TryOut = props => (
-  <Block id="try">
-    {[
-      {
-        content: 'Talk about trying this out',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'left',
-        title: 'Try it Out',
-      },
-    ]}
-  </Block>
-);
-
-const Description = props => (
-  <Block background="dark">
-    {[
-      {
-        content: 'This is another description of how this project is useful',
-        image: imgUrl('themeshowcase-bDefault.png'),
-        imageAlign: 'right',
-        title: 'Description',
-      },
-    ]}
-  </Block>
 );
 
 const Showcase = props => {
@@ -257,17 +328,18 @@ const Showcase = props => {
 class Index extends React.Component {
   render() {
     let language = this.props.language || '';
-
     return (
       <div>
         <HomeSplash language={language} />
         <div className="mainContainer">
+          <Description />
           <Features />
           {/* <FeatureCallout /> */}
           {/* <ThemeShowcase /> */}
-          {/* <LearnHow /> */}
-          {/* <TryOut /> */}
-          {/* <Description /> */}
+          {/* <BuiltWith /> */}
+          <Technology />
+          <Customizable/>
+          <Future />
           <Showcase language={language} />
         </div>
       </div>
