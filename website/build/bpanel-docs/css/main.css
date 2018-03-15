@@ -135,6 +135,12 @@ header h2 {
   text-align: center;
 }
 
+.homeContainer-left {
+  background: #fff;
+  color: #2E8555;
+  text-align: left;
+}
+
 .homeContainer .homeWrapper {
   padding: 2em 10px;
 }
@@ -575,6 +581,7 @@ header h2 {
   position: relative;
   z-index: 99;
 }
+
 .promoSection .promoRow {
   padding: 10px 0;
 }

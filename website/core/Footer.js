@@ -41,17 +41,17 @@ class Footer extends React.Component {
             <a href={this.docUrl('plugin-intro.html', this.props.language)}>
               Plugin Overview
             </a>
-            <a href={this.docUrl('theming.html', this.props.language)}>
+            <a href={this.docUrl('theming-started.html', this.props.language)}>
               Theming Overview
             </a>
           </div>
           <div>
             <h5>Community</h5>
-            <a href={this.pageUrl('users.html', this.props.language)}>
+{/*             <a href={this.pageUrl('users.html', this.props.language)}>
               User Showcase
-            </a>
+            </a> */}
             <a
-              href="http://stackoverflow.com/questions/tagged/"
+              href="https://stackoverflow.com/questions/tagged/bcoin"
               target="_blank">
               Stack Overflow
             </a>
@@ -68,7 +68,7 @@ class Footer extends React.Component {
               className="github-button"
               href={this.props.config.repoUrl}
               data-icon="octicon-star"
-              data-count-href="/facebook/docusaurus/stargazers"
+              data-count-href=""
               data-show-count={true}
               data-count-aria-label="# stargazers on GitHub"
               aria-label="Star this project on GitHub">
@@ -78,7 +78,8 @@ class Footer extends React.Component {
         </section>
 
         <section className="copyright">
-          Copyright &copy; {currentYear} bcoin
+          Copyright &copy; {currentYear} bcoin<br/>
+          <smallest>Icons made by artists from https://www.flaticon.com/authors and licensed under CC 3.0</smallest>
         </section>
       </footer>
     );
