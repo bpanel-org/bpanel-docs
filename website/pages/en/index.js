@@ -126,19 +126,6 @@ const LeftBlock = props => (
   </Container>
 );
 
-/*
-- Theming frame
-   - Since we basically already have the theming highlight above, maybe this could be more of a focus on the easy 
-   installation of themes and plugins. I think what’s compelling about this system is not just that someone can 
-   easily create their own theme (or plugin) but that they can even more easily install someone else’s. This 
-   could then have a link to the showcase.
-
-   - If we move this to a focus of “there are a pile of plugins available” type of message then I think the 
-   image of the themes stacked should work nicely and buy us some more room.
-
-   - I feel like “Completely customizable” needs to be on this page somewhere and this might be the place to do it.
-*/
-
 const Description = props => (
   <LeftBlock background="">
     {[
@@ -299,8 +286,6 @@ const Future = props => (
   </Container>
 );
 
-
-
 const FeatureCallout = props => (
   <div
     className="productShowcaseSection paddingBottom"
@@ -309,28 +294,6 @@ const FeatureCallout = props => (
     <MarkdownBlock>These are features of this project</MarkdownBlock>
   </div>
 );
-
-/* const ThemeShowcase = props => {
-  <div>
-    <Block background="dark">
-      {[
-        {
-          content: 'This is where we showcase other themes',
-          image: imgUrl('themeshowcase-bDefault.png'),
-          imageAlign: 'right',
-          title: 'Theme Customization',
-        },
-      ]}
-    </Block>
-  </div>
-}; */
-
-
-
-
-
-
-
 
 const Showcase = props => {
   if ((siteConfig.users || []).length === 0) {
