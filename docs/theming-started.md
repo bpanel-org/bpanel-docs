@@ -16,7 +16,9 @@ Welcome to theming! This guide is meant to ease you into the bPanel theming proc
   - [Theme Config](#theme-config)
 
 ## Set up your theme
-To start, create a new folder in your `plugins/local` directory, and name it with the name of your theme. Inside, you'll create the files `index.js` and `themeVariables.js`. There is also an optional file you can create called `themeConfig.js` which allows you to extend the key/value pairs of the existing default theme. For initializing our theme, we'll start out with just the `index.js` and `themeVariables.js` files.
+Themes at their core are just plugins that expose the `decorateTheme` extension. This means that setting up your theme works just like any other plugin. [`bpanel-cli create`](/bpanel-docs/docs/plugin-started.html#bpanel-cli) even has an option to create a theme. Read [Getting Started](/bpanel-docs/docs/plugin-started.html) with Plugin Development for more.
+
+To start developing a theme as a local plugin without `bpanel-cli`, create a new folder in your `plugins/local` directory, and name it with the name of your theme. Inside, you'll create the files `index.js` and `themeVariables.js`. There is also an optional file you can create called `themeConfig.js` which allows you to extend the key/value pairs of the existing default theme. For initializing our theme, we'll start out with just the `index.js` and `themeVariables.js` files.
 
 Every theme will have a few lines of code to initialize it. Assuming we create a theme folder named `myTheme`, that code will look like this:
 
@@ -51,8 +53,6 @@ export const localPlugins = [
   'dashboard',
   'mempool',
   'bui',
-  'bpanel-theme',
-  'bMoonTheme',
   'myTheme'
 ];
 

@@ -25,5 +25,7 @@
 <url> <loc>https://bcoin.io/docs/plugin-showcase.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/plugin-showcase.html" /> </url>
 <url> <loc>https://bcoin.io/docs/plugin-started.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/plugin-started.html" /> </url>
 <url> <loc>https://bcoin.io/docs/quick-start.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/quick-start.html" /> </url>
-<url> <loc>https://bcoin.io/docs/theming.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/theming.html" /> </url>
+<url> <loc>https://bcoin.io/docs/theming-defaults.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/theming-defaults.html" /> </url>
+<url> <loc>https://bcoin.io/docs/theming-started.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/theming-started.html" /> </url>
+<url> <loc>https://bcoin.io/docs/theming-variables.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/theming-variables.html" /> </url>
 </urlset>
