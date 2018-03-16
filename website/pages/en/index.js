@@ -131,10 +131,11 @@ const Description = props => (
     {[
       {
         content: 'In the world of CMS\'s, projects like WordPress and Drupal started as ways to let people '+
-        'without platform expertise to easily organize content, primarily blog posts.\n'+
+        'without platform expertise easily organize content, starting with blogs but eventually much more.\n'+
         '\n'+
-        'A Blockchain Management System, or BMS, like bPanel aims to achieve in the world of '+
-        'blockchain interfaces, while backed by the enterprise-level security and robustness of bcoin.',
+        'A Blockchain Management System, or BMS, like bPanel, aims to achieve in the world of '+
+        'blockchain interfaces what WordPress did for content, ' +
+        'all while backed by the enterprise-level security and robustness of bcoin.',
         image: imgUrl('theme-bDark-dark.png'),
         imageAlign: 'right',
         title: 'What is a BMS (Blockchain Management System)?',
