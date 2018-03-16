@@ -203,7 +203,8 @@ const Technology = props => (
         'as a proxy to your bcoin node using http requests and web sockets, you can configure your '+
         'bpanel to point to anywhere you want. \n' +
         '#### Built with Bcoin \n' +
-        'Bcoin is the trusted fullnode implementation built specifically for production systems at scale.\n'+
+        'Bcoin is the trusted fullnode implementation built specifically for production systems at scale. '+
+        '*Anything bcoin can do, bPanel can do too!*\n'+
         '- Segwit, Ledger & Multisig Capable \n' +
         '- HD Wallets \n' +
         // '- Ledger support \n' +
@@ -216,7 +217,7 @@ const Technology = props => (
         'bcoin.io](http://bcoin.io)',
         image: imgUrl('tech-diagram.png'),
         imageAlign: 'left',
-        title: 'Technology / Architecture',
+        title: 'Modern Technology',
       },
     ]}
   </LeftBlock>
@@ -229,11 +230,13 @@ const Customizable = props => (
     {[
       {
         content: 'With bPanel, changing a few theme variables can have a big overall visual change to your bPanel, ' +
-        'meaning that compelling themes can come from just a few lines of code. \n' +
+        'meaning that compelling themes can come from just a few lines of code. With bPanel\'s robust plugin system ' +
+        'you can also extend the functionality of the app as much as you want.\n' +
         '- Build new themes with ease \n' +
-        '- Install new themes effortlessly \n' +
-        '- Theme-only plugins \n' +
-        '- Built with React \n' +
+        '- Install published themes and plugins effortlessly\n' +
+        '- Add your own custom views\n' +
+        '- Decorate plugins with widgets\n' +
+        '- Create bundles of plugins' +
         '\n' +
         '#### [To view additional plugins/themes visit ' +
         'the Plugin Showcase](bpanel-docs/docs/plugin-showcase.html)',
@@ -264,7 +267,7 @@ const Future = props => (
           {
             image: imgUrl('/icons/safebox.png'),
             imageAlign: 'top',
-            title: 'Wallet Recovery Interface',
+            title: 'Wallet Recovery',
           },
           {
             image: imgUrl('/icons/transaction.png'),
