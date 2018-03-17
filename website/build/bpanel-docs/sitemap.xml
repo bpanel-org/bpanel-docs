@@ -14,6 +14,7 @@
 <url> <loc>https://bcoin.io/docs/api-decorate.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-decorate.html" /> </url>
 <url> <loc>https://bcoin.io/docs/api-getprops.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-getprops.html" /> </url>
 <url> <loc>https://bcoin.io/docs/api-map-state-dispatch.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-map-state-dispatch.html" /> </url>
+<url> <loc>https://bcoin.io/docs/api-metadata.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-metadata.html" /> </url>
 <url> <loc>https://bcoin.io/docs/api-middleware.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-middleware.html" /> </url>
 <url> <loc>https://bcoin.io/docs/api-reducers.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-reducers.html" /> </url>
 <url> <loc>https://bcoin.io/docs/api-sockets.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bcoin.io/docs/api-sockets.html" /> </url>

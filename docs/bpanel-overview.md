@@ -28,7 +28,7 @@ The default setup for bPanel when first [getting started](/bpanel-docs/docs/quic
 
 The app server serves as a proxy between your clients (of which there can be many) and your node.
 
-![bpanel architecture](/bpanel-docs/img/bpanel-architecture.png "bpanel architecture")
+![bpanel architecture](/bpanel-docs/img/tech-diagram.png "bpanel architecture")
 
 This allows for a lot of flexibility. You could host your app server remotely, allowing for multiple users to access it from different clients and all talking to the same remote node. With bcoin's support for a separate wallet server, you can have a bPanel setup that is only meant to interact with a wallet server or only a node (Full, SPV, or Neutrino). You could use bcoin's built-in wallet services to manage wallets and accounts or handle key management locally in the clients. This also provides an extra layer of security by not giving users direct access to your node.
 
