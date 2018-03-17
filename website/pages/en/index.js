@@ -198,7 +198,7 @@ const Technology = props => (
   <LeftBlock background="">
     {[
       {
-        content: 'bPanel is built from the ground up using modern web development technologies NodeJS and ES6 JavaScript. \n'+
+        content: 'bPanel is built from the ground up using modern web development technologies like NodeJS and ES6 JavaScript. \n'+
         '\n'+
         'With a standalone app server that acts '+
         'as a proxy to your bcoin node using http requests and web sockets, you can configure your '+

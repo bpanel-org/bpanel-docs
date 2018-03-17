@@ -36,7 +36,7 @@ export const decoratePanel = (Panel, { React, PropTypes }) => {
     render() {
       const { customChildren = [] } = this.props;
       const routeData = {
-        name: 'my plugin',
+        metadata, // this should be the metadata object from your plugin
         Component: MyPanel
       };
       return (
@@ -135,9 +135,8 @@ export const decorateSidebar = (Sidebar, { React, PropTypes }) => {
       } = this.props;
 
       const newNavItem = React.createElement(SidebarNavItem, {
-        name: metadata.name.toUpperCase(),
-        icon: 'cubes', // this is if you want to use the font awesome icon library
-        pathname
+        pathname, // this is the current `window.location` useful for telling your navigation what url you are on
+        ...metadata // SidebarNavItem will grab what it needs from here, e.g. name, pathName, icon, etc.
       });
 
       const _sidebarNavItems = existingNavItems.concat(newNavItem);

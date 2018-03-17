@@ -16,6 +16,8 @@
     "getProps": "getProps",
     "api-map-state-dispatch": "Map State & Dispatch",
     "mapComponentState/Dispatch": "mapComponentState/Dispatch",
+    "api-metadata": "metadata",
+    "metadata": "metadata",
     "api-middleware": "Middleware",
     "middleware": "middleware",
     "api-reducers": "Reducers",

@@ -4,6 +4,7 @@
     "Plugin Development": ["plugin-intro", "plugin-started"],
     "Guides": [ "guide-node-info" ],
     "API": [
+      "api-metadata",
       "api-decorate",
       "api-map-state-dispatch",
       "api-getprops",
