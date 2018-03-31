@@ -16,7 +16,7 @@ bPanel is still in alpha, so while we wish there was a one click install (and it
 First, download the project files with the link below:
 
 <p style="text-align:center;">
-  <a class="button" href="https://github.com/bcoin-org/bpanel/archive/master.zip">Download bPanel</a>
+  <a class="button" href="https://github.com/bpanel-org/bpanel/archive/master.zip">Download bPanel</a>
 </p>
 
 Luckily almost all configuration can be done through a single docker-compose.yml. If you don't have docker installed locally, download and install here:

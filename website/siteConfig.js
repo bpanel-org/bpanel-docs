@@ -59,7 +59,7 @@ const siteConfig = {
     'Copyright © ' +
     new Date().getFullYear() +
     'Bcoin',
-  organizationName: 'bcoin-org', // or set an env variable ORGANIZATION_NAME
+  organizationName: 'bpanel-org', // or set an env variable ORGANIZATION_NAME
   projectName: 'bpanel-docs', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
@@ -67,7 +67,7 @@ const siteConfig = {
   },
   scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
-  repoUrl: 'https://github.com/bcoin-org/bpanel-docs',
+  repoUrl: 'https://github.com/bpanel-org/bpanel-docs',
 };
 
 module.exports = siteConfig;
