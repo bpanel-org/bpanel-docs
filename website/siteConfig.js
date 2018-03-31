@@ -19,7 +19,7 @@ const siteConfig = {
   title: 'bPanel' /* title for your website */,
   tagline: 'A Blockchain Management System',
   subtext: 'powered by bcoin',
-  url: 'http://bpanel.org' /* your website url */,
+  url: 'https://bpanel.org' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   projectName: 'bpanel-docs',
   headerLinks: [

@@ -51,7 +51,7 @@ and link to your plugin
 npm link [PLUGIN_NAME]
 ```
 
-Then add your plugin to your pluginsConfig.js (see [Install Plugins](/bpanel-docs/docs/install-plugins.html) for more).
+Then add your plugin to your pluginsConfig.js (see [Install Plugins](/docs/install-plugins.html) for more).
 
 ## Publishing your Plugin
 If you're using `bpanel-cli` to spec your plugin files, then this is as easy as `npm publish`. Just make sure you've got your npm registry credentials setup on your local machine (more [at npm](https://docs.npmjs.com/cli/publish)). Once published, other bPanel developers can install and import your plugin into their own app!
@@ -62,23 +62,23 @@ If you're using `bpanel-cli` to spec your plugin files, then this is as easy as 
 You will need to hook into the extension API in order to make sure your functionality is added to bPanel. Read about the API to learn more about the available extensions and how to use them. All you have to do is make sure that at least one of these are exported from the entry point of your module (e.g. index.js when using `bpanel-cli`).
 
 The API can roughly be broken down as follows (click the links to learn more about implementation):
-- [Metadata](/bpanel-docs/docs/api-metadata.html)
-- [Decorate](/bpanel-docs/docs/api-decorate.html)
-- [Get Props](/bpanel-docs/docs/api-getprops.html)
-- [Reducers](/bpanel-docs/docs/api-reducers.html)
-- [Middleware](/bpanel-docs/docs/api-middleware.html)
-- [Constants](/bpanel-docs/docs/api-constants.html)
-- [Sockets](/bpanel-docs/docs/api-sockets.html)
+- [Metadata](/docs/api-metadata.html)
+- [Decorate](/docs/api-decorate.html)
+- [Get Props](/docs/api-getprops.html)
+- [Reducers](/docs/api-reducers.html)
+- [Middleware](/docs/api-middleware.html)
+- [Constants](/docs/api-constants.html)
+- [Sockets](/docs/api-sockets.html)
   - Connect
   - Listen and Emit
   - Broadcast
   - Dispatch
   - Subscribe
-- [Decorate Plugins](/bpanel-docs/docs/api-decorate-plugins.html)
-- [Bundling Plugins](/bpanel-docs/docs/api-bundling-plugins.html)
-- [bPanel Utils](/bpanel-docs/docs/bpanel-utils.html)
+- [Decorate Plugins](/docs/api-decorate-plugins.html)
+- [Bundling Plugins](/docs/api-bundling-plugins.html)
+- [bPanel Utils](/docs/bpanel-utils.html)
   - clients
   - Chain
   - Helpers
     - now()
-- [decorateTheme](/bpanel-docs/docs/theming-started.html#bpanel-webapp-plugins-local-mytheme-indexjs)
+- [decorateTheme](/docs/theming-started.html#bpanel-webapp-plugins-local-mytheme-indexjs)

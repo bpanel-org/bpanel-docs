@@ -5,9 +5,9 @@ sidebar_label: Sockets
 ---
 
 ## Overview
-In bPanel, sockets are almost entirely managed via a [redux middleware](/bpanel-docs/docs/api-middleware.html) called [`bsock-middleware`](https://www.npmjs.com/package/bsock-middleware) which implements the Socket.io-compatible [bsock library](https://github.com/bcoin-org/bsock). This helps to simplify and standardize web socket interaction with your node (and avoids having a situation where an instance of bPanel has many plugins all with their own socket connection to the server). As long as you dispatch actions that are properly formatted with a `bsock` property, the middleware will catch it.
+In bPanel, sockets are almost entirely managed via a [redux middleware](/docs/api-middleware.html) called [`bsock-middleware`](https://www.npmjs.com/package/bsock-middleware) which implements the Socket.io-compatible [bsock library](https://github.com/bcoin-org/bsock). This helps to simplify and standardize web socket interaction with your node (and avoids having a situation where an instance of bPanel has many plugins all with their own socket connection to the server). As long as you dispatch actions that are properly formatted with a `bsock` property, the middleware will catch it.
 
-(For an example of how to implement this in a working plugin, see [this guide](/bpanel-docs/docs/guide-node-info.html#6-connect-to-sockets)).
+(For an example of how to implement this in a working plugin, see [this guide](/docs/guide-node-info.html#6-connect-to-sockets)).
 
 ### Emit and Listen
 These are the two main actions you are typically concerned with when dealing with sockets: either listening for events from the server or emitting your own (sometimes [expecting an acknowledgement](#dispatch)).
@@ -33,7 +33,7 @@ export const middleware = store => next => action => {
 ```
 
 ### `addSocketConstants` (register listeners)
-This should export a function that receives a sockets argument. Sockets should be an object with a `listeners` property that is an array. Each item in that array is expected to be an object with an `event` property and an `actionType` property. The event is the name of the event you are listening for and actionType is what action you want dispatched when it is heard (you will want to add [`middleware`](/bpanel-docs/docs/api-middleware.html) or a [reducer](/bpanel-docs/docs/api-reducers.html) in order to act on this action).
+This should export a function that receives a sockets argument. Sockets should be an object with a `listeners` property that is an array. Each item in that array is expected to be an object with an `event` property and an `actionType` property. The event is the name of the event you are listening for and actionType is what action you want dispatched when it is heard (you will want to add [`middleware`](/docs/api-middleware.html) or a [reducer](/docs/api-reducers.html) in order to act on this action).
 
 #### Example:
 ```
@@ -67,7 +67,7 @@ The `bsock` object expects the following properties:
 
 You can send whatever message you want to the server through the `bsock` property of the action. Generally, however, you want to send a `type` of `broadcast`, `dispatch`, or `subscribe` and a `message` that includes the event that you would like relayed to the bcoin (or bcoin compatible) node. All remaining arguments will be passed through as additional arguments in the relayed socket event (this is necessary sometimes for example when you need to send a filter for watching for transactions or to pass the idea of a wallet you want to watch).
 
-Typically in a plugin you will dispatch an `EMIT_SOCKET` action through [`middleware`](/bpanel-docs/docs/api-middleware.html) or via [`mapComponentDispatch`](/bpanel-docs/docs/api-map-state-dispatch.html#mapcomponentdispatch). See below for examples.
+Typically in a plugin you will dispatch an `EMIT_SOCKET` action through [`middleware`](/docs/api-middleware.html) or via [`mapComponentDispatch`](/docs/api-map-state-dispatch.html#mapcomponentdispatch). See below for examples.
 
 ## EMIT_SOCKET Types
 

@@ -60,7 +60,7 @@ export const decoratePanel = (Panel, { React, PropTypes }) => {
 }
 ```
 
-Note that `decoratePanel` is exactly the same as normal except that we are passing the decorated version of the component to the route view (`_MyView`). Read more about `decoratePanel` [here](/bpanel-docs/docs/api-decorate.html#decoratepanel).
+Note that `decoratePanel` is exactly the same as normal except that we are passing the decorated version of the component to the route view (`_MyView`). Read more about `decoratePanel` [here](/docs/api-decorate.html#decoratepanel).
 
 The last thing you need do is add the "hooks" in your component for widgets to be able to decorate the component. This works the same as normal decoration. All that you need is some kind of `customChildren` prop that is displayed in your component.
 
@@ -93,7 +93,7 @@ export default class MyView extends React.PureComponent {
 ```
 
 ### `decoratePlugin`
-`decoratePlugin` is what you export from a plugin when you want to decorate another plugin. All it is is an object with a key-value pair where the key should map exactly to the name of the plugin you are targeting. The value is a Higher Order Component that looks just like the other [`decorate`](/bpanel-docs/docs/api-decorate.html) component exports.
+`decoratePlugin` is what you export from a plugin when you want to decorate another plugin. All it is is an object with a key-value pair where the key should map exactly to the name of the plugin you are targeting. The value is a Higher Order Component that looks just like the other [`decorate`](/docs/api-decorate.html) component exports.
 
 ```javascript
 const myWidget = (MyView, { React, PropTypes }) =>
@@ -139,7 +139,7 @@ export const decoratePlugin = { sample: myWidget };
 ```
 
 ### Access to the Store
-The good news is that since you are strictly just decorating an existing component, all other extensions in the API work like normal. You can use [`mapComponentState`](/bpanel-docs/docs/api-map-state-dispatch.html#mapcomponentstate) to pass properties from the state to `Panel`, and [`getRouteProps`](http://localhost:3000/bpanel-docs/docs/api-getprops.html#getrouteprops) to pass those props from `Panel` to the plugin you are decorating!
+The good news is that since you are strictly just decorating an existing component, all other extensions in the API work like normal. You can use [`mapComponentState`](/docs/api-map-state-dispatch.html#mapcomponentstate) to pass properties from the state to `Panel`, and [`getRouteProps`](http://localhost:3000/docs/api-getprops.html#getrouteprops) to pass those props from `Panel` to the plugin you are decorating!
 
 ```javascript
 export const mapComponentState = {

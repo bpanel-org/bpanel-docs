@@ -16,7 +16,7 @@ Welcome to theming! This guide is meant to ease you into the bPanel theming proc
   - [Theme Config](#theme-config)
 
 ## Set up your theme
-Themes at their core are just plugins that expose the `decorateTheme` extension. This means that setting up your theme works just like any other plugin. [`bpanel-cli create`](/bpanel-docs/docs/plugin-started.html#bpanel-cli) even has an option to create a theme. Read [Getting Started](/bpanel-docs/docs/plugin-started.html) with Plugin Development for more.
+Themes at their core are just plugins that expose the `decorateTheme` extension. This means that setting up your theme works just like any other plugin. [`bpanel-cli create`](/docs/plugin-started.html#bpanel-cli) even has an option to create a theme. Read [Getting Started](/docs/plugin-started.html) with Plugin Development for more.
 
 To start developing a theme as a local plugin without `bpanel-cli`, create a new folder in your `plugins/local` directory, and name it with the name of your theme. Inside, you'll create the files `index.js` and `themeVariables.js`. There is also an optional file you can create called `themeConfig.js` which allows you to extend the key/value pairs of the existing default theme. For initializing our theme, we'll start out with just the `index.js` and `themeVariables.js` files.
 
@@ -135,7 +135,7 @@ Note that only the exported `themeVariables` are what's important. You can decla
 If the `themeVariables` are the DNA pieces, then the `themeConfig` is our DNA structure. If we want to extend or change the structure of our style sheets, we can do that by creating a `themeConfig.js` file and exporting our styles from the file.
 
 We'll be introducing the `bpanel-ui` `utils` in this example. If you'd like to see what each of these functions do, you can see it here,
-http://bcoin.io/bpanel-docs/docs/theming-variables.html#utils
+http://bpanel.org/docs/theming-variables.html#utils
 
 ```javascript
 import { utils } from 'bpanel-ui';
