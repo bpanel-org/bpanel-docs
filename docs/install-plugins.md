@@ -39,7 +39,7 @@ docker restart bpanel_app_1
 This will rebuild the docker container with your new plugin.
 
 ## Locally
-For local plugins that you only intend to keep for your own bPanel install, or for testing, just add the folder to the `webapp/plugins/local` directory and add the name of the plugin as a string (matching the name of the directory exactly) to the `localPlugins` array in pluginsConfig.js. (You can use [`bpanel-cli`](/bpanel-docs/docs/plugin-started.html#bpanel-cli) to create a plugin and point it to your local plugin to install it there).
+For local plugins that you only intend to keep for your own bPanel install, or for testing, just add the folder to the `webapp/plugins/local` directory and add the name of the plugin as a string (matching the name of the directory exactly) to the `localPlugins` array in pluginsConfig.js. (You can use [`bpanel-cli`](/docs/plugin-started.html#bpanel-cli) to create a plugin and point it to your local plugin to install it there).
 
 So if your plugin is in the directory `webapp/plugins/local/my-local/plugin` you would add the following to your config:
 

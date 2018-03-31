@@ -41,4 +41,4 @@ export const middleware = store => next => action {
 }
 ```
 
-Middleware can be an extremely powerful tool in your plugin development, especially when used together with the other extensions. For example, you could use [sockets](/bpanel-docs/docs/api-sockets.html) to listen for a new event on the node, intercept the resulting dispatched action with middleware to mutate the payload, and then update the state using a [custom reducer](/bpanel-docs/docs/api-reducer.html) in response!
+Middleware can be an extremely powerful tool in your plugin development, especially when used together with the other extensions. For example, you could use [sockets](/docs/api-sockets.html) to listen for a new event on the node, intercept the resulting dispatched action with middleware to mutate the payload, and then update the state using a [custom reducer](/docs/api-reducer.html) in response!

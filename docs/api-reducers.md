@@ -14,7 +14,7 @@ A description of reducers in redux from the [docs](https://redux.js.org/basics/r
 
 >Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe the fact that something happened, but don't describe how the application's state changes.
 
-So with these extensions, you are indicating how you want the app state to change based on specific actions that have been [dispatched](/bpanel-docs/docs/api-map-state-dispatch.html) to the store. Each individual reducer extension is targeting a specific part of the state.
+So with these extensions, you are indicating how you want the app state to change based on specific actions that have been [dispatched](/docs/api-map-state-dispatch.html) to the store. Each individual reducer extension is targeting a specific part of the state.
 
 To get information about the shape of the part of the state you would like to interact with, we recommend using the [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension).
 

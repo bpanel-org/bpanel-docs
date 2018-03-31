@@ -7,7 +7,7 @@ sidebar_label: decorate
 ### Introduction
 This is the part of the API where you are generally extending your views (i.e. the visual components). If you're familiar with how [Higher Order Components](https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e) work in React, then you should be comfortable with this interface. The short version is that you want to export a function that accepts a React component (and an object with `React` and `PropTypes`) as arguments and then returns a new React Component that has been decorated by your component.
 
-(**NOTE**: In most cases you will also want to pass props down from the parent component that you are decorating down to your custom component. In order to do this you will need to use [`getProps`](/bpanel-docs/docs/api-getprops.html)).
+(**NOTE**: In most cases you will also want to pass props down from the parent component that you are decorating down to your custom component. In order to do this you will need to use [`getProps`](/docs/api-getprops.html)).
 
 In most cases, the `render` method of your returned component should return the component it was originally passed with props for any custom children you want to decorate it with.
 
@@ -148,9 +148,9 @@ export const decorateSidebar = (Sidebar, { React, PropTypes }) => {
 ```
 
 ### `decoratePlugin`
-Since this requires a plugin that supports decoration by other plugins, this is a more advanced feature. Read more about how to enable this in your own plugin: [Decorating Plugins](/bpanel-docs/docs/api-decorate-plugins.html).
+Since this requires a plugin that supports decoration by other plugins, this is a more advanced feature. Read more about how to enable this in your own plugin: [Decorating Plugins](/docs/api-decorate-plugins.html).
 
-The only thing you need for the decoratePlugin export is an object with at least one property. The property key should match the exact name of the plugin you are trying to decorate. The value should be a Higher Order Component that returns your decorated plugin component. If the plugin you are decorating follows the [correct convention](/bpanel-docs/docs/api-decorate-plugins.html), then the API should work the same as when you're decorating other views in the app.
+The only thing you need for the decoratePlugin export is an object with at least one property. The property key should match the exact name of the plugin you are trying to decorate. The value should be a Higher Order Component that returns your decorated plugin component. If the plugin you are decorating follows the [correct convention](/docs/api-decorate-plugins.html), then the API should work the same as when you're decorating other views in the app.
 
 For example, assuming there is a plugin called "myPlugin" that allows itself to be decorated with widgets:
 
@@ -190,4 +190,4 @@ const decoratePlugin = (MyPlugin, { React, PropTypes }) => {
 export const decoratePlugin = { myPlugin: decoratePlugin };
 ```
 
-Make sure to read more about how to [let your own plugin be decorated](/bpanel-docs/docs/api-decorate-plugins.html) by widgets!
+Make sure to read more about how to [let your own plugin be decorated](/docs/api-decorate-plugins.html) by widgets!
