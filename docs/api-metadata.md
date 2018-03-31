@@ -24,7 +24,7 @@ export const metadata = {
   displayName: 'My Dashboard',
   pathName: 'home',
   version: require('../package.json').version,
-  author: 'bcoin-org',
+  author: 'bpanel-org',
   order: 0,
   icon: 'home',
   sidebar: true,

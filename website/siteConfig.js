@@ -19,8 +19,8 @@ const siteConfig = {
   title: 'bPanel' /* title for your website */,
   tagline: 'A Blockchain Management System',
   subtext: 'powered by bcoin',
-  url: 'https://bcoin.io' /* your website url */,
-  baseUrl: '/bpanel-docs/' /* base url for your project */,
+  url: 'http://bpanel.org' /* your website url */,
+  baseUrl: '/' /* base url for your project */,
   projectName: 'bpanel-docs',
   headerLinks: [
     {doc: 'quick-start', label: 'Quick Start'},
@@ -59,7 +59,7 @@ const siteConfig = {
     'Copyright © ' +
     new Date().getFullYear() +
     'Bcoin',
-  organizationName: 'bcoin-org', // or set an env variable ORGANIZATION_NAME
+  organizationName: 'bpanel-org', // or set an env variable ORGANIZATION_NAME
   projectName: 'bpanel-docs', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
@@ -67,7 +67,7 @@ const siteConfig = {
   },
   scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
-  repoUrl: 'https://github.com/bcoin-org/bpanel-docs',
+  repoUrl: 'https://github.com/bpanel-org/bpanel-docs',
 };
 
 module.exports = siteConfig;

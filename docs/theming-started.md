@@ -28,7 +28,7 @@ import themeVariables from './themeVariables';
 
 export const metadata = {
   name: 'myTheme', // Input the name of your theme here
-  author: 'bcoin-org', // Input your name, alias, or org name here
+  author: 'bpanel-org', // Input your name, alias, or org name here
   theme: true
 };
 
@@ -73,7 +73,7 @@ Let's export a `themeVariables` object containing the properties you want to cha
 
 The easiest way to get started is to modify your theme colors and background first. These variables give the best overall change to your theme to create the initial look and feel you're going for.
 
-The base structure of the `themeVariables` can be found here: https://github.com/bcoin-org/bpanel/blob/master/webapp/config/themeConfig/themeVariables.js. Any of these exported values can also be exported out of your custom `themeVariables.js` file to modify their original values. To get started, let's start with this in the `themeVariables.js` file:
+The base structure of the `themeVariables` can be found here: https://github.com/bpanel-org/bpanel/blob/master/webapp/config/themeConfig/themeVariables.js. Any of these exported values can also be exported out of your custom `themeVariables.js` file to modify their original values. To get started, let's start with this in the `themeVariables.js` file:
 
 ### Basic themeVariable.js
 ```javascript
@@ -175,7 +175,7 @@ import themeConfig from './themeConfig';
 
 export const metadata = {
   name: 'myTheme', // Input the name of your theme here
-  author: 'bcoin-org', // Input your name, alias, or org name here
+  author: 'bpanel-org', // Input your name, alias, or org name here
   theme: true
 };
 
@@ -185,7 +185,7 @@ export const decorateTheme = themeCreator => () =>
 ```
 
 This example extends the original `sidebar.logoContainer` styling to include a `border`, `borderRadius`, `margin`, while also changing the default values of the `opacity`, `padding`, and logoImg's `height` & `width`. To see how this all works, take a look at,
-https://github.com/bcoin-org/bpanel/blob/master/webapp/config/themeConfig/themeCreator.js
+https://github.com/bpanel-org/bpanel/blob/master/webapp/config/themeConfig/themeCreator.js
 
 In short, the `themeCreator` merges the default `themeVariables` and `themeConfigs` with the new plugin theme.
 
