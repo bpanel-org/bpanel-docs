@@ -100,7 +100,7 @@ class HomeSplash extends React.Component {
             {/* <ButtonCTA href="#try">Call to Action</ButtonCTA> Use #[name] and setup anchor for scroll */}
             <ButtonCTA href={docUrl('quick-start.html', language)}>Quick Start</ButtonCTA>
             <Button href={docUrl('bpanel-overview.html', language)}>Overview</Button>
-            <Button href={docUrl('quick-start.html', language)}>GitHub</Button>
+            <Button href="https://github.com/bpanel-org/bpanel">GitHub</Button>
           </PromoSection>
         </div>
       </SplashContainer>
