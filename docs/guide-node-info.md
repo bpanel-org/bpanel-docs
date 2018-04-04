@@ -99,7 +99,7 @@ export const plugins = ['node-view'];
 export default { localPlugins, plugins };
 ```
 
-If you're already running webpack with the `watch` flag (e.g. with `npm run watch:dev`), you'll want to stop that process and restart it. A script will run to prepare and build all your plugins so that they will be accessible to bPanel. You can also run `make watch` in your plugin directory to watch for changes there.
+If you're already running webpack with the `watch` flag (e.g. with `npm run start:dev`), you'll want to stop that process and restart it. A script will run to prepare and build all your plugins so that they will be accessible to bPanel. You can also run `make watch` in your plugin directory to watch for changes there.
 
 ```bash
 cd path/to/node-view
@@ -109,7 +109,7 @@ make watch
 And in another terminal session...
 ```bash
 cd path/to/bpanel
-npm run watch:dev # make sure to run after you've added the plugin name to the config
+npm run start:dev # make sure to run after you've added the plugin name to the config
 ```
 
 ## 3) Add navigation
