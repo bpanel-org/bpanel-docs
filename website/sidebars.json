@@ -17,6 +17,6 @@
       "bpanel-utils"
     ],
     "Plugin Showcase": ["plugin-showcase"],
-    "Theming": ["theming-started", "theming-defaults", "theming-variables"]
+    "Theming (Skins)": ["theming-started", "theming-defaults", "theming-variables"]
   }
 }
