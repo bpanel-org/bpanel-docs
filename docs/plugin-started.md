@@ -25,15 +25,16 @@ Once the script is complete you should have a plugin project directory ready to 
 ## Developing your Plugin
 If you're using the default plugin structure, index.js in the top level of your plugin directory is the entry point to your plugin. Your plugin extensions should be exposed in this file (see the API docs for more on the available extensions). All other files should be in the `lib` directory.
 
-To build your plugin anytime you make changes simply change to your plugin's directory and run the watch command (you can also manually run `make babel` after each change)
+bPanel's `pluginsConfig.js` file supports two import types, with fields for `local` and `plugins`. Any plugin name in the `plugins` array will be attempted to be downloaded from npm (but not saved to your package.json). Local plugin projects will be looked for in `webapp/plugins/local` so make sure a project with a matching name is available there.
 
-```bash
-cd /path/to/your-plugin
-make watch
-```
+### As a Local Plugin
+This can be the most straightforward way to develop, however since webpack will include all these files in its scope,
+if you have too many you could end up with JavaScript Heap memory errors. To get started, just `cd` to `/path/to/bpanel/webapp/plugins/local` and run `bpanel-cli create`, which will default to building your plugin directory in your current working directory.
 
+### With npm link
+Using `npm link` can be a good way to test your plugin under more realistic conditions (e.g. managing dependencies), however the setup is a little tricky since you need to add your plugin to the `plugins` array which will try and install it from the npm registry first.
 
-To be able to use the plugin you're developing in your local bPanel project, in your terminal first run from your plugin project directory:
+Make sure you've run a build once without any linked packages first so that other plugins will install and be saved to node_modules. Next, in your terminal from your plugin project directory, run:
 
 ```bash
 npm link
@@ -52,6 +53,15 @@ npm link [PLUGIN_NAME]
 ```
 
 Then add your plugin to your pluginsConfig.js (see [Install Plugins](/docs/install-plugins.html) for more).
+
+To build your plugin anytime you make changes, simply `cd` to your plugin's directory in your terminal and run the watch command (you can also manually run `make babel` after each change)
+
+```bash
+cd /path/to/your-plugin
+make watch
+```
+
+If you see an error in your build that says your plugin can't be found, try and `npm link` your plugin in the bpanel project again and make sure your plugin has built at least once.
 
 ## Publishing your Plugin
 If you're using `bpanel-cli` to spec your plugin files, then this is as easy as `npm publish`. Just make sure you've got your npm registry credentials setup on your local machine (more [at npm](https://docs.npmjs.com/cli/publish)). Once published, other bPanel developers can install and import your plugin into their own app!
