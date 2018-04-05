@@ -24,7 +24,8 @@ const siteConfig = {
   projectName: 'bpanel-docs',
   headerLinks: [
     {doc: 'quick-start', label: 'Quick Start'},
-    {doc: 'plugin-intro', label: 'Docs'},
+    {doc: 'bpanel-overview', label: 'Overview'},
+    {doc: 'plugin-intro', label: 'API Docs'},
     // {search: true}
     // {page: 'help', label: 'Help'},
     // {blog: true, label: 'Blog'},
