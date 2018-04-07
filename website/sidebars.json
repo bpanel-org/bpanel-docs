@@ -1,7 +1,7 @@
 {
   "docs": {
     "bPanel": ["quick-start", "bpanel-overview", "install-plugins"],
-    "Plugin Development": ["plugin-intro", "plugin-started"],
+    "Plugin Development": ["plugin-intro", "plugin-started", "blockchain"],
     "Guides": [ "guide-node-info" ],
     "API": [
       "api-metadata",

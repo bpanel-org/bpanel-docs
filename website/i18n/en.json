@@ -24,6 +24,8 @@
     "reducers": "reducers",
     "api-sockets": "Sockets",
     "Sockets": "Sockets",
+    "blockchain": "Interacting with the Blockchain",
+    "Blockchain API": "Blockchain API",
     "bpanel-overview": "bPanel Overview",
     "Overview": "Overview",
     "bpanel-utils": "bPanel Utils",
