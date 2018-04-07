@@ -28,10 +28,14 @@
 50 regtest BTC for your primary wallet, clone &amp; navigate to this repo then:</p>
 <ol>
 <li>Run <code>npm install</code> to create a secrets.env file.</li>
-<li>Run <code>docker-compose up -d</code> (add <code>--build</code> if you install more dependencies)</li>
+<li>Run <code>docker-compose up -d bcoin</code> (add <code>--build</code> if you install more dependencies)</li>
+<li>Run <code>npm run start:poll</code></li>
 <li>Navigate to <a href="http://localhost:5000">http://localhost:5000</a> to see your webapp.
 Requests to <code>\node</code> will get get forwarded to your bcoin node.</li>
 </ol>
+<p>There is a docker container to run your app in parallel (<code>docker-compose up app</code>) however
+due to some bugs with npm uninstalling git dependencies when running an install, the docker
+environment doesn't work as expected and so it is recommended to run the app locally.</p>
 <p>For local development, you run just the bcoin docker container (<code>docker-compose up -d bcoin</code>)
 and then <code>npm run start:dev</code> (or <code>npm run start:poll</code> for Mac since webpack's watch behaves strangely
 on mac sometimes) to run the app and app server from your local box.</p>

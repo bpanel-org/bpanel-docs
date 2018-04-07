@@ -34,10 +34,14 @@ This is primarily a setup for development purposes
 To spin up your webapp, server, a bcoin node on regtest, and generate
 50 regtest BTC for your primary wallet, clone & navigate to this repo then:
 1. Run `npm install` to create a secrets.env file.
-2. Run `docker-compose up -d` (add `--build` if you install more dependencies)
-3. Navigate to http://localhost:5000 to see your webapp.
+2. Run `docker-compose up -d bcoin` (add `--build` if you install more dependencies)
+3. Run `npm run start:poll`
+4. Navigate to http://localhost:5000 to see your webapp.
 Requests to `\node` will get get forwarded to your bcoin node.
 
+There is a docker container to run your app in parallel (`docker-compose up app`) however
+due to some bugs with npm uninstalling git dependencies when running an install, the docker
+environment doesn't work as expected and so it is recommended to run the app locally.
 
 For local development, you run just the bcoin docker container (`docker-compose up -d bcoin`)
 and then `npm run start:dev` (or `npm run start:poll` for Mac since webpack's watch behaves strangely
