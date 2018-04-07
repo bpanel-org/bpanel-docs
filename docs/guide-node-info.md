@@ -187,7 +187,7 @@ export const decoratePanel = (Panel, { React, PropTypes }) => {
     render() {
       const { customChildren = [] } = this.props;
       const routeData = {
-        name: metadata.name,
+        metadata,
         Component: NodeInfo
       };
       return (
