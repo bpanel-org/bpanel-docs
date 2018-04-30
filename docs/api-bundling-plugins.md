@@ -13,14 +13,14 @@ All you have to do for this to work, is install the plugin as a local dependency
 
 First:
 ```bash
-npm install --save bmoon-theme bpanel-chain-sockets
+npm install --save @bpanel/bmoon-theme @bpanel/chain-sockets
 ```
 
 Then in your index.js
 ```javascript
 // index.js
-import * as bMoon from 'bmoon-theme';
-import * as sockets from 'bpanel-chain-sockets';
+import * as bMoon from '@bpanel/bmoon-theme';
+import * as sockets from '@bpanel/chain-sockets';
 ...
 export const pluginConfig = {
   plugins: [bMoon, sockets]
