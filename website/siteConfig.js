@@ -23,9 +23,9 @@ const siteConfig = {
   baseUrl: '/' /* base url for your project */,
   projectName: 'bpanel-docs',
   headerLinks: [
-    {doc: 'quick-start', label: 'Quick Start'},
     {doc: 'bpanel-overview', label: 'Overview'},
-    {doc: 'plugin-intro', label: 'API Docs'},
+    {doc: 'plugin-started', label: 'Developers'},
+    {doc: 'plugin-showcase', label: 'Showcase'}
     // {search: true}
     // {page: 'help', label: 'Help'},
     // {blog: true, label: 'Blog'},

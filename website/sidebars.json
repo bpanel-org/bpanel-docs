@@ -1,7 +1,6 @@
 {
   "docs": {
-    "bPanel": ["quick-start", "bpanel-overview", "install-plugins"],
-    "Plugin Development": ["plugin-intro", "plugin-started", "blockchain"],
+    "Plugin Development": ["plugin-started", "blockchain"],
     "Guides": [ "guide-node-info" ],
     "API": [
       "api-metadata",
@@ -16,8 +15,10 @@
       "api-bundling-plugins",
       "bpanel-utils"
     ],
-    "Theming (Skins)": ["theming-started", "theming-defaults", "theming-variables"],
     "bPanel UI": ["ui-introduction", "ui-components", "ui-utilities"],
-    "Plugin Showcase": ["plugin-showcase"]
+    "Theming (Skins)": ["theming-started", "theming-defaults", "theming-variables"]
+  },
+  "overview-sidebar": {
+    "Overview": ["bpanel-overview", "quick-start", "plugin-intro", "install-plugins"]
   }
 }

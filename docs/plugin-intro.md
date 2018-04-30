@@ -1,7 +1,7 @@
 ---
 id: plugin-intro
-title: Plugin Overview
-sidebar_label: Plugin Overview
+title: Plugins
+sidebar_label: Plugins
 ---
 
 ## Introduction
