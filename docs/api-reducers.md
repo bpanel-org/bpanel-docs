@@ -20,6 +20,13 @@ To get information about the shape of the part of the state you would like to in
 
 __NOTE__: The state in bPanel is kept immutable using the [`seamless-immutable`](https://www.npmjs.com/package/seamless-immutable) library. Read more about their API in the docs to learn how to update the state.
 
+## Redux Store in bPanel
+The accepted convention for reducers and the application state in bPanel is for top level store,
+e.g. `node`, `chain`, etc., to be representative of the state of your bcoin node. So if a plugin wants
+to retrieve the chain height, or update it based on an event, you know you can access it
+from `state.chain.height`. For plugin specific reducers, there is a special `plugins` store you can use.
+See `reducePlugins` extension below which also helps avoid naming collisions.
+
 ## Available Reducers:
 ### `reducePlugins`
 This is a "catch-all" reducer. Its initial state with no plugins is simply an empty object and
