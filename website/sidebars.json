@@ -16,7 +16,8 @@
       "api-bundling-plugins",
       "bpanel-utils"
     ],
-    "Plugin Showcase": ["plugin-showcase"],
-    "Theming (Skins)": ["theming-started", "theming-defaults", "theming-variables"]
+    "Theming (Skins)": ["theming-started", "theming-defaults", "theming-variables"],
+    "bPanel UI": ["ui-introduction", "ui-components", "ui-utilities"],
+    "Plugin Showcase": ["plugin-showcase"]
   }
 }

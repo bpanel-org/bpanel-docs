@@ -8,8 +8,8 @@ Decorating plugins, and creating plugins that can be decorated, is a more advanc
 
 There are three parts to decorating plugins:
 - Have a plugin that exposes itself to decoration
+- Expose hooks as properties in your target plugin that widgets can hook into
 - Export a [`decoratePlugin`](#decorateplugin) method from your widget that targets the plugin you want to decorate
-- The target plugin needs to expose hooks as properties that widgets can hook into.
 
 This enables for far more customizability within views. For example, you can have advanced Dashboard views where you compose a wide array of visualizations that can be used to get information about your node at a glance. Some users might want to focus on node/network performance while others might show information on transaction volume. By customizing the view with different widgets, you can have one dashboard that addresses both.
 
@@ -101,7 +101,7 @@ you might want to show an array of widgets. This can be done with overwriting to
 the existing children in your new children property), but this can be difficult with nesting, especially for
 styling.
 
-The `widgetCreator` actually assumes an array of functions that return `React.createElement` elements.
+The [`widgetCreator`](/docs/ui-utilities.html#widgetcreator) actually assumes an array of functions that return `React.createElement` elements.
 Below is an example from `@bpanel/dashboard` plugin for a decorator hook in the target component
 to handle these cases.
 

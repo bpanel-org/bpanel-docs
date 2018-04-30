@@ -47,12 +47,19 @@
     "theming-started": "Getting Started",
     "theming-variables": "Theming Variables",
     "Theming Variables": "Theming Variables",
+    "ui-components": "UI Components",
+    "Components": "Components",
+    "ui-introduction": "bPanel UI Introduction",
+    "Introduction": "Introduction",
+    "ui-utilities": "bPanel UI Utilities",
+    "Utilities": "Utilities",
     "API Docs": "API Docs",
     "bPanel": "bPanel",
     "Plugin Development": "Plugin Development",
     "Guides": "Guides",
     "API": "API",
-    "Theming (Skins)": "Theming (Skins)"
+    "Theming (Skins)": "Theming (Skins)",
+    "bPanel UI": "bPanel UI"
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",
