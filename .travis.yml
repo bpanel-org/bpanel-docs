@@ -4,6 +4,6 @@ node_js:
 install: cd website && npm install
 deploy:
   provider: script
-  script: npm run publish-gh-pages
-  on:
+  script: cd website && npm install && npm run publish-gh-pages
+  on
     branch: master
