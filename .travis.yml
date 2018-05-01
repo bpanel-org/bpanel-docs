@@ -1,3 +1,8 @@
 language: node_js
+node_js:
+  - "node"
 install: cd website && npm install
-script: npm run publish-gh-pages
+deploy:
+  script: npm run publish-gh-pages
+  on:
+    branch: master
