@@ -4,6 +4,7 @@ node_js:
 before_install: cd website
 deploy:
   provider: script
+  skip-cleanup: true
   script: npm run publish-gh-pages
   on:
     branch: master
