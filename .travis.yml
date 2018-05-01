@@ -1,0 +1,3 @@
+language: node_js
+install: cd website && npm install
+script: npm run publish-gh-pages
