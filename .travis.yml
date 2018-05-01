@@ -1,7 +1,6 @@
 language: node_js
 node_js:
   - "node"
-install: cd website && npm install
 deploy:
   provider: script
   script: cd website && npm install && npm run publish-gh-pages
