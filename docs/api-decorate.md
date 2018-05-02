@@ -63,6 +63,13 @@ export const metadata = {
 };
 ```
 
+#### Multiple Views in One Plugin
+Since the Panel container is just being decorated, with each new view being concatenated in a `routeData`
+property, you can add as many views as you want. The only thing you need to do is manually add the navigation
+since `metadata` only supports adding one sidebar item. Using [`decorateSidebar`](#decorateSidebar) and the
+`SidebarNavItem` from the `bpanel-ui` library, you can easily add new sidebar items that match the style
+of existing navigation.
+
 ### `decorateHeader`
 For `decorateHeader`, your returned component should have a `customChildren` prop that is a React component. It will also receive a `customChildren` prop though and it is important to pass that through in your component (unless you want to overwrite the decoration of any other plugins that have already decorated the header).
 

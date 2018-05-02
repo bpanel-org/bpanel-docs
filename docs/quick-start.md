@@ -1,17 +1,13 @@
 ---
 id: quick-start
-title: Welcome to bPanel!
+title: Quick Start
 sidebar_label: Quick Start
 ---
+bPanel is still in alpha, so while we wish there was a one click install (and it is on the road map), there is a small amount of setup required to get things running first.
 
-This is the official documentation for the bPanel project, a full featured, fully extensible enterprise level GUI for your bcoin Bitcoin node.
-
-- [Quick Start](#quick-start)
+- [Start bPanel](#quick-start)
 - [Customizing your Setup](#customizing-your-setup)
 - [Setup without docker](#setup-without-docker)
-
-## "Quick" Start
-bPanel is still in alpha, so while we wish there was a one click install (and it is on the road map), there is a small amount of setup required to get things running first.
 
 First, download the project files with the link below:
 

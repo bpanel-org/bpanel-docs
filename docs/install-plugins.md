@@ -1,7 +1,7 @@
 ---
 id: install-plugins
-title: Install Plugins
-sidebar_label: Install Plugins
+title: Installing Plugins
+sidebar_label: Installing Plugins
 ---
 
 The plugin system built into bPanel is the best and most flexible way to customize your bPanel install while also ensuring compatibility with the platform. Add custom skins, add functionality, or extend existing views. All with a couple simple steps!
@@ -40,3 +40,6 @@ export default { localPlugins, plugins };
 ```
 
 Once you've finished updating pluginsConfig.js, all you need to do is save the file. Your server will see the change and re-run webpack to add your plugin to the build!
+
+If you want to learn how to develop and publish your own plugins, head on over to
+our [Developers section](/docs/plugin-started) to learn more.

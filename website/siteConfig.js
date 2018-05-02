@@ -24,8 +24,9 @@ const siteConfig = {
   projectName: 'bpanel-docs',
   headerLinks: [
     {doc: 'quick-start', label: 'Quick Start'},
-    {doc: 'bpanel-overview', label: 'Overview'},
-    {doc: 'plugin-intro', label: 'API Docs'},
+    {doc: 'bpanel-overview', label: 'About'},
+    {doc: 'plugin-started', label: 'Developers'},
+    {doc: 'plugin-showcase', label: 'Showcase'}
     // {search: true}
     // {page: 'help', label: 'Help'},
     // {blog: true, label: 'Blog'},
@@ -70,7 +71,7 @@ const siteConfig = {
   },
   scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
-  repoUrl: 'https://github.com/bpanel-org/bpanel-docs',
+  repoUrl: 'https://github.com/bpanel-org/bpanel',
   cname: 'bpanel.org'
 };
 
