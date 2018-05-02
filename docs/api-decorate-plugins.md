@@ -6,11 +6,12 @@ sidebar_label: Decorate Plugins
 ## Overview
 Decorating plugins, and creating plugins that can be decorated, is a more advanced use case of the plugin system. The best way to think of this is as plugins or views that accept "widgets".
 
-There are two parts to decorating plugins:
+There are three parts to decorating plugins:
 - Have a plugin that exposes itself to decoration
+- Expose hooks as properties in your target plugin that widgets can hook into
 - Export a [`decoratePlugin`](#decorateplugin) method from your widget that targets the plugin you want to decorate
 
-This enables for far more customizability within views. For example, you can have advanced Dashboard views where you compose a wide array of visualizations that can be used to get information about your node at a glance. Some users might want to focus on node/network performance while others might information on transaction volume. By customizing the view with different widgets, you can have one dashboard that addresses both.
+This enables for far more customizability within views. For example, you can have advanced Dashboard views where you compose a wide array of visualizations that can be used to get information about your node at a glance. Some users might want to focus on node/network performance while others might show information on transaction volume. By customizing the view with different widgets, you can have one dashboard that addresses both.
 
 ### `decorator`
 This needs to be exposed by the target plugin. The function signature is similar to the component decorator, except the first argument is a function called `pluginDecorator` that applies the widget decoration for each plugin that targets it. The second argument is an object with a `React` and `PropTypes` property, both of which should be passed to the `pluginDecorator` when it is called in `decorator` so that the widgets have access to them.
@@ -62,7 +63,10 @@ export const decoratePanel = (Panel, { React, PropTypes }) => {
 
 Note that `decoratePanel` is exactly the same as normal except that we are passing the decorated version of the component to the route view (`_MyView`). Read more about `decoratePanel` [here](/docs/api-decorate.html#decoratepanel).
 
+
+### Adding hooks
 The last thing you need do is add the "hooks" in your component for widgets to be able to decorate the component. This works the same as normal decoration. All that you need is some kind of `customChildren` prop that is displayed in your component.
+
 
 ```
 import React from 'react';
@@ -88,6 +92,33 @@ export default class MyView extends React.PureComponent {
         {customChildren}
       </div>
     )
+  }
+}
+```
+
+If you expect widgets to decorate by overwriting the existing property, then the above is fine. Sometimes though
+you might want to show an array of widgets. This can be done with overwriting too (by just making sure to include
+the existing children in your new children property), but this can be difficult with nesting, especially for
+styling.
+
+The [`widgetCreator`](/docs/ui-utilities.html#widgetcreator) actually assumes an array of functions that return `React.createElement` elements.
+Below is an example from `@bpanel/dashboard` plugin for a decorator hook in the target component
+to handle these cases.
+
+```
+export default class Dashboard extends React.PureComponent {
+  ...
+  render() {
+    return(
+      <div>
+        ...
+        <div className="row mt-3">
+          {Array.isArray(customChildrenAfter)
+            ? customChildrenAfter.map((Child, index) => <Child key={index} />)
+            : customChildrenAfter}
+        </div>
+      </div>
+    );
   }
 }
 ```

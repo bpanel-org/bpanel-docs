@@ -4,7 +4,16 @@ title: Reducers
 sidebar_label: reducers
 ---
 
-The plugin API also exposes certain parts of the store's reducer. You can target these reducers by exporting one of the decorating functions described on this page (more may be added in the future).
+## Redux Store in bPanel
+The accepted convention for reducers and the application state in bPanel is for top level store,
+e.g. `node`, `chain`, etc., to be representative of the state of your bcoin node. So if a plugin wants
+to retrieve the chain height, or update it based on an event, you know you can access it
+from `state.chain.height`. For plugin specific reducers, there is a special `plugins` store you can use.
+See `reducePlugins` extension below which also helps avoid naming collisions.
+
+## The API
+
+The plugin API exposes certain parts of the store's reducer. You can target these reducers by exporting one of the decorating functions described on this page (more may be added in the future).
 
 Available extensions:
 
