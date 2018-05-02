@@ -1,9 +1,12 @@
 language: node_js
 node_js:
   - "node"
-install: cd website && npm install
-deploy:
-  provider: script
-  script: cd website && npm install && npm run publish-gh-pages
-  on
-    branch: master
+branches:
+  only:
+    - master
+script:
+  - git config --global user.name "${GIT_USER}"
+  - git config --global user.email "${GIT_EMAIL}"
+  - echo "machine github.com login ${GIT_USER} password ${GITHUB_TOKEN}" > ~/.netrc
+  - cd website && npm install && GIT_USER="${GIT_USER}" npm run publish-gh-pages
+
