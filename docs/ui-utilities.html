@@ -1,0 +1,134 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>bPanel UI Utilities · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="bPanel UI Utilities · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bpanel.org/index.html"/><meta property="og:description" content="The following utilities help standardize implementation of your components"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bcoin-logo-white.png"/><h2 class="headerTitle">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs/quick-start.html" target="_self">Quick Start</a></li><li><a href="/docs/bpanel-overview.html" target="_self">About</a></li><li><a href="/docs/plugin-started.html" target="_self">Developers</a></li><li><a href="/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>bPanel UI</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Plugin Development</h3><ul><li class="navListItem"><a class="navItem" href="/docs/plugin-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/blockchain.html">Blockchain API</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guides</h3><ul><li class="navListItem"><a class="navItem" href="/docs/guide-node-info.html">Node Info View</a></li></ul></div><div class="navGroup navGroupActive"><h3>API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/api-metadata.html">metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate.html">decorate</a></li><li class="navListItem"><a class="navItem" href="/docs/api-map-state-dispatch.html">mapComponentState/Dispatch</a></li><li class="navListItem"><a class="navItem" href="/docs/api-getprops.html">getProps</a></li><li class="navListItem"><a class="navItem" href="/docs/api-reducers.html">reducers</a></li><li class="navListItem"><a class="navItem" href="/docs/api-middleware.html">middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/api-constants.html">Constants</a></li><li class="navListItem"><a class="navItem" href="/docs/api-sockets.html">Sockets</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate-plugins.html">Decorate Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/api-bundling-plugins.html">Bundling Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/bpanel-utils.html">bPanel Utils</a></li></ul></div><div class="navGroup navGroupActive"><h3>bPanel UI</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ui-introduction.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-components.html">Components</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/ui-utilities.html">Utilities</a></li></ul></div><div class="navGroup navGroupActive"><h3>Theming (Skins)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/theming-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-defaults.html">Theming Defaults</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-variables.html">Theming Variables</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>bPanel UI Utilities</h1></header><article><div><span><p>The following utilities help standardize implementation of your components
+as well as to work more easily with bPanel themes.</p>
+<ul>
+<li><a href="#connecttheme"><code>connectTheme</code></a></li>
+<li><a href="#errorwrapper"><code>errorWrapper</code></a></li>
+<li><a href="#widgetcreator"><code>widgetCreator</code></a></li>
+<li><a href="#makerem"><code>makeRem</code></a></li>
+<li><a href="#makegutter"><code>makeGutter</code></a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" name="connecttheme"></a><a href="#connecttheme" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>connectTheme</code></h3>
+<p><code>connectTheme</code> is what allows you to use the global theme object in your own
+components. If you are using the theme state to style your components,
+then your plugin will always match the style of the rest of bPanel.</p>
+<p><code>connectTheme</code> is a React <a href="https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e">Higher Order Component</a>
+that takes a component and decorates it with the theme object passed through its context.
+Any component decorated by <code>connectTheme</code> will automatically have the theme available as a prop.
+This also means that all <a href="/docs/theming-started.html#theme-config">themeConfigs</a>, even custom ones you've added, will be available.</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">'prop-types'</span>;
+<span class="hljs-keyword">import</span> { utils } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-ui'</span>;
+
+const { connectTheme } = utils;
+
+const MyComponent = <span class="hljs-function"><span class="hljs-params">({ theme })</span> =&gt;</span>
+  &lt;div style={{ borderColor: theme.themeVariables.themeColors.highlight1 }}&gt;
+    Hello World
+  &lt;/div&gt;
+
+MyComponent.propTypes = {
+  theme: PropTypes.object
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connectTheme(MyComponent);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" name="errorwrapper"></a><a href="#errorwrapper" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errorWrapper</code></h3>
+<p><code>errorWrapper</code> is a Higher Order Component for catching errors in your plugin or widget.
+Top level plugins that decorate Panel already do this by default however for widgets that
+are decorating another plugin for example, this helps to make sure that just the widget
+crashes and not the whole plugin/view. <code>widgetCreator</code> also implements this by default.</p>
+<p>Example:</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-symbol">'reac</span>t';
+<span class="hljs-keyword">import</span> { errorWrapper } from '<span class="hljs-meta">@bpanel</span>/bpanel-ui';
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyWidget</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">PureComponent</span> </span>{
+  componentDidMount() {
+    <span class="hljs-keyword">throw</span> <span class="hljs-symbol">'A</span> test error';
+  }
+  render() {
+    &lt;div&gt;<span class="hljs-type">Hello</span> <span class="hljs-type">World</span>&lt;/div&gt;
+  }
+}
+
+export <span class="hljs-keyword">default</span> errorWrapper(<span class="hljs-type">MyWidget</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" name="widgetcreator"></a><a href="#widgetcreator" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>widgetCreator</code></h3>
+<p>A widget creator is for when you want to create a widget that <a href="/docs/api-decorate-plugins.html">decorates another plugin</a>.
+For an example of this in action you can check out the <a href="https://www.npmjs.com/package/@bpanel/dashboard">bPanel Dashboard</a> plugin
+and available widgets for decorating it, such as the <a href="https://www.npmjs.com/package/@bpanel/recent-blocks">Recent Blocks widget</a> which uses the <code>widgetCreator</code>.</p>
+<p>Plugins are decorated by making certain hooks available in their render method. For the Dashboard, to add a widget on a decorator,
+you can push it onto it as an array. <code>widgetCreator</code> will take a Component that's passed to it, wrappet it in <code>errorWrapper</code> and return a function that returns a React a component. This might change in the future, but using the widgetCreator to create your widget will ensure
+that your component stays up to date with the API if there are any changes.</p>
+<p>The returned Widget will expect one argument of a props object.</p>
+<pre><code class="hljs"><span class="hljs-comment">// myPlugin/components/MyWidget.js</span>
+<span class="hljs-keyword">import</span> React from <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> PropTypes from <span class="hljs-string">'prop-types'</span>
+<span class="hljs-keyword">import</span> { widgetCreator } from <span class="hljs-string">'@bpanel/bpanel-ui'</span>;
+
+<span class="hljs-keyword">const</span> MyWidget = name =&gt; &lt;div&gt;Hello: {name}&lt;/div&gt;;
+MyWidget.propTypes = { name: PropTypes.<span class="hljs-keyword">string</span> };
+
+<span class="hljs-keyword">export</span> <span class="hljs-built_in">default</span> widgetCreator(MyWidget);
+</code></pre>
+<pre><code class="hljs"><span class="hljs-comment">// myPlugin/index.js</span>
+<span class="hljs-keyword">import</span> MyWidget <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/MyWidget'</span>;
+
+<span class="hljs-keyword">const</span> decorateDashboard = <span class="hljs-function">(<span class="hljs-params">Dashboard, { React, PropTypes }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> React.PureComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">props</span>) {
+      <span class="hljs-keyword">super</span>(props);
+    }
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> propTypes() {
+      bottomWidgets: PropTypes.array
+    }
+
+    render() {
+      <span class="hljs-keyword">const</span> { bottomWidgets } = <span class="hljs-keyword">this</span>.props;
+      bottomWidgets.push(MyWidget({ name: <span class="hljs-string">'FooBar'</span> }));
+      <span class="hljs-keyword">return</span> &lt;Dashboard {...this.props} bottomWidgets={bottomWidgets} /&gt;;
+    }
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> decoratePlugin = { <span class="hljs-string">'@bpanel/dashboard'</span>: decorateDashboard };
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" name="makerem"></a><a href="#makerem" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>makeRem</code></h3>
+<p><code>makeRem</code> takes a <code>size</code>, multiplies it by the <code>fontSizeBase</code>, then returns a size string with <code>'rem'</code> added to the end.
+<strong>Example</strong></p>
+<pre><code class="hljs css javascript"><span class="hljs-keyword">import</span> { makeRem } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-ui'</span>;
+
+makeRem(<span class="hljs-number">5</span>); <span class="hljs-comment">// '5rem';</span>
+makeRem(<span class="hljs-number">10</span>); <span class="hljs-comment">// '10rem';</span>
+makeRem(<span class="hljs-number">0.5</span>, <span class="hljs-number">10</span>); <span class="hljs-comment">// '5rem';</span>
+
+</code></pre>
+<p>More details on implementation <a href="/docs/theming-variables.html#makerem">here</a>.</p>
+<h3><a class="anchor" aria-hidden="true" name="makegutter"></a><a href="#makegutter" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>makeGutter</code></h3>
+<p>This is useful for creating style objects, taking a number and returning relative units
+for use in a themeConfig or inline styles in your React Component.</p>
+<p><strong>Example</strong></p>
+<pre><code class="hljs css javascript"><span class="hljs-comment">// Example</span>
+<span class="hljs-keyword">import</span> { makeGutter } <span class="hljs-keyword">from</span> <span class="hljs-string">`@bpanel/bpanel-ui`</span>;
+
+makeGutter(<span class="hljs-string">'padding'</span>, { <span class="hljs-attr">left</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">right</span>: <span class="hljs-number">5</span> }); <span class="hljs-comment">// { paddingLeft: '5rem', paddingRight: '5rem' };</span>
+makeGutter(<span class="hljs-string">'padding'</span>, { <span class="hljs-attr">horizontal</span>: <span class="hljs-number">15</span>, <span class="hljs-attr">vertical</span>: <span class="hljs-number">10</span> }); <span class="hljs-comment">// { paddingLeft: '15rem', paddingRight: '15rem', paddingTop: '10rem', paddingBottom: '10rem' };</span>
+makeGutter(<span class="hljs-string">'margin'</span>, { <span class="hljs-attr">all</span>: <span class="hljs-number">8</span> }); <span class="hljs-comment">// { marginLeft: '8rem', marginRight: '8rem', marginTop: '8rem', marginBottom: '8rem' };</span>
+
+</code></pre>
+<p>More details on implementation <a href="/bpanel-docs/docs/theming-variables.html#makegutter">here</a>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="ui-components.html">← UI Components</a><a class="docs-next button" href="theming-started.html">Getting Started →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bcoin-logo-white.png" alt="bPanel" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quick-start.html">Quick Start</a><a href="/docs/en/plugin-intro.html">Plugin Overview</a><a href="/docs/en/theming-started.html">Theming Overview</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/bcoin" target="_blank">Stack Overflow</a><a href="http://bcoin.io/slack-signup.html" target="_blank">Project Chat</a><a href="https://twitter.com/bcoin" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/bpanel-org" target="_blank">GitHub</a><a class="github-button" href="https://github.com/bpanel-org/bpanel" data-icon="octicon-star" data-count-href="" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2018 bcoin<br/><smallest>Icons made by artists from https://www.flaticon.com/authors and licensed under CC 3.0</smallest></section></footer></div><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-35892077-12', 'auto');
+              ga('send', 'pageview');
+            </script></body></html>

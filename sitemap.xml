@@ -30,4 +30,7 @@
 <url> <loc>https://bpanel.org/docs/theming-defaults.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bpanel.org/docs/theming-defaults.html" /> </url>
 <url> <loc>https://bpanel.org/docs/theming-started.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bpanel.org/docs/theming-started.html" /> </url>
 <url> <loc>https://bpanel.org/docs/theming-variables.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bpanel.org/docs/theming-variables.html" /> </url>
+<url> <loc>https://bpanel.org/docs/ui-components.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bpanel.org/docs/ui-components.html" /> </url>
+<url> <loc>https://bpanel.org/docs/ui-introduction.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bpanel.org/docs/ui-introduction.html" /> </url>
+<url> <loc>https://bpanel.org/docs/ui-utilities.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bpanel.org/docs/ui-utilities.html" /> </url>
 </urlset>
