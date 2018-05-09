@@ -24,13 +24,20 @@ The possibilities of things that can be built with a BMS are potentially endless
 - Password management built on proven cryptography
 
 ## Architecture
-The default setup for bPanel when first [getting started](/docs/quick-start.html) is with two docker containers running in parallel, one with an app server that serves the static files and routes requests from bPanel clients and one that runs an isolated instance of a bcoin node. In reality though, bPanel can run entirely separate from a bcoin node (you could, however, also decide to create a plugin that runs a bcoin node directly in the client). All you have to do is make sure to set the right configuration files to tell your app server where to send requests meant for a node (see more in [configuration](/docs/quick-start.html#configuration)).
+The [default configuration](/docs/quick-start.html) for bPanel uses `docker-compose` to manage multiple docker containers.
+It will launch an app server that acts as a router and static file server, a TLS terminating nginx reverse proxy,
+a bcoin full node and a bcoin wallet server. Any of these services can be ran on their own - with the proper
+[configuration](/docs/quick-start.html#configuration), it is possible to use bPanel with a remote bitcoin node.
+(It is even possible to create a plugin that runs a bcoin node directly in the client).
 
-The app server serves as a proxy between your clients (of which there can be many) and your node.
+![bpanel architecture](/img/bpanel-architecture.png "bpanel architecture")
 
-![bpanel architecture](/img/tech-diagram.png "bpanel architecture")
-
-This allows for a lot of flexibility. You could host your app server remotely, allowing for multiple users to access it from different clients and all talking to the same remote node. With bcoin's support for a separate wallet server, you can have a bPanel setup that is only meant to interact with a wallet server or only a node (Full, SPV, or Neutrino). You could use bcoin's built-in wallet services to manage wallets and accounts or handle key management locally in the clients. This also provides an extra layer of security by not giving users direct access to your node.
+The goal is to enable a flexible developer experience. You could host your app server remotely, allowing for
+multiple users to access it from different clients and all talking to the same remote node.
+With bcoin's support for a separate wallet server, you can have a bPanel setup that is only meant
+to interact with a wallet server or only a node (Full, SPV, or Neutrino). You could use bcoin's
+built-in wallet services to manage wallets and accounts or handle key management locally in the clients.
+This also provides an extra layer of security by not giving users direct access to your node.
 
 ## Tech Stack
 The App Server is built entirely with NodeJS and Express. WebSocket management uses bcoin's native WebSocket implementation, bsock (compatible with the Socket.io API). Currently there is no persistent storage support outside of bcoin's own chain and wallet databases and local storage (though it is planned for future releases).
