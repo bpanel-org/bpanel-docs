@@ -65,7 +65,7 @@ and `bcoin` containers necessary for their communication.
 
 The configuration is managed via environment variables set in the `bcoin.env` file.
 Secrets are managed in a `secrets.env` file which is listed in the `.gitignore`.
-__NOTE: DO NOT CHECK THIS FILE IN TO VERSION CONTROL.__
+__NOTE: The `secrets.env` file has sensitive information and should not be checked into version control.__
 
 If you run `npm install` and there is no `secrets.env` present,
 one will automatically be generated for you with a cryptographically secure api key.
