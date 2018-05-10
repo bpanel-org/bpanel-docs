@@ -29,8 +29,7 @@ This is primarily a setup for development purposes
 
 #### Running with docker
 
-To start the application and generate 50 regtest BTC for your primary wallet,
-first clone the repository and navigate to the root of the project.
+To start the application, clone the repository and navigate to the root of the project.
 1. Run `npm install` to create a secrets.env file.
 1. Run `docker-compose up -d` (add `--build` if you install more dependencies)
 1. Navigate to http://localhost:5000 or https://localhost to see your webapp.
@@ -61,7 +60,12 @@ You can also use custom configs to connect to an existing bcoin node
 
 ## Configuration
 
-Configuration shared between the `app` and `bcoin` containers.
+This section covers the shared configuration between the `app`
+and `bcoin` containers necessary for their communication.
+
+The configuration is managed via environment variables set in the `bcoin.env` file.
+Secrets are managed in a `secrets.env` file which is listed in the `.gitignore`.
+__NOTE: DO NOT CHECK THIS FILE IN TO VERSION CONTROL.__
 
 If you run `npm install` and there is no `secrets.env` present,
 one will automatically be generated for you with a cryptographically secure api key.
@@ -72,12 +76,9 @@ are connecting to an existing node, you need to place your token in the `secrets
 file like so: `BCOIN_API_KEY=[YOUR-AWESOME-KEY]`
 This key can be any value you want (but if you are running a node
 with real Bitcoins, make sure it's secure!).
-__NOTE: DO NOT CHECK THIS FILE IN TO VERSION CONTROL.__
 
-The configs are managed through environment variables set in a `bcoin.env` file
-(this is not ignored by git, so make sure to only put sensitive information in the `secrets.env` file).
-These get used by both the app and bcoin containers.
 NOTE: runtime environment vars will override the values set in the env files.
+
 
 If you want to connect to an existing node on a remote server,
 update the environment configs to point to your remote node.
