@@ -27,45 +27,58 @@ To spin up your app server, a bcoin node on regtest, and mine 101 blocks (and ge
 This is primarily a setup for development purposes
 (though it could be used in production with some modification).
 
-To spin up your webapp, server, a bcoin node on regtest, and generate
-50 regtest BTC for your primary wallet, clone & navigate to this repo then:
+#### Running with docker
+
+To start the application, clone the repository and navigate to the root of the project.
 1. Run `npm install` to create a secrets.env file.
-2. Run `docker-compose up -d bcoin` (add `--build` if you install more dependencies)
-3. Run `npm run start:poll`
-4. Navigate to http://localhost:5000 to see your webapp.
-Requests to `\node` will get get forwarded to your bcoin node.
+1. Run `docker-compose up -d` (add `--build` if you install more dependencies)
+1. Navigate to http://localhost:5000 or https://localhost to see your webapp.
 
-There is a docker container to run your app in parallel (`docker-compose up app`) however
-due to some bugs with npm uninstalling git dependencies when running an install, the docker
-environment doesn't work as expected and so it is recommended to run the app locally.
+This will build the web application, and start the app server, reverse proxy,
+bcoin node and wallet server in containers.
 
-For local development, you run just the bcoin docker container (`docker-compose up -d bcoin`)
-and then `npm run start:dev` (or `npm run start:poll` for Mac since webpack's watch behaves strangely
-on mac sometimes) to run the app and app server from your local box.
+#### Running without docker
+
+If you want to run the app server outside of the container for development purposes:
+1. Run `npm install` to create a secrets.env file.
+1. Run `docker-compose up -d bcoin` (add `--build` if you install more dependencies)
+1. For mac users, run `npm run start:poll` otherwise run `npm run start:dev`
+1. Navigate to http://localhost:5000 to see your webapp.
+
+Requests to `/bcoin` are routed to the bcoin node.  
+Requests to `/bwallet` are routed to the bcoin wallet server.  
 
 ## Customizing Your Docker Environment
-There are two docker services in the compose file: `app` and `bcoin`.
-The app service runs the web server which serves the static files
-for the front end and relays messages to a bcoin node.
-You can use custom configs to connect to an existing node,
-or use the bcoin docker service to spin up a bcoin node that the webapp will connect to.
+
+The `docker-compose.yml` file defines multiple services.
+
+- `app` - static file server and router
+- `bcoin` - bcoin full node and wallet server
+- `securityc` - reverse proxy and TLS termination
+
+You can also use custom configs to connect to an existing bcoin node
 
 ## Configuration
-Configurations are shared between the two docker containers.
 
-Your bcoin node will expect an API key given to it.
-If you are connecting to an existing node, you can set an API key
-by adding it to the `secrets.env` file and set `BCOIN_API_KEY=[YOUR-AWESOME-KEY]`.
-This key can be any value you want (but if you are running a node with real Bitcoins, make sure it's secure!).
-__NOTE: DO NOT CHECK THIS FILE IN TO VERSION CONTROL.__
+This section covers the shared configuration between the `app`
+and `bcoin` containers necessary for their communication.
+
+The configuration is managed via environment variables set in the `bcoin.env` file.
+Secrets are managed in a `secrets.env` file which is listed in the `.gitignore`.
+__NOTE: The `secrets.env` file has sensitive information and should not be checked into version control.__
 
 If you run `npm install` and there is no `secrets.env` present,
 one will automatically be generated for you with a cryptographically secure api key.
 
-The configs are managed through environment variables set in a `bcoin.env` file
-(this is not ignored by git, so make sure to only put sensitive information in the `secrets.env` file).
-These get used by both the app and bcoin containers.
+By default, the bcoin REST server will be set up with Basic Authentication.
+The token can be found in the generated `secrets.env` file or if you
+are connecting to an existing node, you need to place your token in the `secrets.env`
+file like so: `BCOIN_API_KEY=[YOUR-AWESOME-KEY]`
+This key can be any value you want (but if you are running a node
+with real Bitcoins, make sure it's secure!).
+
 NOTE: runtime environment vars will override the values set in the env files.
+
 
 If you want to connect to an existing node on a remote server,
 update the environment configs to point to your remote node.
