@@ -22,40 +22,48 @@
 <h3><a class="anchor" aria-hidden="true" name="start-bpanel"></a><a href="#start-bpanel" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start bPanel</h3>
 <p>This is primarily a setup for development purposes
 (though it could be used in production with some modification).</p>
-<p>To spin up your webapp, server, a bcoin node on regtest, and generate
-50 regtest BTC for your primary wallet, clone &amp; navigate to this repo then:</p>
+<h4><a class="anchor" aria-hidden="true" name="running-with-docker"></a><a href="#running-with-docker" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running with docker</h4>
+<p>To start the application, clone the repository and navigate to the root of the project.</p>
+<ol>
+<li>Run <code>npm install</code> to create a secrets.env file.</li>
+<li>Run <code>docker-compose up -d</code> (add <code>--build</code> if you install more dependencies)</li>
+<li>Navigate to <a href="http://localhost:5000">http://localhost:5000</a> or <a href="https://localhost">https://localhost</a> to see your webapp.</li>
+</ol>
+<p>This will build the web application, and start the app server, reverse proxy,
+bcoin node and wallet server in containers.</p>
+<h4><a class="anchor" aria-hidden="true" name="running-without-docker"></a><a href="#running-without-docker" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running without docker</h4>
+<p>If you want to run the app server outside of the container for development purposes:</p>
 <ol>
 <li>Run <code>npm install</code> to create a secrets.env file.</li>
 <li>Run <code>docker-compose up -d bcoin</code> (add <code>--build</code> if you install more dependencies)</li>
-<li>Run <code>npm run start:poll</code></li>
-<li>Navigate to <a href="http://localhost:5000">http://localhost:5000</a> to see your webapp.
-Requests to <code>\node</code> will get get forwarded to your bcoin node.</li>
+<li>For mac users, run <code>npm run start:poll</code> otherwise run <code>npm run start:dev</code></li>
+<li>Navigate to <a href="http://localhost:5000">http://localhost:5000</a> to see your webapp.</li>
 </ol>
-<p>There is a docker container to run your app in parallel (<code>docker-compose up app</code>) however
-due to some bugs with npm uninstalling git dependencies when running an install, the docker
-environment doesn't work as expected and so it is recommended to run the app locally.</p>
-<p>For local development, you run just the bcoin docker container (<code>docker-compose up -d bcoin</code>)
-and then <code>npm run start:dev</code> (or <code>npm run start:poll</code> for Mac since webpack's watch behaves strangely
-on mac sometimes) to run the app and app server from your local box.</p>
+<p>Requests to <code>/bcoin</code> are routed to the bcoin node.<br>
+Requests to <code>/bwallet</code> are routed to the bcoin wallet server.</p>
 <h2><a class="anchor" aria-hidden="true" name="customizing-your-docker-environment"></a><a href="#customizing-your-docker-environment" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing Your Docker Environment</h2>
-<p>There are two docker services in the compose file: <code>app</code> and <code>bcoin</code>.
-The app service runs the web server which serves the static files
-for the front end and relays messages to a bcoin node.
-You can use custom configs to connect to an existing node,
-or use the bcoin docker service to spin up a bcoin node that the webapp will connect to.</p>
+<p>The <code>docker-compose.yml</code> file defines multiple services.</p>
+<ul>
+<li><code>app</code> - static file server and router</li>
+<li><code>bcoin</code> - bcoin full node and wallet server</li>
+<li><code>securityc</code> - reverse proxy and TLS termination</li>
+</ul>
+<p>You can also use custom configs to connect to an existing bcoin node</p>
 <h2><a class="anchor" aria-hidden="true" name="configuration"></a><a href="#configuration" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h2>
-<p>Configurations are shared between the two docker containers.</p>
-<p>Your bcoin node will expect an API key given to it.
-If you are connecting to an existing node, you can set an API key
-by adding it to the <code>secrets.env</code> file and set <code>BCOIN_API_KEY=[YOUR-AWESOME-KEY]</code>.
-This key can be any value you want (but if you are running a node with real Bitcoins, make sure it's secure!).
-<strong>NOTE: DO NOT CHECK THIS FILE IN TO VERSION CONTROL.</strong></p>
+<p>This section covers the shared configuration between the <code>app</code>
+and <code>bcoin</code> containers necessary for their communication.</p>
+<p>The configuration is managed via environment variables set in the <code>bcoin.env</code> file.
+Secrets are managed in a <code>secrets.env</code> file which is listed in the <code>.gitignore</code>.
+<strong>NOTE: The <code>secrets.env</code> file has sensitive information and should not be checked into version control.</strong></p>
 <p>If you run <code>npm install</code> and there is no <code>secrets.env</code> present,
 one will automatically be generated for you with a cryptographically secure api key.</p>
-<p>The configs are managed through environment variables set in a <code>bcoin.env</code> file
-(this is not ignored by git, so make sure to only put sensitive information in the <code>secrets.env</code> file).
-These get used by both the app and bcoin containers.
-NOTE: runtime environment vars will override the values set in the env files.</p>
+<p>By default, the bcoin REST server will be set up with Basic Authentication.
+The token can be found in the generated <code>secrets.env</code> file or if you
+are connecting to an existing node, you need to place your token in the <code>secrets.env</code>
+file like so: <code>BCOIN_API_KEY=[YOUR-AWESOME-KEY]</code>
+This key can be any value you want (but if you are running a node
+with real Bitcoins, make sure it's secure!).</p>
+<p>NOTE: runtime environment vars will override the values set in the env files.</p>
 <p>If you want to connect to an existing node on a remote server,
 update the environment configs to point to your remote node.
 To deploy in a docker container run:</p>
