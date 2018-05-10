@@ -27,7 +27,7 @@ The possibilities of things that can be built with a BMS are potentially endless
 The [default configuration](/docs/quick-start.html) for bPanel uses `docker-compose` to manage multiple docker containers.
 It will launch an app server that acts as a router and static file server, a TLS terminating nginx reverse proxy,
 a bcoin full node and a bcoin wallet server. Any of these services can be ran on their own - with the proper
-[configuration](/docs/quick-start.html#configuration), it is possible to use bPanel with a remote bitcoin node.
+[configuration](/docs/quick-start.html#configuration), it is possible to use bPanel with a remote bcoin node.
 (It is even possible to create a plugin that runs a bcoin node directly in the client).
 
 ![bpanel architecture](/img/bpanel-architecture.png "bpanel architecture")
