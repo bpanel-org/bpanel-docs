@@ -299,27 +299,27 @@ export <span class="hljs-keyword">const</span> middleware = <span class="hljs-fu
 };
 </code></pre>
 <p>Then back in our actions file let's add the <code>updateChain</code> action which will put the data in a form the reducer can recognize and then pass it to the chain reducer (which already has a reducer for <code>SET_CHAIN_INFO</code>); Just for fun, let's also store the block information in a <code>recentBlocks</code> array in the chain state.</p>
-<pre><code class="hljs"><span class="hljs-comment">// lib/actions.js</span>
+<pre><code class="hljs css javascript"><span class="hljs-comment">// lib/actions.js</span>
 <span class="hljs-keyword">import</span> { ChainEntry } <span class="hljs-keyword">from</span> <span class="hljs-string">'bcoin'</span>
 ...
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> updateChain = <span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> (dispatch, getState) =&gt; {
+export <span class="hljs-keyword">const</span> updateChain = <span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> (dispatch, getState) =&gt; {
   <span class="hljs-keyword">const</span> blockMeta = ChainEntry.fromRaw(entry);
   <span class="hljs-keyword">const</span> { height, hash } = blockMeta;
   <span class="hljs-keyword">const</span> chainState = getState().chain;
-  <span class="hljs-keyword">const</span> blocks = chainState.getIn([<span class="hljs-string">'recentBlocks'</span>])
-                  ? chainState.getIn([<span class="hljs-string">'recentBlocks'</span>])
-                  : []; <span class="hljs-comment">// `getIn` is a seamless-immutable method</span>
+  <span class="hljs-keyword">const</span> blocks = chainState.recentBlocks
+                  ? chainState.recentBlocks
+                  : [];
   <span class="hljs-keyword">const</span> newBlocks = [...blocks]; <span class="hljs-comment">// get mutable version of blocks</span>
   newBlocks.push(hash)
   <span class="hljs-keyword">const</span> updatedChain = {
     height,
-    tip: hash,
-    recentBlocks: newBlocks
+    <span class="hljs-attr">tip</span>: hash,
+    <span class="hljs-attr">recentBlocks</span>: newBlocks
   }
 
   <span class="hljs-keyword">return</span> dispatch({
-    <span class="hljs-keyword">type</span>: <span class="hljs-string">'SET_CHAIN_INFO'</span>,
-    payload: updatedChain
+    <span class="hljs-attr">type</span>: <span class="hljs-string">'SET_CHAIN_INFO'</span>,
+    <span class="hljs-attr">payload</span>: updatedChain
   });
 }
 </code></pre>

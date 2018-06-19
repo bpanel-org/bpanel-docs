@@ -1,0 +1,98 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Configuration · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Configuration · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bpanel.org/index.html"/><meta property="og:description" content="bPanel can be configured to connect to any bcoin-API compatible node you want to"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bcoin-logo-white.png"/><h2 class="headerTitle">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs/quick-start.html" target="_self">Quick Start</a></li><li><a href="/docs/bpanel-overview.html" target="_self">About</a></li><li><a href="/docs/plugin-started.html" target="_self">Developers</a></li><li><a href="/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Overview</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Overview</h3><ul><li class="navListItem"><a class="navItem" href="/docs/bpanel-overview.html">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/quick-start.html">Quick Start</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/configuration.html">Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/plugin-intro.html">Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/install-plugins.html">Installing Plugins</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Configuration</h1></header><article><div><span><p>bPanel can be configured to connect to any bcoin-API compatible node you want to
+point it to. Save as many different conf files as you want and easily
+point your bPanel app to refer to any node you want, not just the docker
+container created by the default <code>docker-compose.yml</code> configurations.</p>
+<h3><a class="anchor" aria-hidden="true" name="quick-links"></a><a href="#quick-links" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick Links</h3>
+<ul>
+<li><a href="#client-configurations">Connecting to Custom Nodes</a></li>
+<li><a href="#configuration-between-docker-services">Using Docker</a></li>
+<li><a href="#bcoin-setup-scripts">Bcoin Setup Scripts (for Docker)</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" name="how-bpanel-connects-to-nodes"></a><a href="#how-bpanel-connects-to-nodes" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How bPanel Connects to Nodes</h2>
+<p>Since bPanel just uses <a href="https://github.com/bcoin-org/bclient"><code>bclient</code></a> to connect
+to and query nodes, all you need to do is pass the appropriate congifurations when starting up
+bPanel. This can be done via the command line, environment variables (prefaced with <code>BPANEL_</code>),
+or through a configuration file. Under the hood, bPanel uses the <code>bcfg</code> module
+to accomplish this. Learn more about <code>bcfg</code> <a href="https://github.com/bcoin-org/bcfg">here</a>.</p>
+<h3><a class="anchor" aria-hidden="true" name="client-configurations"></a><a href="#client-configurations" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Client Configurations</h3>
+<p>bPanel looks for configuration files in your home directory in <code>~/.bpanel</code>.
+This can be changed by passing a <code>prefix</code> argument at runtime.
+Client configurations for connecting to different nodes are loaded from the
+<code>clients</code> directory, <code>~/.bpanel/clients/[CLIENT-ID].conf</code>.</p>
+<p>You can have as many different configurations as you want. bPanel will default to a <code>default.conf</code>
+configuration. To use different configurations, just pass in a <code>client-id</code> argument at runtime.
+e.g. <code>npm start -- --client-id=test</code> (or as an env variable <code>BPANEL_CLIENT_ID=test</code>) which
+will load configs from <code>~/.bpanel/clients/test.conf</code>.</p>
+<p>The clients directory can also be customized with the <code>clients-dir</code> argument.</p>
+<p>Sample conf files for the client can be found
+<a href="https://github.com/bpanel-org/bpanel/tree/master/etc/sample.client.conf">here</a>.</p>
+<p>Since node and wallet services are run on different servers,
+you will likely need different configurations to connect to the wallet. These
+should be in the same client conf file, prefaced with <code>wallet-</code> (note that bcoin looks for these
+in separate config files). See the sample conf file for an example.</p>
+<h2><a class="anchor" aria-hidden="true" name="configuration-between-docker-services"></a><a href="#configuration-between-docker-services" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration between Docker services</h2>
+<h3><a class="anchor" aria-hidden="true" name="about-the-docker-environment"></a><a href="#about-the-docker-environment" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About the Docker Environment</h3>
+<p>There are three docker services in the compose file: <code>bpanel</code>, <code>bcoin</code> and <code>securityc</code>.
+The <code>bpanel</code> service is an http server that acts as a static file server and as a request router
+to backend services as well as a webpack process for building your js files.
+The <code>bcoin</code> service is an instance of <code>bcoin</code> that supports an http
+server, a wallet server and a bitcoin p2p server.</p>
+<p>The <code>securityc</code> service generates TLS keys and certs and runs a TLS terminating reverse proxy.
+You can use custom configs to connect to an existing node,
+or use the bcoin docker service to spin up a bcoin node that the webapp will connect to.</p>
+<h3><a class="anchor" aria-hidden="true" name="configuring-docker-services"></a><a href="#configuring-docker-services" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Docker Services</h3>
+<p>These instructions are for if you want to run bPanel within the <code>bpanel</code> service and have it talk to
+a bcoin node running in a container from the <code>bcoin</code> service. For example, this is how bPanel works
+out of the box if you simply run <code>docker-compose up -d</code>.</p>
+<p>Configurations are shared between the two docker containers using a shared
+docker volume called <code>configs</code>. Settings for the bcoin nodes in docker
+are set using environment variables, either in docker-compose.yml or
+an env file (by default in <code>/etc/bcoin.env</code> but you can point to whichever and
+as many env files as you want using the <code>env_file</code> configuration in the bcoin
+service). The bcoin node is started with the <code>bcoin-init.js</code> script. During this
+process, api keys are generated and all required configurations are saved in a config
+file called <code>_docker.conf</code> in the shared volume.</p>
+<p>If the configs volume is mounted to your host machine, you can connect a local
+version of bPanel to it by pointing the <code>client-id</code> config at <code>_docker</code> and it will
+use the appropriate configs.</p>
+<p>If you are mounting a local bcoin data dir (<code>~/.bcoin</code>) or persisting using docker volumes,
+you can also pass settings to your bcoin docker container with a <code>bcoin.conf</code>
+file (read more about bcoin configurations
+<a href="https://github.com/bcoin-org/bcoin/blob/master/docs/Configuration.md">here</a>).</p>
+<h2><a class="anchor" aria-hidden="true" name="bcoin-setup-scripts"></a><a href="#bcoin-setup-scripts" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bcoin Setup Scripts</h2>
+<p>(This section is only relevant if you will be running a bcoin node in a docker container
+using the <code>bcoin</code> service, or using the <code>bcoin-init.js</code> script to start a node.)</p>
+<p>This setup supports setup scripts for your bcoin node. This will allow you to run
+scripts on your node for a repeatable and predictable environment for testing or development.</p>
+<p>Three circumstances need to be met to run a script:</p>
+<ol>
+<li>There needs to be a js file to run in the <code>scripts</code> directory that exports a function</li>
+<li>You need to pass the name of this file (including the extension)
+as an environment variable named <code>BCOIN_INIT_SCRIPT</code> in the docker-compose or as a
+<code>init-script</code> setting in your <code>bcoin.conf</code> file</li>
+<li>There should be no walletdb in the container.
+This last requirement makes sure that a setup script doesn't overwrite your data
+if you're mapping volumes or if you restart a container.</li>
+</ol>
+<p>These checks are done in <code>bcoin-init.js</code> which is run by the bpanel/bcoin image
+that is used to create the <code>bcoin</code> container and sets up a node based on the configs
+described above. Setup scripts are passed the bcoin node object that has been
+created so the scripts have access to the node being started at run time as
+well as the relevant configs.</p>
+<p>Example setup scripts can be found in the <code>/scripts</code> directory (<code>funded-dummy-wallets.js</code>
+and <code>setup-coinbase-address.js</code>).</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="quick-start.html">← Quick Start</a><a class="docs-next button" href="plugin-intro.html">Plugins →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bcoin-logo-white.png" alt="bPanel" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quick-start.html">Quick Start</a><a href="/docs/en/plugin-intro.html">Plugin Overview</a><a href="/docs/en/theming-started.html">Theming Overview</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/bcoin" target="_blank">Stack Overflow</a><a href="http://bcoin.io/slack-signup.html" target="_blank">Project Chat</a><a href="https://twitter.com/bcoin" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/bpanel-org" target="_blank">GitHub</a><a class="github-button" href="https://github.com/bpanel-org/bpanel" data-icon="octicon-star" data-count-href="" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2018 bcoin<br/><smallest>Icons made by artists from https://www.flaticon.com/authors and licensed under CC 3.0</smallest></section></footer></div><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-35892077-12', 'auto');
+              ga('send', 'pageview');
+            </script></body></html>
