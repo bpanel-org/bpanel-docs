@@ -27,7 +27,6 @@ So with these extensions, you are indicating how you want the app state to chang
 
 To get information about the shape of the part of the state you would like to interact with, we recommend using the [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension).
 
-__NOTE__: The state in bPanel is kept immutable using the [`seamless-immutable`](https://www.npmjs.com/package/seamless-immutable) library. Read more about their API in the docs to learn how to update the state.
 
 ## Available Reducers:
 ### `reducePlugins`
@@ -72,13 +71,14 @@ Then just extend the reducer like you would for any other:
 ```javascript
 // index.js
 export const reducePlugins = (state, action) => {
+  const newState = { ...state };
   switch (action.type) {
     case 'ADD_MY_UNIQUE_ARRAY': {
-      // using seamless immutable API
-      const pluginStore = state.getIn(['myplugin_store1']);
+      const { pluginStore } = newState['myplugin_store1'];
       const arr = [...pluginStore.arrayToStore];
       arr.push('some item');
-      return state.setIn(['myplugin_store1', arrayToStore], arr);
+      newState.arrayToStore = arr;
+      return newState;
     }
   }
 }
@@ -92,13 +92,16 @@ Actions types currently implemented in the chain reducer are:
 
 Example:
 ```javascript
-// This will return an immutable version of state with a new `snapshot` property that is a snapshot of the current tip hash.
+// This will return a new `snapshot` property that is
+// a snapshot of the current tip hash.
 // Pretty useless reducer but gives an idea of functionality
 export const reduceChain = (state, action) => {
+  const newState = { ...state };
   switch (action.type) {
     case 'MY_CUSTOM_ACTION': {
-      const snapshot = state.getIn(['tip']);
-      return state.set('snapshot', snapshot);
+      const snapshot = action.payload;
+      newState.snapshot = snapshot;
+      return newState;
     }
   }
 }
