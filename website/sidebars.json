@@ -19,6 +19,6 @@
     "Theming (Skins)": ["theming-started", "theming-defaults", "theming-variables"]
   },
   "overview-sidebar": {
-    "Overview": ["bpanel-overview", "quick-start", "plugin-intro", "install-plugins"]
+    "Overview": ["bpanel-overview", "quick-start", "configuration", "plugin-intro", "install-plugins"]
   }
 }
