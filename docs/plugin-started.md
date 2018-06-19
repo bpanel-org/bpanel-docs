@@ -79,15 +79,14 @@ if there are others you depend on, and/or you want to ensure a minimum version, 
 
 Important packages your plugin can expect to have access to include:
 
-- "@bpanel/bpanel-ui": "^0.0.7",
-- "@bpanel/bpanel-utils": "0.0.7",
-- "react": "^16.3.0",
-- "react-dom": "^16.0.0",
-- "react-redux": "^5.0.6",
-- "react-router-dom": "^4.2.2",
-- "redux": "^3.7.2",
-- "redux-thunk": "^2.2.0",
-- "seamless-immutable": "^7.1.2"
+- "@bpanel/bpanel-ui"
+- "@bpanel/bpanel-utils"
+- "react"
+- "react-dom"
+- "react-redux"
+- "react-router-dom"
+- "redux"
+- "redux-thunk"
 
 ## Publishing your Plugin
 If you're using `bpanel-cli` to spec your plugin files, then this is as easy as `npm publish`. Just make sure you've got your npm registry credentials setup on your local machine (more [at npm](https://docs.npmjs.com/cli/publish)). Once published, other bPanel developers can install and import your plugin into their own app!

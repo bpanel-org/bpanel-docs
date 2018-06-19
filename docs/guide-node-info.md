@@ -380,7 +380,7 @@ export const middleware = ({ dispatch }) => next => async action => {
 
 Then back in our actions file let's add the `updateChain` action which will put the data in a form the reducer can recognize and then pass it to the chain reducer (which already has a reducer for `SET_CHAIN_INFO`); Just for fun, let's also store the block information in a `recentBlocks` array in the chain state.
 
-```
+```javascript
 // lib/actions.js
 import { ChainEntry } from 'bcoin'
 ...
@@ -388,9 +388,9 @@ export const updateChain = (entry) => (dispatch, getState) => {
   const blockMeta = ChainEntry.fromRaw(entry);
   const { height, hash } = blockMeta;
   const chainState = getState().chain;
-  const blocks = chainState.getIn(['recentBlocks'])
-                  ? chainState.getIn(['recentBlocks'])
-                  : []; // `getIn` is a seamless-immutable method
+  const blocks = chainState.recentBlocks
+                  ? chainState.recentBlocks
+                  : [];
   const newBlocks = [...blocks]; // get mutable version of blocks
   newBlocks.push(hash)
   const updatedChain = {
