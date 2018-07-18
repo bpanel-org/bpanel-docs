@@ -154,18 +154,21 @@ const Features = props => (
           image: imgUrl('/icons/paint-brush.png'),
           imageAlign: 'top',
           title: 'Powerful Theming',
+          key: 0
         },
         {
           content: 'Painlessly to create interactive UIs and manage state. Design simple views for each state and React will efficiently update and render just the right components.',
           image: imgUrl('/icons/react.png'),
           imageAlign: 'top',
           title: 'Built on React/Redux',
+          key: 1
         },
         {
           content: 'Built entirely around plugins. All visual elements can be extended via the plugin system by leveraging the composable nature of React and Redux.',
           image: imgUrl('/icons/socket.png'),
           imageAlign: 'top',
           title: 'Plugin Based',
+          key: 2
         },
       ]}
     </Block>
@@ -176,18 +179,21 @@ const Features = props => (
           image: imgUrl('/icons/cable.png'),
           imageAlign: 'top',
           title: 'Web Socket Management',
+          key: 0
         },
         {
           content: 'With bPanel, enjoy full access to everything the bcoin API has to offer. Manage HD wallets, send & receive, query block and tx information, organize UTXOs.',
           image: imgUrl('/icons/bcoin-node.png'),
           imageAlign: 'top',
           title: 'Enterprise Blockchain',
+          key: 1
         },
         {
           content: 'Both bcoin and bPanel are Open Source. Fork, clone, copy and rebuild anything you like. Help us build, help yourself build, just build!',
           image: imgUrl('/icons/worldwide.png'),
           imageAlign: 'top',
           title: 'Open Source',
+          key: 2
         },
       ]}
     </Block>
