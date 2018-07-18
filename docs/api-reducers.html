@@ -14,7 +14,9 @@ See <code>reducePlugins</code> extension below which also helps avoid naming col
 <p>The plugin API exposes certain parts of the store's reducer. You can target these reducers by exporting one of the decorating functions described on this page (more may be added in the future).</p>
 <p>Available extensions:</p>
 <ul>
-<li><a href="#reduceplugins"><code>reducePlugins</code></a></li>
+<li><a href="#pluginreducers"><code>pluginReducers</code></a></li>
+<li><a href="#persistreducers"><code>persistReducers</code></a></li>
+<li><a href="#reduceplugins-deprecated"><code>reducePlugins</code> (deprecated)</a></li>
 <li><a href="#reducechain"><code>reduceChain</code></a></li>
 <li><a href="#reducenode"><code>reduceNode</code></a></li>
 <li><a href="#reducewallets"><code>reduceWallets</code></a></li>
@@ -26,54 +28,78 @@ See <code>reducePlugins</code> extension below which also helps avoid naming col
 <p>So with these extensions, you are indicating how you want the app state to change based on specific actions that have been <a href="/docs/api-map-state-dispatch.html">dispatched</a> to the store. Each individual reducer extension is targeting a specific part of the state.</p>
 <p>To get information about the shape of the part of the state you would like to interact with, we recommend using the <a href="https://github.com/zalmoxisus/redux-devtools-extension">Redux DevTools Extension</a>.</p>
 <h2><a class="anchor" aria-hidden="true" name="available-reducers"></a><a href="#available-reducers" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Available Reducers:</h2>
-<h3><a class="anchor" aria-hidden="true" name="reduceplugins"></a><a href="#reduceplugins" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>reducePlugins</code></h3>
-<p>This is a &quot;catch-all&quot; reducer. Its initial state with no plugins is simply an empty object and
-its only built-in action type is <code>ADD_PLUGIN</code>. This reducer lets you add a new plugin
-store when dispatched, keyed to an id passed inside the payload. This is not strictly necessary
-to add to the plugins store, but it's useful if you want bPanel to check for conflicts (it won't
-allow for two plugin stores with the same id). Doing it on your own, there is no guarantee that
-your reducer won't overwrite the state from another plugin, so adding a unique prefix
-as identifier to your store id, regardless is a good idea and the responsibility of each
-plugin developer.</p>
-<p>(We plan to add a more robust custom reducer system in the future)</p>
-<p>The first step is to setup your initial state by catching the <code>APP_LOADED</code> action
-in your middleware, and dispatching <code>ADD_PLUGIN</code> with the unique id and the rest of your state
-in the payload (this step isn't necessary with other reducers since their state is already
-initialized).</p>
-<pre><code class="hljs css javascript"><span class="hljs-comment">// index.js</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> middleware = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> next =&gt; action {
-  <span class="hljs-keyword">const</span> { dispatch } = store;
-  <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'APP_LOADED'</span>) {
-    dispatch({
-      <span class="hljs-attr">type</span>: <span class="hljs-string">'ADD_PLUGIN'</span>,
-      <span class="hljs-attr">payload</span>: {
-        <span class="hljs-attr">id</span>: <span class="hljs-string">'myplugin_store1'</span>,
-        <span class="hljs-attr">arrayToStore</span>: [],
-        <span class="hljs-attr">children</span>: {},
-        <span class="hljs-attr">otherProps</span>: {}
-      }
-    });
+<h3><a class="anchor" aria-hidden="true" name="pluginreducers"></a><a href="#pluginreducers" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>pluginReducers</code></h3>
+<p>Often a plugin will want to add its own store and corresponding reducers to the app state.
+This can have numerous advantages including simplifying the control flow of the state
+for your components. Significantly, it can also enable other plugins to interact with your
+plugin by providing an interface, via redux, for reading your plugin's state and even
+hooking into action dispatches via middleware.</p>
+<p>You can also have the app persist your plugin state across browser sessions using the
+browser's localStorage. See <a href="#persistreducers"><code>persistReducers</code></a> below for more</p>
+<h4><a class="anchor" aria-hidden="true" name="combinereducers"></a><a href="#combinereducers" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>combineReducers</h4>
+<p>bPanel uses redux's <code>combineReducers</code> utility method to implement and merge the state of
+all plugins with their own store. This happens during the build stage when bPanel will take
+all plugin reducers merge them into a single object, and add them to the root reducer under
+the store <code>plugins</code>.</p>
+<p>Shape of the store:</p>
+<pre><code class="hljs">{
+  node: <span class="hljs-meta">{...}</span>,
+  chain: <span class="hljs-meta">{...}</span>,
+  wallets: <span class="hljs-meta">{...}</span>,
+  theme: <span class="hljs-meta">{...}</span>,
+  pluginMetadata: <span class="hljs-meta">{...}</span>,
+  plugins: {
+    myCustomPlugin: <span class="hljs-meta">{...}</span>, // this will be initialized w/ your initial state <span class="hljs-keyword">and</span> updated w/ your reducer
+    otherPlugin: <span class="hljs-meta">{...}</span>
   }
-  <span class="hljs-comment">// make sure to call next so other</span>
-  <span class="hljs-comment">// plugins can see app has loaded</span>
-  next(action);
 }
 </code></pre>
-<p>Then just extend the reducer like you would for any other:</p>
-<pre><code class="hljs css javascript"><span class="hljs-comment">// index.js</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> reducePlugins = <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> {
+<p>To add your own custom reducer and initial state, simply create your reducer as you normally would
+with redux and pass it in via an object, exported with <code>pluginReducers</code>. You can pass as many top
+level reducers as you want or nest multiple reducers under your own top level reducer.</p>
+<pre><code class="hljs css javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bp_foo</span>(<span class="hljs-params">state = { foo: <span class="hljs-string">'bar'</span> }, action</span>) </span>{
   <span class="hljs-keyword">const</span> newState = { ...state };
   <span class="hljs-keyword">switch</span> (action.type) {
-    <span class="hljs-keyword">case</span> <span class="hljs-string">'ADD_MY_UNIQUE_ARRAY'</span>: {
-      <span class="hljs-keyword">const</span> { pluginStore } = newState[<span class="hljs-string">'myplugin_store1'</span>];
-      <span class="hljs-keyword">const</span> arr = [...pluginStore.arrayToStore];
-      arr.push(<span class="hljs-string">'some item'</span>);
-      newState.arrayToStore = arr;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'SET_FOO'</span>:
+      newState.foo = action.payload;
       <span class="hljs-keyword">return</span> newState;
-    }
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
   }
 }
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> pluginReducers = {
+  <span class="hljs-attr">bp_foo</span>: bp_foo
+  <span class="hljs-comment">// export as many properties w/ corresponding reducers as you want</span>
+  <span class="hljs-comment">// or use combineReducers to nest them under a single top level reducer</span>
+};
 </code></pre>
+<p>Now you can update your plugin state by dispatching an action:</p>
+<pre><code class="hljs"> {
+  <span class="hljs-attribute">type</span>: <span class="hljs-string">'SET_FOO'</span>,
+  payload: <span class="hljs-string">'baz'</span>
+ }
+</code></pre>
+<blockquote>
+<p>Make sure you prefix your store with a unique id to avoid any conflicts
+with other plugins.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" name="persistreducers"></a><a href="#persistreducers" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>persistReducers</code></h3>
+<p>bPanel uses the <a href="https://www.npmjs.com/package/redux-persist">redux-persist package</a> to allow
+plugin developers to persist state across browser sessions. This means that if you indicate you want
+a part of your store to persist, the app will rehydrate with the last known state whether you refresh
+or open in a new window or tab.</p>
+<p>Note that currently the only capability you have as a plugin developer is to whitelist what you would
+like to persist. The default, top-level stores do not currently persist and simply hydrate from the node
+bPanel is communicating with. Make sure to take this into account to avoid your plugin being inconsistent
+with the state of the rest of the app.</p>
+<p>The interface to persist a store is straightforward, simply export an array of strings matching to
+the plugin store you would like to persist:</p>
+<pre><code class="hljs css javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> persistReducers = [<span class="hljs-string">'bp_foo'</span>];
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" name="reduceplugins-deprecated"></a><a href="#reduceplugins-deprecated" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>reducePlugins</code> (deprecated)</h3>
+<p><code>reducePlugins</code> has been deprecated and is no longer supported in bPanel. If you have a plugin
+that currently uses this interface, please upgrade to the <a href="#pluginreducers">pluginReducers</a> API instead</p>
 <h3><a class="anchor" aria-hidden="true" name="reducechain"></a><a href="#reducechain" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>reduceChain</code></h3>
 <p>Actions types currently implemented in the chain reducer are:</p>
 <ul>
