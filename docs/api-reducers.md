@@ -110,8 +110,7 @@ function addSideNav(metadata) {
   const { pathName, name } = metadata;
 
   // get hash for unique id
-  const hash = helpers.getHash(metadata); // utility available in bpanel-utils
-  const id = hash.slice(0, 6);
+  const id = helpers.getHash(metadata, 'sha256', 0, 6); // utility available in bpanel-utils
   metadata.pathName = pathName ? pathName : name;
   return {
     type: 'ADD_SIDE_NAV',
