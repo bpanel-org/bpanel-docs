@@ -63,7 +63,7 @@ export const middleware = store => next => action {
   // make sure to call next so other
   // plugins can see app has loaded
   next(action);
-}
+};
 ```
 
 Then just extend the reducer like you would for any other:
@@ -81,7 +81,66 @@ export const reducePlugins = (state, action) => {
       return newState;
     }
   }
+};
+
+```
+
+### `navStore`
+Currently the nav store doesn't support decoration. By dispatching the appropriate
+actions however, you can add and remove items from the App's navigation.
+
+#### ADD_SIDE_NAV
+To add a new item to the side navigation, simply send a payload with an object
+that mirrors the shape of the [`metadata`](/docs/api-metadata.html) object for new plugins.
+
+In addition you will also need to add a unique id. The built in `addSideNav` action creator in bPanel
+generates one automatically by taking the first 6 characters of the hash of your object.
+
+##### Properties
+| Property       | Required?     | Type        | Details     |
+| -------------  | ------------- | --------    | -------     |
+| `name`         | yes           | `string`    | Used to identify your plugin. Must follow npm naming rules  |
+| `id`         | yes           | `string`      | unique id. This will be added to the link component in the DOM  |
+| `displayName`  | no            | `string`    | Will default to `name` if none is provided |
+| `pathName`     | yes            | `string`    | If building a view/panel, will be passed to react-router to use as URL of your view|
+| `order`        | no            | `int`       | If including in sidebar, useful for ordering nav.<br>If order conflicts between plugins, will sort alphabetically |
+| `icon`         | no            | `string`    | Also for sidebar navigation.<br>The name of the font awesome icon to use for your view nav  |
+| `sidebar` or `nav`| no            | `bool`      | Default: `false`<br>If true, bPanel will automatically add sidebar navigation for your plugin view  |
+| `parent`       | no            | `string`    | Currently no support, but will be used for<br>adding a plugin as child (both in path and in navigation) |
+
+```javascript
+// webapp/store/actions/navActions.js
+
+function addSideNav(metadata) {
+  assert(metadata.name, 'nav items must include a name');
+  const { pathName, name } = metadata;
+
+  // get hash for unique id
+  const hash = helpers.getHash(metadata); // utility available in bpanel-utils
+  const id = hash.slice(0, 6);
+  metadata.pathName = pathName ? pathName : name;
+  return {
+    type: 'ADD_SIDE_NAV',
+    payload: { ...metadata, sidebar: true, id }
+  };
 }
+```
+
+#### REMOVE_SIDE_NAV
+To remove a sidebar item, you must pass an object with at least an `id` or `name` property matching
+the item you would like to remove.
+
+```javascript
+// webapp/store/actions/navActions.js
+function removeSideNav(metadata) {
+  if (!metadata.id || !metadata.name)
+    // eslint-disable-next-line no-console
+    console.warn('Must pass an id or name to delete nav item');
+  return {
+    type: 'REMOVE_SIDE_NAV',
+    payload: metadata
+  };
+};
 ```
 
 ### `reduceChain`
@@ -104,7 +163,7 @@ export const reduceChain = (state, action) => {
       return newState;
     }
   }
-}
+};
 ```
 
 ### `reduceNode`
