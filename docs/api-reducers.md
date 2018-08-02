@@ -29,57 +29,51 @@ To get information about the shape of the part of the state you would like to in
 
 
 ## Available Reducers:
-### `reducePlugins`
-This is a "catch-all" reducer. Its initial state with no plugins is simply an empty object and
-its only built-in action type is `ADD_PLUGIN`. This reducer lets you add a new plugin
-store when dispatched, keyed to an id passed inside the payload. This is not strictly necessary
-to add to the plugins store, but it's useful if you want bPanel to check for conflicts (it won't
-allow for two plugin stores with the same id). Doing it on your own, there is no guarantee that
-your reducer won't overwrite the state from another plugin, so adding a unique prefix
-as identifier to your store id, regardless is a good idea and the responsibility of each
-plugin developer.
 
-(We plan to add a more robust custom reducer system in the future)
+### `pluginReducers`
+Often a plugin will want to add its own store and corresponding reducers to the app state.
+This can have numerous advantages including simplifying the control flow of the state
+for your components. Significantly, it can also enable other plugins to interact with your
+plugin by providing an interface, via redux, for reading your plugin's state and even
+hooking into action dispatches via middleware.
 
-The first step is to setup your initial state by catching the `APP_LOADED` action
-in your middleware, and dispatching `ADD_PLUGIN` with the unique id and the rest of your state
-in the payload (this step isn't necessary with other reducers since their state is already
-initialized).
-```javascript
-// index.js
-export const middleware = store => next => action {
-  const { dispatch } = store;
-  if (action.type === 'APP_LOADED') {
-    dispatch({
-      type: 'ADD_PLUGIN',
-      payload: {
-        id: 'myplugin_store1',
-        arrayToStore: [],
-        children: {},
-        otherProps: {}
-      }
-    });
+You can also have the app persist your plugin state across browser sessions using the
+browser's localStorage. See [`persistReducers`](#persistreducers) below for more
+
+#### combineReducers
+bPanel uses redux's `combineReducers` utility method to implement and merge the state of
+all plugins with their own store. This happens during the build stage when bPanel will take
+all plugin reducers merge them into a single object, and add them to the root reducer under
+the store `plugins`.
+
+Shape of the store:
+```
+{
+  node: {...},
+  chain: {...},
+  wallets: {...},
+  theme: {...},
+  pluginMetadata: {...},
+  plugins: {
+    myCustomPlugin: {...}, // this will be initialized w/ your initial state and updated w/ your reducer
+    otherPlugin: {...}
   }
-  // make sure to call next so other
-  // plugins can see app has loaded
-  next(action);
 };
 ```
 
-Then just extend the reducer like you would for any other:
+To add your own custom reducer and initial state, simply create your reducer as you normally would
+with redux and pass it in via an object, exported with `pluginReducers`. You can pass as many top
+level reducers as you want or nest multiple reducers under your own top level reducer.
 
 ```javascript
-// index.js
-export const reducePlugins = (state, action) => {
+function bp_foo(state = { foo: 'bar' }, action) {
   const newState = { ...state };
   switch (action.type) {
-    case 'ADD_MY_UNIQUE_ARRAY': {
-      const { pluginStore } = newState['myplugin_store1'];
-      const arr = [...pluginStore.arrayToStore];
-      arr.push('some item');
-      newState.arrayToStore = arr;
+    case 'SET_FOO':
+      newState.foo = action.payload;
       return newState;
-    }
+    default:
+      return state;
   }
 };
 
@@ -124,6 +118,42 @@ function addSideNav(metadata) {
     payload: { ...metadata, sidebar: true, id }
   };
 }
+
+export const pluginReducers = {
+  bp_foo: bp_foo
+  // export as many properties w/ corresponding reducers as you want
+  // or use combineReducers to nest them under a single top level reducer
+};
+```
+
+Now you can update your plugin state by dispatching an action:
+
+```
+ {
+  type: 'SET_FOO',
+  payload: 'baz'
+ }
+```
+
+> Make sure you prefix your store with a unique id to avoid any conflicts
+with other plugins.
+
+### `persistReducers`
+bPanel uses the [redux-persist package](https://www.npmjs.com/package/redux-persist) to allow
+plugin developers to persist state across browser sessions. This means that if you indicate you want
+a part of your store to persist, the app will rehydrate with the last known state whether you refresh
+or open in a new window or tab.
+
+Note that currently the only capability you have as a plugin developer is to whitelist what you would
+like to persist. The default, top-level stores do not currently persist and simply hydrate from the node
+bPanel is communicating with. Make sure to take this into account to avoid your plugin being inconsistent
+with the state of the rest of the app.
+
+The interface to persist a store is straightforward, simply export an array of strings matching to
+the plugin store you would like to persist:
+
+```javascript
+export const persistReducers = ['bp_foo'];
 ```
 
 #### REMOVE_SIDE_NAV
@@ -142,6 +172,10 @@ function removeSideNav(metadata) {
   };
 };
 ```
+
+### `reducePlugins` (deprecated)
+`reducePlugins` has been deprecated and is no longer supported in bPanel. If you have a plugin
+that currently uses this interface, please upgrade to the [pluginReducers](#pluginreducers) API instead
 
 ### `reduceChain`
 Actions types currently implemented in the chain reducer are:
