@@ -177,7 +177,7 @@ Next, add the component to decoratePanel. Note that we are uncommenting the rout
 
 ```
 // lib/index.js
-...
+// ...
 export const decoratePanel = (Panel, { React, PropTypes }) => {
   return class extends React.Component {
     static displayName() {
@@ -199,7 +199,7 @@ export const decoratePanel = (Panel, { React, PropTypes }) => {
     }
   };
 };
-...
+// ...
 ```
 
 Now, build your plugin again, wait for bpanel's webpack to catch up, then reload bpanel in your browser, navigate to your plugin path, and you should see your view in the panel area!
@@ -225,14 +225,14 @@ state: {
     progress: ...,
     ...
   }
-}
+};
 ```
 
 So, let's update the `mapComponentState` export in index.js to look something like this:
 
 ```javascript
 // lib/index.js
-...
+// ...
 export const mapComponentState = {
   Panel: (state, map) =>
     Object.assign(map, {
@@ -241,7 +241,7 @@ export const mapComponentState = {
       progress: state.chain.progress
     })
 };
-...
+// ...
 ```
 
 Then, let's make getRouteProps pass those props down to our route:
@@ -263,7 +263,7 @@ The last step is to display this information in your component.
 
 ```
 // lib/index.js
-...
+//...
 const NodeInfo = ({ network, height, progress }) => (
   <div>
     <Header type="h2">Node Info</Header>
@@ -272,7 +272,7 @@ const NodeInfo = ({ network, height, progress }) => (
     <Text type="p">Progress: {progress}</Text>
   </div>
 );
-...
+//...
 ```
 
 `getRouteProps` takes care of passing the props down to the Component you set as the main route for your panel view so all you have to do is add them to your component's function signature and add them to the JSX (in a real application, you'd also probably want to add PropType validation).

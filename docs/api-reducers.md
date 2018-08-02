@@ -58,7 +58,7 @@ Shape of the store:
     myCustomPlugin: {...}, // this will be initialized w/ your initial state and updated w/ your reducer
     otherPlugin: {...}
   }
-}
+};
 ```
 
 To add your own custom reducer and initial state, simply create your reducer as you normally would
@@ -75,6 +75,47 @@ function bp_foo(state = { foo: 'bar' }, action) {
     default:
       return state;
   }
+};
+
+```
+
+### `navStore`
+Currently the nav store doesn't support decoration. By dispatching the appropriate
+actions however, you can add and remove items from the App's navigation.
+
+#### ADD_SIDE_NAV
+To add a new item to the side navigation, simply send a payload with an object
+that mirrors the shape of the [`metadata`](/docs/api-metadata.html) object for new plugins.
+
+In addition you will also need to add a unique id. The built in `addSideNav` action creator in bPanel
+generates one automatically by taking the first 6 characters of the hash of your object.
+
+##### Properties
+| Property       | Required?     | Type        | Details     |
+| -------------  | ------------- | --------    | -------     |
+| `name`         | yes           | `string`    | Used to identify your plugin. Must follow npm naming rules  |
+| `id`         | yes           | `string`      | unique id. This will be added to the link component in the DOM  |
+| `displayName`  | no            | `string`    | Will default to `name` if none is provided |
+| `pathName`     | yes            | `string`    | If building a view/panel, will be passed to react-router to use as URL of your view|
+| `order`        | no            | `int`       | If including in sidebar, useful for ordering nav.<br>If order conflicts between plugins, will sort alphabetically |
+| `icon`         | no            | `string`    | Also for sidebar navigation.<br>The name of the font awesome icon to use for your view nav  |
+| `sidebar` or `nav`| no            | `bool`      | Default: `false`<br>If true, bPanel will automatically add sidebar navigation for your plugin view  |
+| `parent`       | no            | `string`    | Currently no support, but will be used for<br>adding a plugin as child (both in path and in navigation) |
+
+```javascript
+// webapp/store/actions/navActions.js
+
+function addSideNav(metadata) {
+  assert(metadata.name, 'nav items must include a name');
+  const { pathName, name } = metadata;
+
+  // get hash for unique id
+  const id = helpers.getHash(metadata, 'sha256', 0, 6); // utility available in bpanel-utils
+  metadata.pathName = pathName ? pathName : name;
+  return {
+    type: 'ADD_SIDE_NAV',
+    payload: { ...metadata, sidebar: true, id }
+  };
 }
 
 export const pluginReducers = {
@@ -114,6 +155,23 @@ the plugin store you would like to persist:
 export const persistReducers = ['bp_foo'];
 ```
 
+#### REMOVE_SIDE_NAV
+To remove a sidebar item, you must pass an object with at least an `id` or `name` property matching
+the item you would like to remove.
+
+```javascript
+// webapp/store/actions/navActions.js
+function removeSideNav(metadata) {
+  if (!metadata.id || !metadata.name)
+    // eslint-disable-next-line no-console
+    console.warn('Must pass an id or name to delete nav item');
+  return {
+    type: 'REMOVE_SIDE_NAV',
+    payload: metadata
+  };
+};
+```
+
 ### `reducePlugins` (deprecated)
 `reducePlugins` has been deprecated and is no longer supported in bPanel. If you have a plugin
 that currently uses this interface, please upgrade to the [pluginReducers](#pluginreducers) API instead
@@ -138,7 +196,7 @@ export const reduceChain = (state, action) => {
       return newState;
     }
   }
-}
+};
 ```
 
 ### `reduceNode`

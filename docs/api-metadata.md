@@ -41,5 +41,5 @@ export const metadata = {
 | `author`       | no            | `string`    | Who you are |
 | `order`        | no            | `int`       | If including in sidebar, useful for ordering nav.<br>If order conflicts between plugins, will sort alphabetically |
 | `icon`         | no            | `string`    | Also for sidebar navigation.<br>The name of the font awesome icon to use for your view nav  |
-| `sidebar`      | no            | `bool`      | Default: `false`<br>If true, bPanel will automatically add sidebar navigation for your plugin view  |
+| `sidebar` or nav | no            | `bool`      | Default: `false`<br>If true, bPanel will automatically add sidebar navigation for your plugin view  |
 | `parent`       | no            | `string`    | Currently no support, but will be used for<br>adding a plugin as child (both in path and in navigation) |
