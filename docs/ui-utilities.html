@@ -8,6 +8,7 @@
 as well as to work more easily with bPanel themes.</p>
 <ul>
 <li><a href="#connecttheme"><code>connectTheme</code></a></li>
+<li><a href="#createnestedviews"><code>createNestedViews</code></a></li>
 <li><a href="#errorwrapper"><code>errorWrapper</code></a></li>
 <li><a href="#widgetcreator"><code>widgetCreator</code></a></li>
 <li><a href="#makerem"><code>makeRem</code></a></li>
@@ -38,6 +39,156 @@ MyComponent.propTypes = {
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connectTheme(MyComponent);
 </code></pre>
+<h3><a class="anchor" aria-hidden="true" name="createnestedviews"></a><a href="#createnestedviews" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>createNestedViews</code></h3>
+<p><code>createNestedViews</code> is a Higher Order Component (HOC) utility to help you create nested view components
+for your plugins. This allows you to add more navigation to your plugin rather than have your entire UI
+in a single view. This only outputs the view components themselves and not the actual navigation. To add
+navigation to your views, you can either create your own custom links using the bpanel-ui <code>Link</code> component,
+or leverage the <a href="/docs/api-reducers.html#navstore">nav reducer</a> within bPanel.</p>
+<p>The routing system in bPanel uses React Router v4. To learn more about their API, please visit their
+<a href="https://reacttraining.com/react-router/web/api">docs</a>.</p>
+<p><code>createNestedViews</code> takes three arguments: an array of children views, a &quot;Home&quot; component, and a &quot;Not Found&quot;
+component. Only the array of children views is required. A child view should be an object with two properties:
+<code>path</code> and <code>component</code>. <code>path</code> is a string representing the relative path where the child component should be rendered
+and <code>component</code> is a function that takes a <code>props</code> arguments and should return a React Component.</p>
+<p>Note that the path should include the full, relative path. So if your main plugin view is at <code>my-plugin</code> and you
+want the child to render at <code>/my-plugin/child</code>, the <code>path</code> property would be <code>/my-plugin/child</code>. If your component
+is decorating <code>Panel</code>, you will also have access to the <a href="https://reacttraining.com/react-router/web/api/match"><code>match</code></a>
+property from React Router. Using <code>match.url</code> is an easy way to build your relative paths.</p>
+<h4><a class="anchor" aria-hidden="true" name="nested-views-example"></a><a href="#nested-views-example" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nested Views Example</h4>
+<p>Let's look at an example to see how this works. You can add the below code in a plugin index.js file in your local plugins
+directory (remember to add the plugin name to your 'localPlugins' list in your plugins config).</p>
+<pre><code class="hljs css javascript"><span class="hljs-keyword">import</span> {
+  Header,
+  Button,
+  Link,
+  Text,
+  createNestedViews
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-ui'</span>;
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">'prop-types'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> metadata = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'test-children'</span>,
+  <span class="hljs-attr">displayName</span>: <span class="hljs-string">'Test'</span>,
+  <span class="hljs-attr">pathName</span>: <span class="hljs-string">'Tester'</span>,
+  <span class="hljs-attr">nav</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">icon</span>: <span class="hljs-string">'flask'</span>,
+  <span class="hljs-attr">order</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// The Child component will have access to all custom props</span>
+<span class="hljs-comment">// as well as props passed through from React Router</span>
+<span class="hljs-keyword">const</span> Child = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"child"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"h3"</span>&gt;</span>Child: {props.displayName}<span class="hljs-tag">&lt;/<span class="hljs-name">Header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Name: {props.name}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>ID: {props.id}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+<span class="hljs-comment">// Home and NoMatch are optional views you can add as defaults</span>
+<span class="hljs-keyword">const</span> Home = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"child"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"h3"</span>&gt;</span>Home- Click button to generate children<span class="hljs-tag">&lt;/<span class="hljs-name">Header</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+
+<span class="hljs-keyword">const</span> NoMatch = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"child"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"h4"</span>&gt;</span>404: Could Not Find That Path<span class="hljs-tag">&lt;/<span class="hljs-name">Header</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+<span class="hljs-comment">// boilerplate for decorating Panel so you can view your component</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> decoratePanel = <span class="hljs-function">(<span class="hljs-params">Panel, { React, PropTypes }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">static</span> displayName() {
+      <span class="hljs-keyword">return</span> metadata.displayName;
+    }
+
+    <span class="hljs-keyword">static</span> get propTypes() {
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">customChildren</span>: PropTypes.array
+      };
+    }
+
+    render() {
+      <span class="hljs-keyword">const</span> { customChildren = [] } = <span class="hljs-keyword">this</span>.props;
+      <span class="hljs-keyword">const</span> routeData = {
+        metadata,
+        <span class="hljs-attr">Component</span>: Test
+      };
+      <span class="hljs-keyword">return</span> (
+        &lt;Panel
+          {...this.props}
+          customChildren={customChildren.concat(routeData)}
+        /&gt;
+      );
+    }
+  };
+};
+
+class Test extends React.PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
+  static get propTypes() {
+    return {
+      match: PropTypes.object
+    };
+  }
+
+  render() {
+    const { match } = this.props;
+
+    // create the first route
+    const route1 = {
+      path: `${match.url}/child-1`,
+      component: props =&gt; (
+        &lt;Child displayName="Child 1" name="child-1" id="1" {...props} /&gt;
+      )
+    };
+
+    // create the second route
+    const route2 = {
+      path: `${match.url}/child-2`,
+      component: props =&gt; (
+        &lt;Child displayName="Child 2" name="child-2" id="2" {...props} /&gt;
+      )
+    };
+
+    // add the routes to an array
+    const routes = [route1, route2];
+
+    // create your new component using the `createNestedViews` HOC
+    const NestedViews = createNestedViews(routes, Home, NoMatch);
+
+    return (
+      &lt;div&gt;
+        &lt;Header type="h3"&gt;Main Container&lt;/Header&gt;
+        &lt;div&gt;
+          &lt;Button type="action"&gt;
+            &lt;Link to={`${route1.path}`}&gt;Child 1&lt;/Link&gt;
+          &lt;/Button&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;Button type="action"&gt;
+            &lt;Link to={`${route2.path}`}&gt;Child 2&lt;/Link&gt;
+          &lt;/Button&gt;
+        &lt;/div&gt;
+        &lt;NestedViews match={match} /&gt;
+      &lt;/div&gt;
+    );
+  }
+};
+
+</code></pre>
+<p>Your nested view component should look something like this:</p>
+<p><img src="/img/nested-views.gif" alt="nested views" title="nested views"></p>
+<p>Not pretty, but it gets the job done!</p>
 <h3><a class="anchor" aria-hidden="true" name="errorwrapper"></a><a href="#errorwrapper" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errorWrapper</code></h3>
 <p><code>errorWrapper</code> is a Higher Order Component for catching errors in your plugin or widget.
 Top level plugins that decorate Panel already do this by default however for widgets that
@@ -120,7 +271,6 @@ for use in a themeConfig or inline styles in your React Component.</p>
 makeGutter(<span class="hljs-string">'padding'</span>, { <span class="hljs-attr">left</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">right</span>: <span class="hljs-number">5</span> }); <span class="hljs-comment">// { paddingLeft: '5rem', paddingRight: '5rem' };</span>
 makeGutter(<span class="hljs-string">'padding'</span>, { <span class="hljs-attr">horizontal</span>: <span class="hljs-number">15</span>, <span class="hljs-attr">vertical</span>: <span class="hljs-number">10</span> }); <span class="hljs-comment">// { paddingLeft: '15rem', paddingRight: '15rem', paddingTop: '10rem', paddingBottom: '10rem' };</span>
 makeGutter(<span class="hljs-string">'margin'</span>, { <span class="hljs-attr">all</span>: <span class="hljs-number">8</span> }); <span class="hljs-comment">// { marginLeft: '8rem', marginRight: '8rem', marginTop: '8rem', marginBottom: '8rem' };</span>
-
 </code></pre>
 <p>More details on implementation <a href="/bpanel-docs/docs/theming-variables.html#makegutter">here</a>.</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="ui-components.html">← UI Components</a><a class="docs-next button" href="theming-started.html">Getting Started →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bcoin-logo-white.png" alt="bPanel" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quick-start.html">Quick Start</a><a href="/docs/en/plugin-intro.html">Plugin Overview</a><a href="/docs/en/theming-started.html">Theming Overview</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/bcoin" target="_blank">Stack Overflow</a><a href="http://bcoin.io/slack-signup.html" target="_blank">Project Chat</a><a href="https://twitter.com/bcoin" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/bpanel-org" target="_blank">GitHub</a><a class="github-button" href="https://github.com/bpanel-org/bpanel" data-icon="octicon-star" data-count-href="" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2018 bcoin<br/><smallest>Icons made by artists from https://www.flaticon.com/authors and licensed under CC 3.0</smallest></section></footer></div><script>

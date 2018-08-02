@@ -132,7 +132,7 @@ npm run start:dev <span class="hljs-comment"># make sure to run after you've add
 </code></pre>
 <p>Next, add the component to decoratePanel. Note that we are uncommenting the routeData declaration and adding our new component, and also replacing the customChildren prop with our own that adds our routeData to the other views.</p>
 <pre><code class="hljs"><span class="hljs-comment">// lib/index.js</span>
-...
+<span class="hljs-comment">// ...</span>
 export const decoratePanel = (<span class="hljs-type">Panel</span>, { <span class="hljs-type">React</span>, <span class="hljs-type">PropTypes</span> }) =&gt; {
   <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
     static displayName() {
@@ -154,7 +154,7 @@ export const decoratePanel = (<span class="hljs-type">Panel</span>, { <span clas
     }
   };
 };
-...
+<span class="hljs-comment">// ...</span>
 </code></pre>
 <p>Now, build your plugin again, wait for bpanel's webpack to catch up, then reload bpanel in your browser, navigate to your plugin path, and you should see your view in the panel area!</p>
 <p><img src="/img/3-panel.png" alt="panel view" title="bpanel with view"><em>Your plugin now has a view!</em></p>
@@ -174,12 +174,12 @@ export const decoratePanel = (<span class="hljs-type">Panel</span>, { <span clas
     <span class="hljs-attr">progress</span>: ...,
     ...
   }
-}
+};
 </code></pre>
 <p>So, let's update the <code>mapComponentState</code> export in index.js to look something like this:</p>
 <pre><code class="hljs css javascript"><span class="hljs-comment">// lib/index.js</span>
-...
-export <span class="hljs-keyword">const</span> mapComponentState = {
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> mapComponentState = {
   <span class="hljs-attr">Panel</span>: <span class="hljs-function">(<span class="hljs-params">state, map</span>) =&gt;</span>
     <span class="hljs-built_in">Object</span>.assign(map, {
       <span class="hljs-attr">network</span>: state.node.node.network,
@@ -187,7 +187,7 @@ export <span class="hljs-keyword">const</span> mapComponentState = {
       <span class="hljs-attr">progress</span>: state.chain.progress
     })
 };
-...
+<span class="hljs-comment">// ...</span>
 </code></pre>
 <p>Then, let's make getRouteProps pass those props down to our route:</p>
 <pre><code class="hljs css javascript"><span class="hljs-comment">// lib/index.js</span>
@@ -203,18 +203,18 @@ export <span class="hljs-keyword">const</span> getRouteProps = {
 ...
 </code></pre>
 <p>The last step is to display this information in your component.</p>
-<pre><code class="hljs"><span class="xml">// lib/index.js
-...
-const NodeInfo = (</span><span class="hljs-template-variable">{ network, height, progress }</span><span class="xml">) =&gt; (
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+<pre><code class="hljs"><span class="hljs-comment">// lib/index.js</span>
+<span class="hljs-comment">//...</span>
+<span class="hljs-keyword">const</span> NodeInfo = <span class="hljs-function">(<span class="hljs-params">{ network, height, progress }</span>) =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"h2"</span>&gt;</span>Node Info<span class="hljs-tag">&lt;/<span class="hljs-name">Header</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Network: </span><span class="hljs-template-variable">{network}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Height: </span><span class="hljs-template-variable">{height}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Progress: </span><span class="hljs-template-variable">{progress}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Network: {network}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Height: {height}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"p"</span>&gt;</span>Progress: {progress}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 );
-...
-</span></code></pre>
+<span class="hljs-comment">//...</span>
+</code></pre>
 <p><code>getRouteProps</code> takes care of passing the props down to the Component you set as the main route for your panel view so all you have to do is add them to your component's function signature and add them to the JSX (in a real application, you'd also probably want to add PropType validation).</p>
 <p>Now, build and refresh bPanel and you should see your node's actual information displayed!</p>
 <p><img src="/img/4-node-info.png" alt="node info" title="bpanel with node info"><em>Your plugin is now displaying live info from your node</em></p>
