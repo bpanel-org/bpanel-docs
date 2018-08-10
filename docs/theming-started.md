@@ -45,8 +45,8 @@ export default themeVariables;
 
 ```
 
-### bpanel/webapp/config/pluginsConfig.js
-Add your theme to the `configs/pluginsConfig.js`.
+### `~/.bpanel/config.js`
+Add your theme to the `~/.bpanel/config.js`.
 ```javascript
 export const localPlugins = [
   'chainSockets',

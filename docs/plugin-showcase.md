@@ -5,7 +5,8 @@ sidebar_label: Plugin Showcase
 ---
 Here are some featured bPanel plugins to help you get started.
 Any of these can be added to your local bPanel install by adding
-their name (as they appear on npm) to the pluginsConfig.js
+their name (as they appear on npm) to your project's config file
+(`~/.bpanel/config.js`)
 
 ## Plugins
 ### Simple Mining
