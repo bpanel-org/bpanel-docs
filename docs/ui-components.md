@@ -26,7 +26,7 @@ npm install --save @bpanel/bui
 
 Add `BUI` to your bPanel install to see what's available.
 ```javascript
-// webapp/config/pluginsConfig.js
+// ~/.bpanel/config.js
 export const localPlugins = [];
 export const plugins = ['@bpanel/bui'];
 export default { localPlugins, plugins };

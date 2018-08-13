@@ -32,7 +32,7 @@ Once the script is complete you should have a plugin project directory ready to 
 ## Developing your Plugin
 If you're using the default plugin structure, index.js in the `dist` directory of your plugin directory is the entry point to your plugin. Your plugin extensions should be exposed in this file (see the API docs for more on the available extensions). If you're using `bpanel-cli create` though, you can/should build in the `lib` directory, exposing an `index.js` file there, and the build commands (`make watch`, `make build`, or `npm publish` described below) will build your files into the `dist` directory (the build really just converts any modern ES6+ into more widely supported JavaScript).
 
-bPanel's `pluginsConfig.js` file supports two import types, with fields for `local` and `plugins`. Any plugin name in the `plugins` array will be attempted to be downloaded from npm (but not saved to your package.json). Local plugin projects will be looked for in `webapp/plugins/local` so make sure a project with a matching name is available there.
+bPanel's `config.js` file supports two import types, with fields for `local` and `plugins`. Any plugin name in the `plugins` array will be attempted to be downloaded from npm (but not saved to your package.json). Local plugin projects will be looked for in `webapp/plugins/local` so make sure a project with a matching name is available there.
 
 ### As a Local Plugin
 This can be the most straightforward way to develop, however since webpack will include all these files in its scope,
@@ -59,9 +59,11 @@ and link to your plugin
 npm link [PLUGIN_NAME]
 ```
 
-Then add your plugin to your pluginsConfig.js (see [Install Plugins](/docs/install-plugins.html) for more).
+Then add your plugin to bPanel's config.js (see [Install Plugins](/docs/install-plugins.html) for more).
 
-To build your plugin anytime you make changes, simply `cd` to your plugin's directory in your terminal and run the watch command (you can also manually run `make babel` after each change)
+To build your plugin anytime you make changes, simply `cd` to your plugin's directory in your terminal and run the watch command (you can also manually run `make babel` after each change).
+
+**NOTE:** You must `link` the plugin *after* any updates to your config.js and a webpack build has run. Since a change to the config file triggers a new npm install, this will clear any links you have.
 
 ```bash
 cd /path/to/your-plugin

@@ -84,10 +84,10 @@ cd path/to/bpanel
 npm link node-view
 ```
 
-Next, in the bPanel project folder we're going to want to add `node-view` to our list of plugins in the configuration file (webapp/config/pluginsConfig.js):
+Next, we're going to want to add `node-view` to our list of plugins in the configuration file (the default location is `~/.bpanel/config.js`):
 
 ```javascript
-// webapp/config/pluginsConfig.js
+// `~/.bpanel/config.js`
 export const localPlugins = [
   // any local plugins you have
   ...
