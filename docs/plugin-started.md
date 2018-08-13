@@ -61,7 +61,9 @@ npm link [PLUGIN_NAME]
 
 Then add your plugin to bPanel's config.js (see [Install Plugins](/docs/install-plugins.html) for more).
 
-To build your plugin anytime you make changes, simply `cd` to your plugin's directory in your terminal and run the watch command (you can also manually run `make babel` after each change)
+To build your plugin anytime you make changes, simply `cd` to your plugin's directory in your terminal and run the watch command (you can also manually run `make babel` after each change).
+
+**NOTE:** You must `link` the plugin *after* any updates to your config.js and a webpack build has run. Since a change to the config file triggers a new npm install, this will clear any links you have.
 
 ```bash
 cd /path/to/your-plugin
