@@ -35,23 +35,23 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Docs</h5>
-            <a href={this.docUrl('quick-start.html', this.props.language)}>
+            <a href={this.docUrl('quick-start.html')}>
               Quick Start
             </a>
-            <a href={this.docUrl('plugin-intro.html', this.props.language)}>
+            <a href={this.docUrl('plugin-intro.html')}>
               Plugin Overview
             </a>
-            <a href={this.docUrl('theming-started.html', this.props.language)}>
+            <a href={this.docUrl('theming-started.html')}>
               Theming Overview
             </a>
           </div>
           <div>
             <h5>Community</h5>
-{/*             <a href={this.pageUrl('users.html', this.props.language)}>
+{/*             <a href={this.pageUrl('users.html')}>
               User Showcase
             </a> */}
             <a
-              href="https://stackoverflow.com/questions/tagged/bcoin"
+              href="https://bitcoin.stackexchange.com/questions/tagged/bcoin"
               target="_blank">
               Stack Overflow
             </a>
