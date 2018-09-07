@@ -1842,6 +1842,28 @@ footer .copyright {
     color: #fff;
 }
 
+code {
+  font-size: 0.8rem;
+  margin: 0 0.3rem;
+}
+
+h3 a+code {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  display: inline-block;
+  margin-bottom: -1rem;
+}
+
+h4 a+code {
+    font-size: .9rem;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+h4 {
+  line-height: 1rem;
+}
+
 .buttonCTA {
     margin: 4px;
     border: 1px solid #FFF;

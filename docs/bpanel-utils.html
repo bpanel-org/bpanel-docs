@@ -1,4 +1,4 @@
-<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>bPanel Utils · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="bPanel Utils · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bpanel.org/index.html"/><meta property="og:description" content="bpanel-utils is a separate npm module that plugin developers can use to solve commonly encountered errors. This allows for some standardization around certain operations. Developers that feel they have a utility that can help other plugin devs should also be encouraged to extend this utility library."/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bcoin-logo-white.png"/><h2 class="headerTitle">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs/quick-start.html" target="_self">Quick Start</a></li><li><a href="/docs/bpanel-overview.html" target="_self">About</a></li><li><a href="/docs/plugin-started.html" target="_self">Developers</a></li><li><a href="/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Plugin Development</h3><ul><li class="navListItem"><a class="navItem" href="/docs/plugin-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/blockchain.html">Blockchain API</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guides</h3><ul><li class="navListItem"><a class="navItem" href="/docs/guide-node-info.html">Node Info View</a></li></ul></div><div class="navGroup navGroupActive"><h3>API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/api-metadata.html">metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate.html">decorate</a></li><li class="navListItem"><a class="navItem" href="/docs/api-map-state-dispatch.html">mapComponentState/Dispatch</a></li><li class="navListItem"><a class="navItem" href="/docs/api-getprops.html">getProps</a></li><li class="navListItem"><a class="navItem" href="/docs/api-reducers.html">reducers</a></li><li class="navListItem"><a class="navItem" href="/docs/api-middleware.html">middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/api-constants.html">Constants</a></li><li class="navListItem"><a class="navItem" href="/docs/api-sockets.html">Sockets</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate-plugins.html">Decorate Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/api-bundling-plugins.html">Bundling Plugins</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/bpanel-utils.html">bPanel Utils</a></li></ul></div><div class="navGroup navGroupActive"><h3>bPanel UI</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ui-introduction.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-components.html">Components</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-utilities.html">Utilities</a></li></ul></div><div class="navGroup navGroupActive"><h3>Theming (Skins)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/theming-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-defaults.html">Theming Defaults</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-variables.html">Theming Variables</a></li></ul></div></div></section></div><script>
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>bPanel Utils · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="bPanel Utils · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bpanel.org/index.html"/><meta property="og:description" content="bpanel-utils is a separate npm module that plugin developers can use to solve commonly encountered errors. This allows for some standardization around certain operations. Developers that feel they have a utility that can help other plugin devs should also be encouraged to extend this utility library."/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bcoin-logo-white.png"/><h2 class="headerTitle">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs/quick-start.html" target="_self">Getting Started</a></li><li><a href="/docs/bpanel-overview.html" target="_self">About</a></li><li><a href="/docs/plugin-started.html" target="_self">Developers</a></li><li><a href="/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Plugin Development</h3><ul><li class="navListItem"><a class="navItem" href="/docs/plugin-started.html">Intro to Plugin Development</a></li><li class="navListItem"><a class="navItem" href="/docs/blockchain.html">Blockchain API</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guides</h3><ul><li class="navListItem"><a class="navItem" href="/docs/guide-node-info.html">Node Info View</a></li></ul></div><div class="navGroup navGroupActive"><h3>API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/api-metadata.html">metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate.html">decorate</a></li><li class="navListItem"><a class="navItem" href="/docs/api-map-state-dispatch.html">mapComponentState/Dispatch</a></li><li class="navListItem"><a class="navItem" href="/docs/api-getprops.html">getProps</a></li><li class="navListItem"><a class="navItem" href="/docs/api-reducers.html">reducers</a></li><li class="navListItem"><a class="navItem" href="/docs/api-middleware.html">middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/api-constants.html">Constants</a></li><li class="navListItem"><a class="navItem" href="/docs/api-sockets.html">Sockets</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate-plugins.html">Decorate Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/api-bundling-plugins.html">Bundling Plugins</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/bpanel-utils.html">bPanel Utils</a></li></ul></div><div class="navGroup navGroupActive"><h3>bPanel UI</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ui-introduction.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-components.html">Components</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-utilities.html">Utilities</a></li></ul></div><div class="navGroup navGroupActive"><h3>Theming (Skins)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/theming-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-defaults.html">Theming Defaults</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-variables.html">Theming Variables</a></li></ul></div></div></section></div><script>
           var toggler = document.getElementById('navToggler');
           var nav = document.getElementById('docsNav');
           toggler.onclick = function() {
@@ -10,38 +10,90 @@
 </code></pre>
 <p>and then import into your project files as needed.</p>
 <ul>
-<li><a href="#clients"><code>clients</code></a></li>
+<li><a href="#bpclient"><code>BPClient</code></a></li>
+<li><a href="#getclient"><code>getClient</code></a></li>
 <li><a href="#chain"><code>chain</code></a></li>
+<li><a href="#uxtx"><code>UXTX</code></a></li>
+<li><a href="#txmanager"><code>TxManager</code></a></li>
+<li><a href="#hd"><code>HD</code></a></li>
 <li><a href="#helpers"><code>helpers</code></a></li>
 </ul>
-<h3><a class="anchor" aria-hidden="true" name="clients"></a><a href="#clients" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>clients</code></h3>
-<p><code>bpanelClient</code> and <code>bwalletClient</code> are simple wrappers around the <a href="https://www.npmjs.com/package/bclient">bclient</a> module for network communications with the bcoin api. They simply route requests meant for your bcoin node through the appropriate router on your app server by prefixing with the expected route.</p>
-<p>You can read more about the bcoin API and available methods <a href="http://bcoin.io/api-docs/index.html#introduction">here</a>.</p>
-<h4><a class="anchor" aria-hidden="true" name="bpanelclient"></a><a href="#bpanelclient" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>bpanelClient</code></h4>
-<pre><code class="hljs css javascript">
-<span class="hljs-keyword">import</span> { bpanelClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
-<span class="hljs-keyword">const</span> client = bpanelClient();
+<h2><a class="anchor" aria-hidden="true" name="available-utilities"></a><a href="#available-utilities" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Available Utilities</h2>
+<h3><a class="anchor" aria-hidden="true" name="bpclient"></a><a href="#bpclient" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>BPClient</code></h3>
+<p>BPClient is a utility client to manage connections to a node within your app.
+It is configured to make connections via the proxy server where your bPanel app
+is served from, but should support custom connections either directly to a remote
+node or even one running on the client. It will support connecting to a bcoin, bcash,
+or handshake node.</p>
+<p>Example:</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { BPClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
 
-(<span class="hljs-keyword">async</span>() {
-  <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> client.getInfo();
-  <span class="hljs-built_in">console</span>.log(info);
-})()
+(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> BPClient({ <span class="hljs-attr">id</span>: <span class="hljs-string">'test'</span>, <span class="hljs-attr">chain</span>: <span class="hljs-string">'bcoin'</span> });
 
+  <span class="hljs-comment">// get all available clients from your server</span>
+  <span class="hljs-keyword">const</span> clients = <span class="hljs-keyword">await</span> client.getClients();
+
+  <span class="hljs-comment">// get default client of server if one is set</span>
+  <span class="hljs-keyword">const</span> defaultClient = <span class="hljs-keyword">await</span> client.getDefault();
+
+  <span class="hljs-comment">// get info for a specific client. Defaults to</span>
+  <span class="hljs-comment">// the id of your client</span>
+  <span class="hljs-keyword">const</span> getClientInfo = <span class="hljs-keyword">await</span> client.getClientInfo();
+
+  <span class="hljs-comment">// get a node client to query your node with</span>
+  <span class="hljs-keyword">const</span> nodeClient = client.getNodeClient();
+
+  <span class="hljs-comment">// use node client to run normal node api operations</span>
+  <span class="hljs-keyword">const</span> nodeInfo = <span class="hljs-keyword">await</span> nodeClient.getInfo();
+})();
 </code></pre>
-<h4><a class="anchor" aria-hidden="true" name="bwalletclient"></a><a href="#bwalletclient" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>bwalletClient</code></h4>
-<pre><code class="hljs css javascript">
-<span class="hljs-keyword">import</span> { bwalletClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
-<span class="hljs-keyword">const</span> client = bwalletClient();
+<h3><a class="anchor" aria-hidden="true" name="getclient"></a><a href="#getclient" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getClient</code></h3>
+<p>Using <code>getClient</code> you can retrieve a global instance of <a href="#bpclient">BPClient</a> within your app.
+This ensures that you are querying the same node as other plugins. The client returned
+will have all clients and methods available to the parent BPClient class.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { getClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
 
-(<span class="hljs-keyword">async</span>() {
-  <span class="hljs-keyword">const</span> id = <span class="hljs-string">'primary'</span>
-  <span class="hljs-keyword">const</span> accounts = <span class="hljs-keyword">await</span> client.getAccounts(id);
-  <span class="hljs-built_in">console</span>.log(accounts);
-})()
+<span class="hljs-keyword">const</span> client = getClient();
 
+(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (!client.id)
+    client.setClientInfo(<span class="hljs-string">'test'</span>, <span class="hljs-string">'handshake'</span>);
+
+  <span class="hljs-comment">// now you can start using your clients</span>
+  <span class="hljs-comment">// anywhere else in the app that uses the client from `getClient`</span>
+  <span class="hljs-comment">// will also be using the `test` clients until the info is changed again</span>
+
+  <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> client.node.getInfo();
+
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'info: '</span>, info);
+})();
 </code></pre>
+<h4><a class="anchor" aria-hidden="true" name="bpanelclient-and-bwalletclient-deprecated"></a><a href="#bpanelclient-and-bwalletclient-deprecated" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>bpanelClient and bwalletClient [deprecated]</h4>
+<p>NOTE: the client wrappers <code>bpanelClient</code> and <code>bwalletClient</code> have been deprecated in
+favor of <a href="#getclient"><code>getClient</code></a>.</p>
 <h3><a class="anchor" aria-hidden="true" name="chain"></a><a href="#chain" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>chain</code></h3>
 <p>Helper functions for working with the blockchain.</p>
+<h4><a class="anchor" aria-hidden="true" name="issupported"></a><a href="#issupported" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>isSupported</code></h4>
+<p><code>chain.isChainSupported</code> is a helper function that
+returns a boolean based on whether or not the input
+string is a supported chain. The supported chains
+can be inspected in <code>chain.CHAINS</code></p>
+<pre><code class="hljs css js">
+<span class="hljs-keyword">import</span> { chain } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
+
+<span class="hljs-built_in">console</span>.log(chain.isChainSupported(<span class="hljs-string">'bitcoin'</span>));
+<span class="hljs-comment">// true</span>
+
+<span class="hljs-built_in">console</span>.log(chain.isChainSupported(<span class="hljs-string">'monero'</span>));
+<span class="hljs-comment">// false</span>
+
+<span class="hljs-built_in">console</span>.log(chain.isChainSupported(<span class="hljs-string">'bitcoincash'</span>));
+<span class="hljs-comment">// true</span>
+
+<span class="hljs-built_in">console</span>.log(chain.isChainSupported(<span class="hljs-string">'handshake'</span>));
+<span class="hljs-comment">// true</span>
+</code></pre>
 <h4><a class="anchor" aria-hidden="true" name="getblock"></a><a href="#getblock" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getBlock</code></h4>
 <p>Does a request to the node for the block information. Accepts one argument of either a block hash or height to query.</p>
 <p>Returns a promise.</p>
@@ -50,11 +102,109 @@
 <p>Returns an integer.</p>
 <h4><a class="anchor" aria-hidden="true" name="getblocksinrange"></a><a href="#getblocksinrange" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getBlocksInRange</code></h4>
 <p>Return n number of blocks within a specified range. Accepts three arguments: start, end, and step.</p>
-<p>if start is larger than end, it steps backwards, otherwise steps forward. Does synchronous calls to the node for each block so it won't return until all calls have returned.</p>
+<p>if start is larger than end, it steps backwards, otherwise steps forward. Does synchronous calls
+to the node for each block so it won't return until all calls have returned.</p>
 <p>Returns an array of blocks.</p>
+<h3><a class="anchor" aria-hidden="true" name="uxtx"></a><a href="#uxtx" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>UXTX</code></h3>
+<h4><a class="anchor" aria-hidden="true" name="user-experience-transaction"></a><a href="#user-experience-transaction" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>User Experience Transaction</h4>
+<p>This is a convenience wrapper around the bcoin TX class that provides utilities
+for retrieving transaction information in a more user friendly way. It is particularly useful
+in building UIs to interact with transactions.</p>
+<pre><code class="hljs css js"><span class="hljs-keyword">import</span> { UXTX } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
+<span class="hljs-keyword">import</span> { WalletClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'bclient'</span>;
+
+<span class="hljs-keyword">const</span> walletClient = <span class="hljs-keyword">new</span> WalletClient({
+  <span class="hljs-attr">network</span>: <span class="hljs-string">'main'</span>,
+  <span class="hljs-attr">port</span>: <span class="hljs-number">8334</span>,
+  <span class="hljs-attr">apiKey</span>: SECRETS.API_KEY,
+});
+
+<span class="hljs-keyword">const</span> id = <span class="hljs-string">'primary'</span>;
+<span class="hljs-keyword">const</span> wallet = walletClient.wallet(id);
+
+<span class="hljs-comment">/*
+ * try fetching the hash yourself
+ * curl -s https://blockchain.info/rawblock/0000000000000000000c76fd257881891a21a018c4abd13c33c9f06a822914c9 \
+ *   | jq -r .tx[0].hash
+ */</span>
+
+<span class="hljs-keyword">const</span> hash = <span class="hljs-string">'6b3aafbed09f215d1f95fb06b7c204d12f7657e1bc1ff3dfa37d3248e05a430c'</span>;
+
+<span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> wallet.getTX(hash)
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">constants</span>: { <span class="hljs-attr">DATE_FORMAT</span>: <span class="hljs-string">'moment js date format string'</span> },
+  <span class="hljs-attr">labels</span>: {}, <span class="hljs-comment">// see labels object for usable labels</span>
+  json: tx,
+  <span class="hljs-attr">wallet</span>: id, <span class="hljs-comment">// wallet name</span>
+};
+
+<span class="hljs-keyword">const</span> uxtx = UXTX.fromRaw(tx.tx, <span class="hljs-string">'hex'</span>, options);
+
+<span class="hljs-keyword">const</span> json = uxtx.toJSON();
+
+</code></pre>
+<p><code>uxtx.toJSON</code> will use the labels and transaction information to
+return human readable information about the transaction.
+It is particularly useful for calculating tabular data, for example,
+displaying if a specific transaction was incoming or outgoing.
+There are more ways that this class can be extended, for example detecting
+coinjoin transactions or sweep transactions.</p>
+<h3><a class="anchor" aria-hidden="true" name="txmanager"></a><a href="#txmanager" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>TxManager</code></h3>
+<p>A wrapper around <code>UXTX</code> to manage many transactions.</p>
+<pre><code class="hljs css js">
+<span class="hljs-keyword">import</span> { TxManager, TxManagerOptions, UXTXOptions } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
+
+<span class="hljs-comment">// set bitcoin as the current chain</span>
+UXTXOptions.chain = <span class="hljs-string">'bitcoin'</span>;
+
+<span class="hljs-comment">// use default labels and constants in TxManagerOptions</span>
+(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> txManager = TxManager.fromOptions(TxManagerOptions);
+
+  <span class="hljs-keyword">const</span> account = <span class="hljs-string">'default'</span>;
+  <span class="hljs-keyword">const</span> txs = <span class="hljs-keyword">await</span> wallet.getHistory(account);
+
+  <span class="hljs-comment">// generate list of UXTX.toJSON with default labels and constants</span>
+  <span class="hljs-keyword">const</span> parsed = txManager.parse(txs, UXTXOptions);
+})();
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" name="hd"></a><a href="#hd" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>HD</code></h3>
+<p>This package includes helpers around HD tree derivation</p>
+<pre><code class="hljs css js">
+<span class="hljs-keyword">import</span> { COIN_TYPES, PURPOSE, HARDENED_FLAG } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
+<span class="hljs-keyword">import</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">'bsert'</span>;
+
+<span class="hljs-keyword">const</span> bitcoin = COIN_TYPES[<span class="hljs-string">'bitcoin'</span>][<span class="hljs-string">'main'</span>];
+
+assert(bitcoin === <span class="hljs-number">0</span>);
+
+<span class="hljs-keyword">const</span> bitcoincash = COIN_TYPES[<span class="hljs-string">'bitcoincash'</span>][<span class="hljs-string">'main'</span>];
+
+assert(bitcoincash === <span class="hljs-number">145</span>);
+
+assert(PURPOSE === <span class="hljs-number">44</span>);
+
+assert(HARDENED_FLAG === <span class="hljs-number">0x80000000</span>);
+
+</code></pre>
 <h3><a class="anchor" aria-hidden="true" name="helpers"></a><a href="#helpers" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>helpers</code></h3>
 <h4><a class="anchor" aria-hidden="true" name="now"></a><a href="#now" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>now()</code></h4>
 <p>Returns the current UTC time in seconds.</p>
+<h4><a class="anchor" aria-hidden="true" name="isu8-and-is16"></a><a href="#isu8-and-is16" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>isU8</code> and <code>is16</code></h4>
+<p>Helper for checking and manipulating uints.</p>
+<pre><code class="hljs css js">
+<span class="hljs-keyword">import</span> { helpers } <span class="hljs-keyword">from</span> <span class="hljs-string">'@bpanel/bpanel-utils'</span>;
+<span class="hljs-keyword">import</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">'bsert'</span>;
+
+<span class="hljs-keyword">const</span> twelve = <span class="hljs-number">12</span>;
+
+assert(helpers.isU8(twelve));
+
+<span class="hljs-keyword">const</span> sixhundredtwelve = <span class="hljs-number">612</span>;
+
+assert(helpers.is16(sixhundredtwelve));
+</code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="api-bundling-plugins.html">← Bundling Plugins</a><a class="docs-next button" href="ui-introduction.html">bPanel UI Introduction →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bcoin-logo-white.png" alt="bPanel" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/quick-start.html">Quick Start</a><a href="/docs/plugin-intro.html">Plugin Overview</a><a href="/docs/theming-started.html">Theming Overview</a></div><div><h5>Community</h5><a href="https://bitcoin.stackexchange.com/questions/tagged/bcoin" target="_blank">Stack Overflow</a><a href="http://bcoin.io/slack-signup.html" target="_blank">Project Chat</a><a href="https://twitter.com/bcoin" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/bpanel-org" target="_blank">GitHub</a><a class="github-button" href="https://github.com/bpanel-org/bpanel" data-icon="octicon-star" data-count-href="" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2018 bcoin<br/><smallest>Icons made by artists from https://www.flaticon.com/authors and licensed under CC 3.0</smallest></section></footer></div><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
