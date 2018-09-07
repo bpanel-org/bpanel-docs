@@ -4,42 +4,57 @@ title: Installing Plugins
 sidebar_label: Installing Plugins
 ---
 
-The plugin system built into bPanel is the best and most flexible way to customize your bPanel install while also ensuring compatibility with the platform. Add custom skins, add functionality, or extend existing views. All with a couple simple steps!
+The plugin system built into bPanel is the best and most flexible way to customize your bPanel
+install while also ensuring compatibility with the platform. Use a custom skin, add functionality,
+or extend existing views. All with a couple simple steps!
 
-## With npm
-The best way to install plugins is with npm. You can search for any plugins on npm tagged with the `bpanel` keyword by running
+## bpanel-cli
+`bpanel-cli` is a command line utility that makes it easy to interact with your local version of bPanel.
+Use it to [bootstrap a new plugin project](/docs/plugin-started.html), search for existing plugins, install and
+uninstall plugins from npm, or interact with plugins you are developing locally.
 
-```bash
-npm search bpanel
-```
+Available commands include:
 
-Then when you see you a plugin you want to install, just add the _name_ of your plugin to your main bPanel config file, by default created in `~/.bpanel/config.js` when you run `npm install` for the first time. (the name should be a string that matches the name of the target plugin as it is identified in the npm registry)
+- `bpanel-cli install [--local|-l ] [...list of plugins]` to install plugins, `-l` will install local plugins
+- `bpanel-cli uninstall [--local|-l ] [plugin name]` to uninstall plugins, `-l` will uninstall local plugins
+- `bpanel-cli list` to list out all currently installed plugins
+- `bpanel-cli search [...search terms]` By default searches for all packages on npm with the keyword `bpanel`
+- `bpanel-cli create` Walks through process of creating a boilerplate plugin project
 
-```javascript
-// ~/.bpanel/config.js
-export const localPlugins = [];
+### Note about remote plugins
+bpanel-cli will check that a remote plugin exists on the public npm registry before adding it to your config.
+It does not check that the plugin itself is fully compatible however. If the build encounters any errors
+after installation, try removing the plugin and checking with the plugin developer to confirm compatibility.
+Try to only install packages that at least have the keyword `bpanel`.
 
-export const plugins = ['my-plugin'];
+Also note that bpanel-cli will only check existence on npm and add the plugin to your `config.js`. You will
+still have to wait for it to be downloaded and built into your app's JS bundle before it is activated.
 
-export default { localPlugins, plugins };
-```
+### Note about local plugins
+bpanel-cli will look for local plugin in a `local_plugins` in your bpanel configs directory
+(`~/.bpanel` by default) before installing but this can be overriden with the `--prefix` option.
 
 
-## Locally
-For local plugins that you only intend to keep for your own bPanel install, or for testing, just add the folder to the `webapp/plugins/local` directory and add the name of the plugin as a string (matching the name of the directory exactly) to the `localPlugins` array in config.js. (You can use [`bpanel-cli`](/docs/plugin-started.html#bpanel-cli) to create a plugin and point it to your local plugin to install it there).
+## How it works
+This section is targeted for developers curious about how the plugin installation system works.
 
-So if your plugin is in the directory `webapp/plugins/local/my-local/plugin` you would add the following to your config:
+Plugins that should be built into bPanel are tracked by a `config.js` file stored in your local
+project's main directory. By default this is in your system's home directory at `~/.bpanel`,
+which is created, along with other boilerplates necessary to run bPanel, by an npm pre-install script.
+(This is customizable but beyond the scope of this tutorial. Wherever your project's config directory is
+though, it _must_ include a `config.js` file).
 
-```javascript
-// ~/.bpanel/config.js
-export const localPlugins = ['my-local-plugin'];
+Remote plugins to be installed from npm are listed in a `plugins` array and local plugins are in a `localPlugins`
+array both of which are exported from `config.js`. The bPanel server will watch for changes in this file, and if it
+notices anything, a script `build-plugins.js` is run (this is actually triggered by Webpack which is restarted by
+the server when `config.js` is changed, this could be changed in the future with
+[HMR support](https://webpack.js.org/guides/hot-module-replacement/)) which handles installing new plugins, creating
+entry points for the new plugins into the app, and updating the JS bundle.
 
-export const plugins = ['my-plugin'];
+All bpanel-cli does, aside from certain sanity checks, is add or remove plugin names from the appropriate arrays.
+`build-plugins` takes care of the rest. So if you don't want to use bpanel-cli, or run into any problems with it, you
+can accomplish the same thing by editing `config.js`.
 
-export default { localPlugins, plugins };
-```
-
-Once you've finished updating your config file, all you need to do is save your changes. Your server will see the change and re-run webpack to add your plugin to the build!
-
+## Developing your own plugins
 If you want to learn how to develop and publish your own plugins, head on over to
-our [Developers section](/docs/plugin-started) to learn more.
+our [Developers section](/docs/plugin-started).
