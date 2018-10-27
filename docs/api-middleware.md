@@ -17,7 +17,7 @@ Thanks to some [magic JavaScript currying](https://hackernoon.com/currying-in-js
 
 Example:
 ```
-export const middleware = store => next => action {
+export const middleware = store => next => action => {
   const { dispatch, getState } = store;
 
   const chain = getState().chain // getting the current state of the chain from the store
