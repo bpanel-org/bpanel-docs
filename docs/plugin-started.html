@@ -1,17 +1,71 @@
-<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Intro to Plugin Development · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Intro to Plugin Development · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bpanel.org/index.html"/><meta property="og:description" content="Before getting started, you may want to install the [Redux DevTools extension](https://github.com/zalmoxisus/redux-devtools-extension)"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bcoin-logo-white.png"/><h2 class="headerTitle">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs/quick-start.html" target="_self">Getting Started</a></li><li><a href="/docs/bpanel-overview.html" target="_self">About</a></li><li><a href="/docs/plugin-started.html" target="_self">Developers</a></li><li><a href="/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Plugin Development</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Plugin Development</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/plugin-started.html">Intro to Plugin Development</a></li><li class="navListItem"><a class="navItem" href="/docs/blockchain.html">Blockchain API</a></li></ul></div><div class="navGroup navGroupActive"><h3>Guides</h3><ul><li class="navListItem"><a class="navItem" href="/docs/guide-node-info.html">Node Info View</a></li></ul></div><div class="navGroup navGroupActive"><h3>API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/api-metadata.html">metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate.html">decorate</a></li><li class="navListItem"><a class="navItem" href="/docs/api-map-state-dispatch.html">mapComponentState/Dispatch</a></li><li class="navListItem"><a class="navItem" href="/docs/api-getprops.html">getProps</a></li><li class="navListItem"><a class="navItem" href="/docs/api-reducers.html">reducers</a></li><li class="navListItem"><a class="navItem" href="/docs/api-middleware.html">middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/api-constants.html">Constants</a></li><li class="navListItem"><a class="navItem" href="/docs/api-sockets.html">Sockets</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate-plugins.html">Decorate Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/api-bundling-plugins.html">Bundling Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/bpanel-utils.html">bPanel Utils</a></li></ul></div><div class="navGroup navGroupActive"><h3>bPanel UI</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ui-introduction.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-components.html">Components</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-utilities.html">Utilities</a></li></ul></div><div class="navGroup navGroupActive"><h3>Theming (Skins)</h3><ul><li class="navListItem"><a class="navItem" href="/docs/theming-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-defaults.html">Theming Defaults</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-variables.html">Theming Variables</a></li></ul></div></div></section></div><script>
-          var toggler = document.getElementById('navToggler');
-          var nav = document.getElementById('docsNav');
-          toggler.onclick = function() {
-            nav.classList.toggle('docsSliderActive');
-          };
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Intro to Plugin Development</h1></header><article><div><span><p>Before getting started, you may want to install the <a href="https://github.com/zalmoxisus/redux-devtools-extension">Redux DevTools extension</a>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Intro to Plugin Development · bPanel</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Before getting started, you may want to install the &lt;a href=&quot;https://github.com/zalmoxisus/redux-devtools-extension&quot;&gt;Redux DevTools extension&lt;/a&gt;&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Intro to Plugin Development · bPanel"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bpanel.org/index.html"/><meta property="og:description" content="&lt;p&gt;Before getting started, you may want to install the &lt;a href=&quot;https://github.com/zalmoxisus/redux-devtools-extension&quot;&gt;Redux DevTools extension&lt;/a&gt;&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-35892077-12', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bcoin-logo-white.png" alt="bPanel"/><h2 class="headerTitleWithLogo">bPanel</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/quick-start.html" target="_self">Getting Started</a></li><li class=""><a href="/docs/bpanel-overview.html" target="_self">About</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/plugin-started.html" target="_self">Developers</a></li><li class=""><a href="/docs/plugin-showcase.html" target="_self">Showcase</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Plugin Development</span></h2></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Plugin Development</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/plugin-started.html">Intro to Plugin Development</a></li><li class="navListItem"><a class="navItem" href="/docs/blockchain.html">Blockchain API</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/guide-node-info.html">Node Info View</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/api-metadata.html">metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate.html">decorate</a></li><li class="navListItem"><a class="navItem" href="/docs/api-map-state-dispatch.html">mapComponentState/Dispatch</a></li><li class="navListItem"><a class="navItem" href="/docs/api-getprops.html">getProps</a></li><li class="navListItem"><a class="navItem" href="/docs/api-reducers.html">reducers</a></li><li class="navListItem"><a class="navItem" href="/docs/api-middleware.html">middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/api-constants.html">Constants</a></li><li class="navListItem"><a class="navItem" href="/docs/api-sockets.html">Sockets</a></li><li class="navListItem"><a class="navItem" href="/docs/api-decorate-plugins.html">Decorate Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/api-bundling-plugins.html">Bundling Plugins</a></li><li class="navListItem"><a class="navItem" href="/docs/bpanel-utils.html">bPanel Utils</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">bPanel UI</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/ui-introduction.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-components.html">Components</a></li><li class="navListItem"><a class="navItem" href="/docs/ui-utilities.html">Utilities</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Theming (Skins)</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/theming-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-defaults.html">Theming Defaults</a></li><li class="navListItem"><a class="navItem" href="/docs/theming-variables.html">Theming Variables</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Intro to Plugin Development</h1></header><article><div><span><p>Before getting started, you may want to install the <a href="https://github.com/zalmoxisus/redux-devtools-extension">Redux DevTools extension</a>
 (Chrome and Firefox extensions are available). The developer build of bPanel will expose
 these tools in the browser which will give you a lot of information about what data is
 available in the store, what actions are fired, etc.</p>
 <p>You'll also want to make sure your server is configured properly to connect to compatible nodes.
 Head on over to <a href="/docs/configuration.html">Configuration</a> if you're having any trouble. You can also
 read more about how bPanel makes it easy to <a href="/docs/blockchain.html">interact with the blockchain</a>.</p>
-<h3><a class="anchor" aria-hidden="true" name="table-of-contents"></a><a href="#table-of-contents" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Table of Contents</h3>
+<h3><a class="anchor" aria-hidden="true" id="table-of-contents"></a><a href="#table-of-contents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Table of Contents</h3>
 <ul>
 <li><a href="#bpanel-cli">bPanel CLI</a></li>
 <li><a href="#developing-your-plugin">Developing Your Plugin</a></li>
@@ -19,15 +73,15 @@ read more about how bPanel makes it easy to <a href="/docs/blockchain.html">inte
 <li><a href="#publishing-your-plugin">Publishing Your Plugin</a></li>
 <li><a href="#the-plugin-api">The Plugin API</a></li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" name="bpanel-cli"></a><a href="#bpanel-cli" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>bPanel CLI</h2>
+<h2><a class="anchor" aria-hidden="true" id="bpanel-cli"></a><a href="#bpanel-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>bPanel CLI</h2>
 <p>We've built a CLI tool to help spec out the initial skeleton of your plugin and let you hit the ground running
 in your development. This will setup a project directory for you that is ready to be published onto NPM.
 It will also install the project directly to your local bpanel config directory by default, which means
 all you have to do is install it to bPanel with <code>bpanel-cli install --local [YOUR_PLUGIN_NAME]</code> and it will
 automatically be built into your local bPanel.</p>
-<h3><a class="anchor" aria-hidden="true" name="install-bpanel-cli"></a><a href="#install-bpanel-cli" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install bpanel-cli</h3>
+<h3><a class="anchor" aria-hidden="true" id="install-bpanel-cli"></a><a href="#install-bpanel-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install bpanel-cli</h3>
 <p>The CLI tool is available via npm: <a href="https://www.npmjs.com/package/@bpanel/bpanel-cli">bpanel-cli</a>.</p>
-<pre><code class="hljs css shell">npm install -g @bpanel/bpanel-cli
+<pre><code class="hljs css language-shell">npm install -g @bpanel/bpanel-cli
 </code></pre>
 <p>Once installed, run the command below to create your plugin boilerplate. This will walk you through the
 steps necessary to setup your development environment. If you've ever run <code>npm init</code>,
@@ -35,11 +89,11 @@ many of the initial steps will feel familiar to you (and in fact, this will fill
 of the same information in your plugin's package.json). The later steps however are more advanced,
 specific to your plugin and the bPanel API, so feel free to skip these if you're not exactly sure what
 you want to build or how to built it.</p>
-<pre><code class="hljs css shell">bpanel-cli create
+<pre><code class="hljs css language-shell">bpanel-cli create
 </code></pre>
 <p>Once the script is complete you should have a plugin project directory ready to work on (and
 even <code>npm publish</code> if you wanted to).</p>
-<h2><a class="anchor" aria-hidden="true" name="developing-your-plugin"></a><a href="#developing-your-plugin" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Developing your Plugin</h2>
+<h2><a class="anchor" aria-hidden="true" id="developing-your-plugin"></a><a href="#developing-your-plugin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Developing your Plugin</h2>
 <p>If you're using the default plugin structure, index.js in the <code>dist</code> directory of your plugin directory
 is the entry point to your plugin. Your plugin extensions should be exposed in this file (see the API docs
 for more on the available extensions).</p>
@@ -49,10 +103,10 @@ or <code>npm publish</code> described below) will build your files into the <cod
 converts any modern ES6+ into more widely supported JavaScript).</p>
 <p>To build your plugin anytime you make changes, simply <code>cd</code> to your plugin's directory in your terminal and
 run the watch command (you can also manually run <code>make babel</code> after each change).</p>
-<pre><code class="hljs css bash"><span class="hljs-built_in">cd</span> /path/to/your-plugin
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> /path/to/your-plugin
 make watch
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" name="a-note-about-dependencies"></a><a href="#a-note-about-dependencies" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A Note about Dependencies</h2>
+<h2><a class="anchor" aria-hidden="true" id="a-note-about-dependencies"></a><a href="#a-note-about-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A Note about Dependencies</h2>
 <p>Since you will only be using your plugin in bPanel, you can assume a number of tools and packages will be
 available by default. This means there is no need to include them in your plugin's dependencies.
 The best thing to do (especially to make the linter happy) is to add them to your <code>peerDependencies</code> in <code>package.json</code>.
@@ -72,13 +126,13 @@ if there are others you depend on, and/or you want to ensure a minimum version, 
 <li>&quot;redux&quot;</li>
 <li>&quot;redux-thunk&quot;</li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" name="publishing-your-plugin"></a><a href="#publishing-your-plugin" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publishing your Plugin</h2>
+<h2><a class="anchor" aria-hidden="true" id="publishing-your-plugin"></a><a href="#publishing-your-plugin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publishing your Plugin</h2>
 <p>If you're using <code>bpanel-cli</code> to spec your plugin files, then this is as easy as <code>npm publish</code>. Just make sure
 you've got your npm registry credentials setup on your local machine (more <a href="https://docs.npmjs.com/cli/publish">at npm</a>).
 Once published, other bPanel developers can install and import your plugin into their own app!</p>
 <p><code>bpanel-cli create</code> will automatically add <code>bpanel</code> and <code>bcoin</code> keywords to your package.json. This makes it easy for other
 users to find your plugin with a simple <code>bpanel-cli search</code>.</p>
-<h2><a class="anchor" aria-hidden="true" name="the-plugin-api"></a><a href="#the-plugin-api" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Plugin API</h2>
+<h2><a class="anchor" aria-hidden="true" id="the-plugin-api"></a><a href="#the-plugin-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Plugin API</h2>
 <p>You will need to hook into the extension API in order to make sure your functionality is added to bPanel. Read about the API
 to learn more about the available extensions and how to use them. All you have to do is make sure that at least one of
 these are exported from the entry point of your module (e.g. index.js when using <code>bpanel-cli</code>).</p>
@@ -111,12 +165,4 @@ these are exported from the entry point of your module (e.g. index.js when using
 </ul></li>
 <li><a href="/docs/theming-started.html#bpanel-webapp-plugins-local-mytheme-indexjs">decorateTheme</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="blockchain.html">Interacting with the Blockchain →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bcoin-logo-white.png" alt="bPanel" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/quick-start.html">Quick Start</a><a href="/docs/plugin-intro.html">Plugin Overview</a><a href="/docs/theming-started.html">Theming Overview</a></div><div><h5>Community</h5><a href="https://bitcoin.stackexchange.com/questions/tagged/bcoin" target="_blank">Stack Overflow</a><a href="http://bcoin.io/slack-signup.html" target="_blank">Project Chat</a><a href="https://twitter.com/bcoin" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/bpanel-org" target="_blank">GitHub</a><a class="github-button" href="https://github.com/bpanel-org/bpanel" data-icon="octicon-star" data-count-href="" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2018 bcoin<br/><smallest>Icons made by artists from https://www.flaticon.com/authors and licensed under CC 3.0</smallest></section></footer></div><script>
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-              ga('create', 'UA-35892077-12', 'auto');
-              ga('send', 'pageview');
-            </script></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/blockchain.html"><span>Blockchain API</span><span class="arrow-next"> →</span></a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bcoin-logo-white.png" alt="bPanel" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/quick-start.html">Quick Start</a><a href="/docs/plugin-intro.html">Plugin Overview</a><a href="/docs/theming-started.html">Theming Overview</a></div><div><h5>Community</h5><a href="https://bitcoin.stackexchange.com/questions/tagged/bcoin" target="_blank">Stack Overflow</a><a href="http://bcoin.io/slack-signup.html" target="_blank">Project Chat</a><a href="https://twitter.com/bcoin" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/bpanel-org" target="_blank">GitHub</a><a class="github-button" href="https://github.com/bpanel-org/bpanel" data-icon="octicon-star" data-count-href="" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 bcoin<br/><smallest>Icons made by artists from https://www.flaticon.com/authors and licensed under CC 3.0</smallest></section></footer></div></body></html>
